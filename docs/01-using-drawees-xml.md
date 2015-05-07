@@ -6,11 +6,7 @@ permalink: /docs/using-drawees-xml.html
 prev: concepts.html
 next: using-drawees-code.html
 ---
-
-Drawees have very extensive customization facilities. 
-The best way to customize your Drawee is to do so in the XML. 
-
-Here is an example that sets nearly all possible options:
+Drawees는 custom 할 수 있는 많은 속성을 갖고 있습니다. 제일 좋은 방법은 XML을 이용하는 것 입니다. 
 
 ```xml
 <com.facebook.drawee.view.SimpleDraweeView
@@ -43,24 +39,18 @@ Here is an example that sets nearly all possible options:
   />
 ```
 
-#### Height and width mandatory
+####높이(Height)는 필수입니다. 
+'android:layout_width'와 'android:layout_height'는 **반드시 선언**해야 합니다. 이 2가지 속성이 없다면 Drawee는 이미지를 제대로 표시 못합니다.
 
-You **must** declare both `android:layout_width` and `android:layout_height`. Without both of these two, the view will not be able to lay the image out correctly.
+####wrap_content 
 
-#### wrap_content
+Drawees 는 'layout_width' 와 'layout_height' 속성에 'wrap_content' 값을 지원하지 않습니다. 컨텐츠의 크기가 바뀌는 이유 때문인데요. 다운받은 이미지의 크기가 대기이미지(placeholder)때문에 달라질 수 - 이미지 표시 실패, 재시도 같은 여러가지 이유때문에- 있기 때문입니다. 
+'wrap_content' 를 사용하는 것은 이미지가 로드되었을 때 Android가 다른 레이아웃에 이미지 전달해 사용자의 눈에 들어오기 전에 이상한 효과를 만들며 레이아웃이 바뀌도록 강제합니다.(수정필요)
 
-Drawees do not support the `wrap_content` value for the `layout_width` and `layout_height` attributes.
+#### 길이 비율로 고정시키기 Fixing the aspect ratio 
 
-The reason for this is that the content's size changes. The size of your downloaded image can be different from your placeholder - and the failure and retry images, if any, can be still different. 
-
-Use of `wrap_content` would force Android to do another layout pass when your image comes in - and for the layout to change before users' eyes, creating a jarring effect.
-
-#### Fixing the aspect ratio
-
-This is the one time you should use `wrap_content.`
-
-You can force a DraweeView to be laid out in a particular aspect ratio. If you want a width:height ratio of 4:3, for instance, do this:
-
+`wrap_content` 를 사용할 때입니다. 
+넓이와 높이를 4:3 비율로 설정하고 싶다면 아래와 같이 해보세요
 ```xml
 <com.facebook.drawee.view.SimpleDraweeView
     android:id="@+id/my_image_view"
@@ -69,9 +59,7 @@ You can force a DraweeView to be laid out in a particular aspect ratio. If you w
     fresco:viewAspectRatio="1.33f"
     <!-- other attributes -->
 ```
-
-You can also specify your aspect ratio in Java:
-
+혹은 Java에서도 설정할 수 있습니다. 
 ```java
 mSimpleDraweeView.setAspectRatio(1.33f);
 ```
