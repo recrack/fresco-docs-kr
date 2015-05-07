@@ -6,21 +6,19 @@ permalink: /docs/supported-uris.html
 prev: concepts.html
 next: using-drawees-xml.html
 ---
+Fresco는 다양한 환경의 이미지를 지원합니다. 
 
-Fresco supports images in a variety of locations. 
+Fresco는 **상대경로 URI는 지원되지 않습니다**. 모든 URI는 절대경로거나 scheme을 포함해야 합니다.
 
-Fresco does **not** accept relative URIs. All URIs must be absolute and must include the scheme.
-
-These are the URI schemes accepted:
-
+아레는 지원되는 URI scheme 종류입니다:
 
 | Type | Scheme | Fetch method used
-| ---------------- | ------- | ------------- |
+| --------------- | ------- | ------------- |
 | File on network | `http://,` `https://` | `HttpURLConnection` or [network layer](using-other-network-layers.html) |
 | File on device | `file://` | `FileInputStream` | 
 | Content provider | `content://` | `ContentResolver` |
 | Asset in app | `asset://` | `AssetManager` |
 | Resource in app | `res://` | `Resources.openRawResource` |
 
-<br/>
-Note: Only image resources can be used with the image pipeline (e.g. a PNG image). Other resource types such as Strings or XML Drawables make no sense in the context of the image pipeline and so cannot be supported by definition. One potentially confusing case is drawable declared in XML (e.g. ShapeDrawable). Important thing to note is that this is **not** an image. If you want to display an XML drawable as the main image, then set it as a [placeholder](using-drawees-code.html#change_placeholder) and use the `null` uri.
+
+이미지 리소스는 오직 이미지 파이프라인으로만 사용됩니다(e.g a PNG 이미지). String이나 XML Drawable 같은 다른 리소스 타잎은 이미지 파이프라인의 컨텍스트와 일치하지 않고 따라서 정의에 의해 사용될 수 없습니다. 잠재적인 혼란스러운 케이스는 XML에 선언된 drawable입니다(e.g. ShapeDrawable). 기억해야 할 중요한 것은 이것이 **이미지가 아니라는 것입니다**. 만약 XML drawable을 주요 이미지로 화면에 표시하고 싶다면, 대기이미지 - [placeholder](using-drawees-code.html#change_placeholder)-나 `null` uri를 지정하세요.   
