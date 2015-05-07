@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset='utf-8'>
+    <title>Fresco | Building from Source</title>
+    <link rel='stylesheet' href='/static/site.css' type='text/css'/>
+    <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
+    <link rel='shortcut icon' href='/static/favicon.png'>
+    <meta name='viewport' content='width=480'>
+    <meta property="og:title" content="Building from Source" />
+    <meta property="og:site_name" content="fresco">
+    <meta property='og:description' content='Fresco is an image management library.'>
+    <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
+    <meta property='og:url' content="http://facebook.github.io/fresco/docs/building-from-source.html">
+    
+    <meta property='og:type' content='website'>
+    
+    <script type="text/javascript" src="//use.typekit.net/vqa1hcx.js"></script>
+    <script type="text/javascript">{'try{Typekit.load();}catch(e){}'}</script>
+    <!-- Google Analytics -->
+</head>
+<body>
+
+<header class='topbar'><nav class='width'>
+<a href='/'>
+  <img src="/static/fresco-logo.png" class="logo">
+</a>
+    <ul>
+      <li><a href="/docs/index.html#_"
+          
+          class="active" >
+          Docs
+      </a></li>
+      <li><a href="/"
+          >
+          About
+      </a></li>
+      <li><a href="/support.html"
+          >
+          Support
+      </a></li>
+      <li><a href="/javadoc">
+          API
+      </a></li>
+      <li><a href="http://github.com/facebook/fresco">GitHub</a></li>
+      <li><a href="http://fresco-cn.org">中文版</a></li>
+    </ul>
+</nav></header>
+
+
+<section class='content'><div class='width'>
+
+<nav class='toc'>
+  
+    <section>
+      <h3>Quick Start</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/index.html#_">
+              Adding Fresco to your Project
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/getting-started.html#_">
+              Getting started with Fresco
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/concepts.html#_">
+              Concepts
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/supported-uris.html#_">
+              Supported URIs
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Drawee Guide</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/using-drawees-xml.html#_">
+              Using Drawees in XML
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-drawees-code.html#_">
+              Using Drawees in Code
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/drawee-components.html#_">
+              Drawee Components
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/progress-bars.html#_">
+              Progress Bars
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/scaling.html#_">
+              Scaling
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/rounded-corners-and-circles.html#_">
+              Rounded Corners and Circles
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-controllerbuilder.html#_">
+              Using the ControllerBuilder
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/progressive-jpegs.html#_">
+              Progressive JPEGs
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/animations.html#_">
+              Animated Images
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/requesting-multiple-images.html#_">
+              Requesting Multiple Images
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/listening-download-events.html#_">
+              Listening to Download Events
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/resizing-rotating.html#_">
+              Resizing and Rotating
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/modifying-image.html#_">
+              Modifying the Image
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/image-requests.html#_">
+              Image Requests
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/writing-custom-views.html#_">
+              Writing Custom Views
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/gotchas.html#_">
+              Gotchas
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Image Pipeline Guide</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/intro-image-pipeline.html#_">
+              Introduction to the Image Pipeline
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/configure-image-pipeline.html#_">
+              Configuring the Image Pipeline
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/caching.html#_">
+              Cache Behavior
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-image-pipeline.html#_">
+              Using the Image Pipeline Directly
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/datasources-datasubscribers.html#_">
+              DataSources and DataSubscribers
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/closeable-references.html#_">
+              Closeable References
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Third Party Libraries</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/using-other-network-layers.html#_">
+              Using Other Network Layers
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-other-image-loaders.html#_">
+              Using Other Image Loaders
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Contributing to Fresco</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/building-from-source.html#_" class="active">
+              Building from Source
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+</nav>
+
+
+<article class='withtoc'>
+    <h1>
+      Building from Source
+      <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/04-building-from-source.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <p></p>
+
+    <p>You should only build from source if you need to modify Fresco code itself. Most applications should simply <a href="index.html">include</a> Fresco in their project.</p>
+
+<h3>Prerequisites</h3>
+
+<p>The following tools must be installed on your system in order to build Fresco:</p>
+
+<ol>
+<li>The Android <a href="https://developer.android.com/sdk/index.html#Other">SDK</a></li>
+<li>From the Android SDK Manager, install the Support Library <strong>and</strong> the Support Repository. Both are found in the Extras section.</li>
+<li>The Android <a href="https://developer.android.com/tools/sdk/ndk/index.html">NDK</a>. Version 10c or later is required.</li>
+<li>The <a href="http://git-scm.com/">git</a> version control system.</li>
+</ol>
+
+<p>You don&#39;t need to download Gradle itself; the build scripts or Android Studio will do that for you.</p>
+
+<p>Fresco does not support source builds with Eclipse, Ant, or Maven. We do not plan to ever add such support. Maven projects can still <a href="index.html">include</a> Fresco, and we hope to later add Eclipse and Ant support.</p>
+
+<h3>Configuring Gradle</h3>
+
+<p>Both command-line and Android Studio users need to edit the <code>gradle.properties</code> file. This is normally located in your home directory, in a subdirectory called <code>.gradle</code>. If it is not already there, create it.</p>
+
+<p>On Unix-like systems, including Mac OS X, add a line like this:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">ndk</span><span class="o">.</span><span class="na">path</span><span class="o">=</span><span class="s">/path/</span><span class="n">to</span><span class="s">/android_ndk/</span><span class="n">r10d</span>
+</code></pre></div>
+<p>On Windows systems, add a line like this:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">ndk</span><span class="o">.</span><span class="na">path</span><span class="o">=</span><span class="n">C</span><span class="err">\</span><span class="o">:</span><span class="err">\\</span><span class="n">path</span><span class="err">\\</span><span class="n">to</span><span class="err">\\</span><span class="n">android_ndk</span><span class="err">\\</span><span class="n">r10d</span>
+</code></pre></div>
+<p>Windows&#39; backslashes and colons need to be escaped in order for Gradle to read them correctly.</p>
+
+<h3>Getting the source</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">git clone https://github.com/facebook/fresco.git
+</code></pre></div>
+<p>This will create a directory <code>fresco</code> where the code will live.</p>
+
+<h3>Building from the Command Line</h3>
+
+<p>On Unix-like systems, <code>cd</code> to the directory containing Fresco. Run the following command:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">./gradlew build
+</code></pre></div>
+<p>On Windows, open a Command Prompt, <code>cd</code> to the directory containing Fresco, and type in this command:</p>
+<div class="highlight"><pre><code class="language-bat" data-lang="bat">gradlew.bat build
+</code></pre></div>
+<h3>Building from Android Studio</h3>
+
+<p>From Android Studio&#39;s Quick Start dialog, click Import Project. Navigate to the directory containing Fresco and click on the <code>build.gradle</code> file.</p>
+
+<p>Android Studio should build Fresco automatically.</p>
+
+<h3>Offline builds</h3>
+
+<p>The first time you build Fresco, your computer must be connected to the Internet. Incremental builds can use Gradle&#39;s <code>--offline</code> option.</p>
+
+<h3>Contributing code upstream</h3>
+
+<p>Please see our <a href="https://github.com/facebook/fresco/blob/master/CONTRIBUTING.md">CONTRIBUTING</a> page.</p>
+
+
+    <div class="docs-prevnext">
+      
+        <a href="/docs/using-other-image-loaders.html#_">&larr; Prev</a>
+      
+      
+    </div>
+
+    <a id="_"></a>
+</article>
+
+</div></section>
+<footer><div class='width'>
+    &copy; Copyright 2015, Facebook Inc.<br>
+    Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Sample code licensed under the <a href="/sample-license.html">sample license</a>.
+</div></footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+  ga('create', 'UA-44373548-3', 'auto');
+  ga('send', 'pageview');
+ 
+</script>
+<script src="/static/linkify.js"></script>
+</body>
+</html>
+

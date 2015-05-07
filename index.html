@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset='utf-8'>
+    <title>Fresco | Fresco | An image management library.</title>
+    <link rel='stylesheet' href='/static/site.css' type='text/css'/>
+    <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
+    <link rel='shortcut icon' href='/static/favicon.png'>
+    <meta name='viewport' content='width=480'>
+    <meta property="og:title" content="Fresco | An image management library." />
+    <meta property="og:site_name" content="fresco">
+    <meta property='og:description' content='Fresco is an image management library.'>
+    <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
+    <meta property='og:url' content="http://facebook.github.io/fresco/index.html">
+    
+    <meta property='og:type' content='website'>
+    
+    <script type="text/javascript" src="//use.typekit.net/vqa1hcx.js"></script>
+    <script type="text/javascript">{'try{Typekit.load();}catch(e){}'}</script>
+    <!-- Google Analytics -->
+</head>
+<body>
+
+<header class='topbar'><nav class='width'>
+<a href='/'>
+  <img src="/static/fresco-logo.png" class="logo">
+</a>
+    <ul>
+      <li><a href="/docs/index.html#_"
+          >
+          Docs
+      </a></li>
+      <li><a href="/"
+           class="active" >
+          About
+      </a></li>
+      <li><a href="/support.html"
+          >
+          Support
+      </a></li>
+      <li><a href="/javadoc">
+          API
+      </a></li>
+      <li><a href="http://github.com/facebook/fresco">GitHub</a></li>
+      <li><a href="http://fresco-cn.org">中文版</a></li>
+    </ul>
+</nav></header>
+
+
+
+  <header class='hero'><div class='width'>
+    <div class='fresco-header'></div>
+    <div>
+      <p>An image management library</p>
+      <div class="buttons-unit">
+        <a href="/docs/index.html#_" class="button">Get Started</a>
+      </div>
+    </div>
+</div></header>
+
+
+
+<section class='content'><div class='width'>
+
+<article>
+
+<h1>About Fresco</h1>
+
+<p>Fresco is a powerful system for displaying images in Android applications. It takes care of image loading and display so you don&#39;t have to. </p>
+
+<p>Fresco&#39;s <em>image pipeline</em> will load images from the network, local storage, or local resources. To save data and CPU, it has three levels of cache; two in memory and another in internal storage.</p>
+
+<p>Fresco&#39;s <em>Drawees</em> show a placeholder for you until the image has loaded and automatically show to the image when it arrives. When the image goes off-screen, it automatically releases its memory.</p>
+
+<p>Fresco supports Android 2.3 (Gingerbread) and later.</p>
+
+<h1>Features</h1>
+
+<h3>Memory</h3>
+
+<p>A decompressed image - an Android <code>Bitmap</code> - takes up a lot of memory. This leads to more frequent runs of the Java garbage collector. This slows apps down. The problem is especially bad without the improvements to the garbage collector made in Android 5.0.</p>
+
+<p>On Android 4.x and lower, Fresco puts images in a special region of Android memory. It also makes sure that images are automatically released from memory when they&#39;re no longer shown on screen. This lets your application run faster - and suffer fewer crashes.</p>
+
+<p>Apps using Fresco can run even on low-end devices without having to constantly struggle to keep their image memory footprint under control.</p>
+
+<h3>Streaming</h3>
+
+<p>Progressive JPEG images have been on the Web for years. These let a low-resolution scan of the image download first, then gradually improve the quality as more of the image downloads. This is a lifesaver for users on slow networks.</p>
+
+<p>Android&#39;s own imaging libraries don&#39;t support streaming. Fresco does. Just specify a URI, and your app will automatically update its display as more data arrives.</p>
+
+<h3>Animations</h3>
+
+<p>Animated GIFs and WebPs can be challenging for apps. Each frame is a large Bitmap, and each animation is a series of frames. Fresco takes care of loading and disposing of frames and managing their memory.</p>
+
+<h3>Drawing</h3>
+
+<p>Fresco uses <code>Drawees</code> for display. These offer a number of useful features:</p>
+
+<ul>
+<li>Scale the image to a custom focus point, instead of the center</li>
+<li>Show the image with rounded corners, or a circle</li>
+<li>Let users tap the placeholder to retry load of the image, if the network load failed</li>
+<li>Show custom backgrounds, overlays, or progress bars on the image</li>
+<li>Show a custom overlay when the user presses the image</li>
+</ul>
+
+<h3>Loading</h3>
+
+<p>Fresco&#39;s image pipeline lets you customize the load in a variety of ways:</p>
+
+<ul>
+<li>Specify several different uris for an image, and choose the one already in cache for display</li>
+<li>Show a low-resolution image first and swap to a higher-res one when it arrives</li>
+<li>Send events back into your app when the image arrives</li>
+<li>If the image has an EXIF thumbnail, show it first until the full image loads (local images only)</li>
+<li>Resize or rotate the image </li>
+<li>Modify the downloaded image in-place</li>
+<li>Decode WebP images, even on older versions of Android that don&#39;t fully support them</li>
+</ul>
+
+<h1>More information</h1>
+
+<ul>
+<li>Our <a href="https://code.facebook.com/posts/366199913563917">blog post</a> announcing Fresco and explaining the technical design</li>
+<li>Our <a href="https://developers.facebooklive.com/videos/542/move-fast-ensuring-mobile-performance-without-breaking-things">talk</a> at the F8 conference (begins at 25:00, or -14:35 remaining)</li>
+<li><a href="docs/index.html">Download</a> Fresco</li>
+<li>Our <a href="docs/getting-started.html">documentation</a></li>
+<li>Our source code on <a href="https://github.com/facebook/fresco">GitHub</a></li>
+</ul>
+
+
+</article>
+
+</div></section>
+
+
+
+
+  <header class='hero'><div class='width'>
+    <div class="buttons-unit">
+      <a href="/docs/index.html#_" class="button">Get Started</a>
+    </div>
+<footer><div class='width'>
+    &copy; Copyright 2015, Facebook Inc.<br>
+    Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Sample code licensed under the <a href="/sample-license.html">sample license</a>.
+</div></footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+  ga('create', 'UA-44373548-3', 'auto');
+  ga('send', 'pageview');
+ 
+</script>
+<script src="/static/linkify.js"></script>
+</body>
+</html>
+
+  </div></header>
+
+

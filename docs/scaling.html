@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset='utf-8'>
+    <title>Fresco | Scaling</title>
+    <link rel='stylesheet' href='/static/site.css' type='text/css'/>
+    <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
+    <link rel='shortcut icon' href='/static/favicon.png'>
+    <meta name='viewport' content='width=480'>
+    <meta property="og:title" content="Scaling" />
+    <meta property="og:site_name" content="fresco">
+    <meta property='og:description' content='Fresco is an image management library.'>
+    <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
+    <meta property='og:url' content="http://facebook.github.io/fresco/docs/scaling.html">
+    
+    <meta property='og:type' content='website'>
+    
+    <script type="text/javascript" src="//use.typekit.net/vqa1hcx.js"></script>
+    <script type="text/javascript">{'try{Typekit.load();}catch(e){}'}</script>
+    <!-- Google Analytics -->
+</head>
+<body>
+
+<header class='topbar'><nav class='width'>
+<a href='/'>
+  <img src="/static/fresco-logo.png" class="logo">
+</a>
+    <ul>
+      <li><a href="/docs/index.html#_"
+          
+          class="active" >
+          Docs
+      </a></li>
+      <li><a href="/"
+          >
+          About
+      </a></li>
+      <li><a href="/support.html"
+          >
+          Support
+      </a></li>
+      <li><a href="/javadoc">
+          API
+      </a></li>
+      <li><a href="http://github.com/facebook/fresco">GitHub</a></li>
+      <li><a href="http://fresco-cn.org">中文版</a></li>
+    </ul>
+</nav></header>
+
+
+<section class='content'><div class='width'>
+
+<nav class='toc'>
+  
+    <section>
+      <h3>Quick Start</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/index.html#_">
+              Adding Fresco to your Project
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/getting-started.html#_">
+              Getting started with Fresco
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/concepts.html#_">
+              Concepts
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/supported-uris.html#_">
+              Supported URIs
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Drawee Guide</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/using-drawees-xml.html#_">
+              Using Drawees in XML
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-drawees-code.html#_">
+              Using Drawees in Code
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/drawee-components.html#_">
+              Drawee Components
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/progress-bars.html#_">
+              Progress Bars
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/scaling.html#_" class="active">
+              Scaling
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/rounded-corners-and-circles.html#_">
+              Rounded Corners and Circles
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-controllerbuilder.html#_">
+              Using the ControllerBuilder
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/progressive-jpegs.html#_">
+              Progressive JPEGs
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/animations.html#_">
+              Animated Images
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/requesting-multiple-images.html#_">
+              Requesting Multiple Images
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/listening-download-events.html#_">
+              Listening to Download Events
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/resizing-rotating.html#_">
+              Resizing and Rotating
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/modifying-image.html#_">
+              Modifying the Image
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/image-requests.html#_">
+              Image Requests
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/writing-custom-views.html#_">
+              Writing Custom Views
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/gotchas.html#_">
+              Gotchas
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Image Pipeline Guide</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/intro-image-pipeline.html#_">
+              Introduction to the Image Pipeline
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/configure-image-pipeline.html#_">
+              Configuring the Image Pipeline
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/caching.html#_">
+              Cache Behavior
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-image-pipeline.html#_">
+              Using the Image Pipeline Directly
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/datasources-datasubscribers.html#_">
+              DataSources and DataSubscribers
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/closeable-references.html#_">
+              Closeable References
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Third Party Libraries</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/using-other-network-layers.html#_">
+              Using Other Network Layers
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-other-image-loaders.html#_">
+              Using Other Image Loaders
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Contributing to Fresco</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/building-from-source.html#_">
+              Building from Source
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+</nav>
+
+
+<article class='withtoc'>
+    <h1>
+      Scaling
+      <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/01-scaling.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <p></p>
+
+    <p>You can specify a different scale type for each of the <a href="drawee-components.html">different drawables</a> in your Drawee. The </p>
+
+<h3>Available scale types</h3>
+
+<table><thead>
+<tr>
+<th>Scale Type</th>
+<th>Explanation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>center</td>
+<td>Center the image in the view, but perform no scaling.</td>
+</tr>
+<tr>
+<td>centerCrop</td>
+<td>Scales the image so that both dimensions will be greater than or equal to the corresponding dimension of the parent. <br>One of width or height will fit exactly. <br>The image is centered within parent&#39;s bounds.</td>
+</tr>
+<tr>
+<td><a href="#focusCrop">focusCrop</a></td>
+<td>Same as centerCrop, but based around a caller-specified focus point instead of the center.</td>
+</tr>
+<tr>
+<td>centerInside</td>
+<td>Downscales the image so that it fits entirely inside the parent. <br>Unlike <code>fitCenter,</code> no upscaling will be performed. <br>Aspect ratio is preserved. <br>The image is centered within parent&#39;s bounds.</td>
+</tr>
+<tr>
+<td>fitCenter</td>
+<td>Scales the image so that it fits entirely inside the parent. <br>One of width or height will fit exactly. <br>Aspect ratio is preserved. <br>The image is centered within the parent&#39;s bounds.</td>
+</tr>
+<tr>
+<td>fitStart</td>
+<td>Scales the image so that it fits entirely inside the parent. <br>One of width or height will fit exactly. <br>Aspect ratio is preserved. <br>The image is aligned to the top-left corner of the parent.</td>
+</tr>
+<tr>
+<td>fitEnd</td>
+<td>Scales the image so that it fits entirely inside the parent. <br>One of width or height will fit exactly. <br>Aspect ratio is preserved. <br>The image is aligned to the bottom-right corner of the parent.</td>
+</tr>
+<tr>
+<td>fitXY</td>
+<td>Scales width and height independently, so that the image matches the parent exactly. <br>Aspect ratio is not preserved.</td>
+</tr>
+<tr>
+<td><a href="#none">none</a></td>
+<td>Used for Android&#39;s tile mode.</td>
+</tr>
+</tbody></table>
+
+<p>These are mostly the same as those supported by the Android <a href="http://developer.android.com/reference/android/widget/ImageView.ScaleType.html">ImageView</a> class.</p>
+
+<p>The one unsupported type is <code>matrix.</code> In its place, Fresco offers <code>focusCrop,</code> which will usually work better.</p>
+
+<h3>How to set</h3>
+
+<p>Actual, placeholder, retry, and failure images can all be <a href="using-drawees-xml.html">set in XML</a>, using attributes like <code>fresco:actualImageScaleType</code>. You can also set them <a href="using-drawees-code.html">in code</a> using the <a href="../javadoc/reference/com/facebook/drawee/generic/GenericDraweeHierarchyBuilder.html">GenericDraweeHierarchyBuilder</a> class.</p>
+
+<p>Even after your hierarchy is built, the actual image scale type can be modified on the fly using  <a href="../javadoc/reference/com/facebook/drawee/generic/GenericDraweeHierarchy.html">GenericDraweeHierarchy</a>.</p>
+
+<p>However, do <strong>not</strong> use the <code>android:scaleType</code> attribute, nor the <code>.setScaleType</code> method. These have no effect on Drawees.</p>
+
+<h3>focusCrop</h3>
+
+<p>Android, and Fresco, offer a <code>centerCrop</code> scale type, which will fill the entire viewing area while preserving the aspect ratio of the image, cropping as necessary.</p>
+
+<p>This is very useful, but the trouble is the cropping doesn&#39;t always happen where you need it. If, for instance, you want to crop to someone&#39;s face in the bottom right corner of the image, <code>centerCrop</code> will do the wrong thing.</p>
+
+<p>By specifying a focus point, you can say which part of the image should be centered in the view. If you specify the focus point to be at the top of the image, such as (0.5f, 0f), we guarantee that, no matter what, this point will be visible and centered in the view as much as possible.</p>
+
+<p>Focus points are specified in a relative coordinate system. That is, (0f, 0f) is the top-left corner, and (1f, 1f) is the bottom-right corner. Relative coordinates allow focus points to be scale-invariant, which is highly useful.</p>
+
+<p>A focus point of (0.5f, 0.5f) is equivalent to a scale type of <code>centerCrop.</code></p>
+
+<p>To use focus points, you must first set the right scale type in your XML:</p>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml">  fresco:actualImageScaleType=&quot;focusCrop&quot;
+</code></pre></div>
+<p>In your Java code, you must programmatically set the correct focus point for your image:</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">PointF</span> <span class="n">focusPoint</span><span class="o">;</span>
+<span class="c1">// your app populates the focus point</span>
+<span class="n">mSimpleDraweeView</span>
+    <span class="o">.</span><span class="na">getHierarchy</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">setActualImageFocusPoint</span><span class="o">(</span><span class="n">focusPoint</span><span class="o">);</span>
+</code></pre></div>
+<h3>none</h3>
+
+<p>If you are using Drawables that make use of Android&#39;s tile mode, you need to use the <code>none</code> scale type for this to work correctly.</p>
+
+
+    <div class="docs-prevnext">
+      
+        <a href="/docs/progress-bars.html#_">&larr; Prev</a>
+      
+      
+        <a class="right" href="/docs/rounded-corners-and-circles.html#_">Next &rarr;</a>
+      
+    </div>
+
+    <a id="_"></a>
+</article>
+
+</div></section>
+<footer><div class='width'>
+    &copy; Copyright 2015, Facebook Inc.<br>
+    Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Sample code licensed under the <a href="/sample-license.html">sample license</a>.
+</div></footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+  ga('create', 'UA-44373548-3', 'auto');
+  ga('send', 'pageview');
+ 
+</script>
+<script src="/static/linkify.js"></script>
+</body>
+</html>
+

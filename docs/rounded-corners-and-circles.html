@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset='utf-8'>
+    <title>Fresco | Rounded Corners and Circles</title>
+    <link rel='stylesheet' href='/static/site.css' type='text/css'/>
+    <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
+    <link rel='shortcut icon' href='/static/favicon.png'>
+    <meta name='viewport' content='width=480'>
+    <meta property="og:title" content="Rounded Corners and Circles" />
+    <meta property="og:site_name" content="fresco">
+    <meta property='og:description' content='Fresco is an image management library.'>
+    <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
+    <meta property='og:url' content="http://facebook.github.io/fresco/docs/rounded-corners-and-circles.html">
+    
+    <meta property='og:type' content='website'>
+    
+    <script type="text/javascript" src="//use.typekit.net/vqa1hcx.js"></script>
+    <script type="text/javascript">{'try{Typekit.load();}catch(e){}'}</script>
+    <!-- Google Analytics -->
+</head>
+<body>
+
+<header class='topbar'><nav class='width'>
+<a href='/'>
+  <img src="/static/fresco-logo.png" class="logo">
+</a>
+    <ul>
+      <li><a href="/docs/index.html#_"
+          
+          class="active" >
+          Docs
+      </a></li>
+      <li><a href="/"
+          >
+          About
+      </a></li>
+      <li><a href="/support.html"
+          >
+          Support
+      </a></li>
+      <li><a href="/javadoc">
+          API
+      </a></li>
+      <li><a href="http://github.com/facebook/fresco">GitHub</a></li>
+      <li><a href="http://fresco-cn.org">中文版</a></li>
+    </ul>
+</nav></header>
+
+
+<section class='content'><div class='width'>
+
+<nav class='toc'>
+  
+    <section>
+      <h3>Quick Start</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/index.html#_">
+              Adding Fresco to your Project
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/getting-started.html#_">
+              Getting started with Fresco
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/concepts.html#_">
+              Concepts
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/supported-uris.html#_">
+              Supported URIs
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Drawee Guide</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/using-drawees-xml.html#_">
+              Using Drawees in XML
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-drawees-code.html#_">
+              Using Drawees in Code
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/drawee-components.html#_">
+              Drawee Components
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/progress-bars.html#_">
+              Progress Bars
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/scaling.html#_">
+              Scaling
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/rounded-corners-and-circles.html#_" class="active">
+              Rounded Corners and Circles
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-controllerbuilder.html#_">
+              Using the ControllerBuilder
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/progressive-jpegs.html#_">
+              Progressive JPEGs
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/animations.html#_">
+              Animated Images
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/requesting-multiple-images.html#_">
+              Requesting Multiple Images
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/listening-download-events.html#_">
+              Listening to Download Events
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/resizing-rotating.html#_">
+              Resizing and Rotating
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/modifying-image.html#_">
+              Modifying the Image
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/image-requests.html#_">
+              Image Requests
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/writing-custom-views.html#_">
+              Writing Custom Views
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/gotchas.html#_">
+              Gotchas
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Image Pipeline Guide</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/intro-image-pipeline.html#_">
+              Introduction to the Image Pipeline
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/configure-image-pipeline.html#_">
+              Configuring the Image Pipeline
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/caching.html#_">
+              Cache Behavior
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-image-pipeline.html#_">
+              Using the Image Pipeline Directly
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/datasources-datasubscribers.html#_">
+              DataSources and DataSubscribers
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/closeable-references.html#_">
+              Closeable References
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Third Party Libraries</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/using-other-network-layers.html#_">
+              Using Other Network Layers
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-other-image-loaders.html#_">
+              Using Other Image Loaders
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Contributing to Fresco</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/building-from-source.html#_">
+              Building from Source
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+</nav>
+
+
+<article class='withtoc'>
+    <h1>
+      Rounded Corners and Circles
+      <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/01-rounded-corners-and-circles.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <p></p>
+
+    <p>Not every image is a rectangle. Apps frequently need images that appear with softer, rounded corners, or as circles. Drawee supports a variety of scenarios, all without the memory overhead of copying bitmaps.</p>
+
+<h3>What</h3>
+
+<p>Images can be rounded in two shapes:</p>
+
+<ol>
+<li>As a circle - set <code>roundAsCircle</code> to true.</li>
+<li>As a rectangle, but with rounded corners. Set <code>roundedCornerRadius</code> to some value.</li>
+</ol>
+
+<p>Rectangles support having each of the four corners have a different radius, but this must be specified in Java code rather than XML.</p>
+
+<h3>How</h3>
+
+<p>Images can be rounded with two different methods:</p>
+
+<ol>
+<li><code>BITMAP_ONLY</code> - Uses a shader to draw the bitmap with rounded corners. This is the default rounding method. This works only on the actual image and the <a href="drawee-components.html">placeholder</a>. Other branches, like failure and retry images, are not rounded. Furthermore, this rounding method doesn&#39;t support animations.</li>
+<li><code>OVERLAY_COLOR</code> - Draws rounded corners by overlaying a solid color, specified by the caller. The Drawee&#39;s background should be static and of the same solid color. Use <code>roundWithOverlayColor</code> in XML, or <code>setOverlayColor</code> in code, for this effect.</li>
+</ol>
+
+<h3>In XML</h3>
+
+<p>The <code>SimpleDraweeView</code> class will forward several attributes over to <code>RoundingParams</code>:</p>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;com.facebook.drawee.view.SimpleDraweeView</span>
+   <span class="err">...</span>
+   <span class="na">fresco:roundedCornerRadius=</span><span class="s">&quot;5dp&quot;</span>
+   <span class="na">fresco:roundBottomLeft=</span><span class="s">&quot;false&quot;</span>
+   <span class="na">fresco:roundBottomRight=</span><span class="s">&quot;false&quot;</span>
+   <span class="na">fresco:roundWithOverlayColor=</span><span class="s">&quot;@color/blue&quot;</span>
+   <span class="na">fresco:roundingBorderWidth=</span><span class="s">&quot;1dp&quot;</span>
+   <span class="na">fresco:roundingBorderColor=</span><span class="s">&quot;@color/red&quot;</span>
+</code></pre></div>
+<h3>In code</h3>
+
+<p>When <a href="using-drawees-code.html">constructing a hierarchy</a>, you can pass an instance of <a href="../javadoc/reference/com/facebook/drawee/generic/RoundingParams.html">RoundingParams</a> to your <code>GenericDraweeHierarchyBuilder:</code></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">RoundingParams</span> <span class="n">roundingParams</span> <span class="o">=</span> <span class="n">RoundingParams</span><span class="o">.</span><span class="na">fromCornersRadius</span><span class="o">(</span><span class="mi">7</span><span class="n">f</span><span class="o">);</span>
+<span class="n">roundingParams</span><span class="o">.</span><span class="na">setOverlayColor</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">color</span><span class="o">.</span><span class="na">green</span><span class="o">);</span>
+<span class="c1">// alternatively use fromCornersRadii or asCircle</span>
+<span class="n">genericDraweeHierarchyBuilder</span>
+    <span class="o">.</span><span class="na">setRoundingParams</span><span class="o">(</span><span class="n">roundingParams</span><span class="o">);</span>
+</code></pre></div>
+<p>You can also change most of the rounding parameters on the fly:</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">RoundingParams</span> <span class="n">roundingParams</span> <span class="o">=</span> 
+    <span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">getHierarchy</span><span class="o">().</span><span class="na">getRoundingParams</span><span class="o">();</span>
+<span class="n">roundingParams</span><span class="o">.</span><span class="na">setBorder</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">color</span><span class="o">.</span><span class="na">red</span><span class="o">,</span> <span class="mf">1.0</span><span class="o">);</span>
+<span class="n">roundingParams</span><span class="o">.</span><span class="na">setRoundAsCircle</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">getHierarchy</span><span class="o">().</span><span class="na">setRoundingParams</span><span class="o">(</span><span class="n">roundingParams</span><span class="o">);</span>
+</code></pre></div>
+<p>The one exception to this is that the <code>RoundingMethod</code> cannot be changed when changing dynamically. Attempting to do so will throw an <code>IllegalStateException.</code></p>
+
+<h3>Caveats</h3>
+
+<p>There are some limitations when <code>BITMAP_ONLY</code> (the default) mode is used:</p>
+
+<ul>
+<li>Not all image branches are rounded. Only the placeholder and the actual image are rounded. We are in the process of adding support for rounding backgrounds.</li>
+<li>Only images that resolve to <code>BitmapDrawable</code> or <code>ColorDrawable</code> can be rounded. Rounding <code>NinePatchDrawable</code>, <code>ShapeDrawable</code> and other such drawables is not supported (regardless whether they are specified in XML or programmatically).</li>
+<li>Animations are not rounded.</li>
+<li>Due to a limitation of Android&#39;s <code>BitmapShader</code>, if the image doesn&#39;t fully cover the view, isntead of drawing nothing, edges are repeated. One workaround is to use a different scale type (e.g. centerCrop) that ensures that the whole view is covered.</li>
+</ul>
+
+<p>The <code>OVERLAY_COLOR</code> mode doesn&#39;t have the aforementioned limitations, but since it simulates rounded corners by overlying a solid color over the image, this only looks good if the background under the view is static and of the same color.</p>
+
+<p>Drawee internally has an implementation for <code>CLIPPING</code> mode, but this mode has been disabled and not exposed as some <code>Canvas</code> implementation do not support path clipping. Furthermore, canvas clipping doesn&#39;t support antialiasing which makes the rounded edges very pixelated.</p>
+
+<p>Finally, all of those issues could be avoided by using a temporary bitmap, but this imposes a significant memory overhead and has not been supported because of that.</p>
+
+<p>As explained above, there is no really good solution for rounding corners on Android and one has to choose between the aforementioned trade-offs.</p>
+
+
+    <div class="docs-prevnext">
+      
+        <a href="/docs/scaling.html#_">&larr; Prev</a>
+      
+      
+        <a class="right" href="/docs/using-controllerbuilder.html#_">Next &rarr;</a>
+      
+    </div>
+
+    <a id="_"></a>
+</article>
+
+</div></section>
+<footer><div class='width'>
+    &copy; Copyright 2015, Facebook Inc.<br>
+    Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Sample code licensed under the <a href="/sample-license.html">sample license</a>.
+</div></footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+  ga('create', 'UA-44373548-3', 'auto');
+  ga('send', 'pageview');
+ 
+</script>
+<script src="/static/linkify.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset='utf-8'>
+    <title>Fresco | Using Drawees in XML</title>
+    <link rel='stylesheet' href='/static/site.css' type='text/css'/>
+    <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
+    <link rel='shortcut icon' href='/static/favicon.png'>
+    <meta name='viewport' content='width=480'>
+    <meta property="og:title" content="Using Drawees in XML" />
+    <meta property="og:site_name" content="fresco">
+    <meta property='og:description' content='Fresco is an image management library.'>
+    <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
+    <meta property='og:url' content="http://facebook.github.io/fresco/docs/using-drawees-xml.html">
+    
+    <meta property='og:type' content='website'>
+    
+    <script type="text/javascript" src="//use.typekit.net/vqa1hcx.js"></script>
+    <script type="text/javascript">{'try{Typekit.load();}catch(e){}'}</script>
+    <!-- Google Analytics -->
+</head>
+<body>
+
+<header class='topbar'><nav class='width'>
+<a href='/'>
+  <img src="/static/fresco-logo.png" class="logo">
+</a>
+    <ul>
+      <li><a href="/docs/index.html#_"
+          
+          class="active" >
+          Docs
+      </a></li>
+      <li><a href="/"
+          >
+          About
+      </a></li>
+      <li><a href="/support.html"
+          >
+          Support
+      </a></li>
+      <li><a href="/javadoc">
+          API
+      </a></li>
+      <li><a href="http://github.com/facebook/fresco">GitHub</a></li>
+      <li><a href="http://fresco-cn.org">中文版</a></li>
+    </ul>
+</nav></header>
+
+
+<section class='content'><div class='width'>
+
+<nav class='toc'>
+  
+    <section>
+      <h3>Quick Start</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/index.html#_">
+              Adding Fresco to your Project
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/getting-started.html#_">
+              Getting started with Fresco
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/concepts.html#_">
+              Concepts
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/supported-uris.html#_">
+              Supported URIs
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Drawee Guide</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/using-drawees-xml.html#_" class="active">
+              Using Drawees in XML
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-drawees-code.html#_">
+              Using Drawees in Code
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/drawee-components.html#_">
+              Drawee Components
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/progress-bars.html#_">
+              Progress Bars
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/scaling.html#_">
+              Scaling
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/rounded-corners-and-circles.html#_">
+              Rounded Corners and Circles
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-controllerbuilder.html#_">
+              Using the ControllerBuilder
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/progressive-jpegs.html#_">
+              Progressive JPEGs
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/animations.html#_">
+              Animated Images
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/requesting-multiple-images.html#_">
+              Requesting Multiple Images
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/listening-download-events.html#_">
+              Listening to Download Events
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/resizing-rotating.html#_">
+              Resizing and Rotating
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/modifying-image.html#_">
+              Modifying the Image
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/image-requests.html#_">
+              Image Requests
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/writing-custom-views.html#_">
+              Writing Custom Views
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/gotchas.html#_">
+              Gotchas
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Image Pipeline Guide</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/intro-image-pipeline.html#_">
+              Introduction to the Image Pipeline
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/configure-image-pipeline.html#_">
+              Configuring the Image Pipeline
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/caching.html#_">
+              Cache Behavior
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-image-pipeline.html#_">
+              Using the Image Pipeline Directly
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/datasources-datasubscribers.html#_">
+              DataSources and DataSubscribers
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/closeable-references.html#_">
+              Closeable References
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Third Party Libraries</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/using-other-network-layers.html#_">
+              Using Other Network Layers
+            </a>
+            
+          </li>
+        
+          <li>
+            <a href="/docs/using-other-image-loaders.html#_">
+              Using Other Image Loaders
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+    <section>
+      <h3>Contributing to Fresco</h3>
+      <ul>
+        
+          <li>
+            <a href="/docs/building-from-source.html#_">
+              Building from Source
+            </a>
+            
+          </li>
+        
+      </ul>
+    </section>
+  
+</nav>
+
+
+<article class='withtoc'>
+    <h1>
+      Using Drawees in XML
+      <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/01-using-drawees-xml.md" target="_blank">Edit on GitHub</a>
+    </h1>
+    <p></p>
+
+    <p>Drawees는 custom 할 수 있는 많은 속성을 갖고 있습니다. 제일 좋은 방법은 XML을 이용하는 것 입니다. </p>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;com.facebook.drawee.view.SimpleDraweeView</span>
+    <span class="na">android:id=</span><span class="s">&quot;@+id/my_image_view&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;20dp&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;20dp&quot;</span>
+    <span class="na">fresco:fadeDuration=</span><span class="s">&quot;300&quot;</span>
+    <span class="na">fresco:actualImageScaleType=</span><span class="s">&quot;focusCrop&quot;</span>
+    <span class="na">fresco:placeholderImage=</span><span class="s">&quot;@color/wait_color&quot;</span>
+    <span class="na">fresco:placeholderImageScaleType=</span><span class="s">&quot;fitCenter&quot;</span>
+    <span class="na">fresco:failureImage=</span><span class="s">&quot;@drawable/error&quot;</span>
+    <span class="na">fresco:failureImageScaleType=</span><span class="s">&quot;centerInside&quot;</span>
+    <span class="na">fresco:retryImage=</span><span class="s">&quot;@drawable/retrying&quot;</span>
+    <span class="na">fresco:retryImageScaleType=</span><span class="s">&quot;centerCrop&quot;</span>
+    <span class="na">fresco:progressBarImage=</span><span class="s">&quot;@drawable/progress_bar&quot;</span>
+    <span class="na">fresco:progressBarImageScaleType=</span><span class="s">&quot;centerInside&quot;</span>
+    <span class="na">fresco:progressBarAutoRotateInterval=</span><span class="s">&quot;1000&quot;</span>
+    <span class="na">fresco:backgroundImage=</span><span class="s">&quot;@color/blue&quot;</span>
+    <span class="na">fresco:overlayImage=</span><span class="s">&quot;@drawable/watermark&quot;</span>
+    <span class="na">fresco:pressedStateOverlayImage=</span><span class="s">&quot;@color/red&quot;</span>
+    <span class="na">fresco:roundAsCircle=</span><span class="s">&quot;false&quot;</span>
+    <span class="na">fresco:roundedCornerRadius=</span><span class="s">&quot;1dp&quot;</span>
+    <span class="na">fresco:roundTopLeft=</span><span class="s">&quot;true&quot;</span>
+    <span class="na">fresco:roundTopRight=</span><span class="s">&quot;false&quot;</span>
+    <span class="na">fresco:roundBottomLeft=</span><span class="s">&quot;false&quot;</span>
+    <span class="na">fresco:roundBottomRight=</span><span class="s">&quot;true&quot;</span>
+    <span class="na">fresco:roundWithOverlayColor=</span><span class="s">&quot;@color/corner_color&quot;</span>
+    <span class="na">fresco:roundingBorderWidth=</span><span class="s">&quot;2dp&quot;</span>
+    <span class="na">fresco:roundingBorderColor=</span><span class="s">&quot;@color/border_color&quot;</span>
+  <span class="nt">/&gt;</span>
+</code></pre></div>
+<h4>높이(Height)는 필수입니다.</h4>
+
+<p>&#39;android:layout<em>width&#39;와 &#39;android:layout</em>height&#39;는 <strong>반드시 선언</strong>해야 합니다. 이 2가지 속성이 없다면 Drawee는 이미지를 제대로 표시 못합니다.</p>
+
+<h4>wrap_content</h4>
+
+<p>Drawees 는 &#39;layout<em>width&#39; 와 &#39;layout</em>height&#39; 속성에 &#39;wrap<em>content&#39; 값을 지원하지 않습니다. 컨텐츠의 크기가 바뀌는 이유 때문인데요. 다운받은 이미지의 크기가 대기이미지(placeholder)때문에 달라질 수 - 이미지 표시 실패, 재시도 같은 여러가지 이유때문에- 있기 때문입니다. 
+&#39;wrap</em>content&#39; 를 사용하는 것은 이미지가 로드되었을 때 Android가 다른 레이아웃에 이미지 전달해 사용자의 눈에 들어오기 전에 이상한 효과를 만들며 레이아웃이 바뀌도록 강제합니다.(수정필요)</p>
+
+<h4>길이 비율로 고정시키기 Fixing the aspect ratio</h4>
+
+<p><code>wrap_content</code> 를 사용할 때입니다. 
+넓이와 높이를 4:3 비율로 설정하고 싶다면 아래와 같이 해보세요
+<code>xml
+&lt;com.facebook.drawee.view.SimpleDraweeView
+    android:id=&quot;@+id/my_image_view&quot;
+    android:layout_width=&quot;20dp&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    fresco:viewAspectRatio=&quot;1.33f&quot;
+    &lt;!-- other attributes --&gt;
+</code>
+혹은 Java에서도 설정할 수 있습니다. 
+<code>java
+mSimpleDraweeView.setAspectRatio(1.33f);
+</code></p>
+
+
+    <div class="docs-prevnext">
+      
+        <a href="/docs/concepts.html#_">&larr; Prev</a>
+      
+      
+        <a class="right" href="/docs/using-drawees-code.html#_">Next &rarr;</a>
+      
+    </div>
+
+    <a id="_"></a>
+</article>
+
+</div></section>
+<footer><div class='width'>
+    &copy; Copyright 2015, Facebook Inc.<br>
+    Documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Sample code licensed under the <a href="/sample-license.html">sample license</a>.
+</div></footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+  ga('create', 'UA-44373548-3', 'auto');
+  ga('send', 'pageview');
+ 
+</script>
+<script src="/static/linkify.js"></script>
+</body>
+</html>
+
