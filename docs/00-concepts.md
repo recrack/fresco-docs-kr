@@ -8,7 +8,7 @@ next: supported-uris.html
 ---
 ## Drawees
 
-Drawees는 이미지가 reder 되는 공간입니다. Model-View-Controller 프레임워크같이 3가지 컴포넌트로 구성되어 있습니다. 
+Drawees는 이미지가 render 되는 공간입니다. Model-View-Controller 프레임워크같이 3가지 컴포넌트로 구성되어 있습니다. 
 
 ### DraweeView
 
