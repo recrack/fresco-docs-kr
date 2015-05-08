@@ -1,3 +1,11 @@
+---
+id: using-drawees-code
+title: Using Drawees in Code
+layout: docs
+permalink: /docs/using-drawees-code.html
+prev: using-drawees-xml.html
+next: drawee-components.html
+---
 
 ### 이미지 바꾸기
 

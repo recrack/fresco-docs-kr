@@ -1,3 +1,12 @@
+---
+id: using-drawees-xml
+title: Using Drawees in XML
+layout: docs
+permalink: /docs/using-drawees-xml.html
+prev: concepts.html
+next: using-drawees-code.html
+---
+
 Drawees는 custom 할 수 있는 많은 속성을 갖고 있습니다. 제일 좋은 방법은 XML을 이용하는 것 입니다. 
 
 ```xml
