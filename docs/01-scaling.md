@@ -7,54 +7,59 @@ prev: progress-bars.html
 next: rounded-corners-and-circles.html
 ---
 
-You can specify a different scale type for each of the [different drawables](drawee-components.html) in your Drawee. The 
+You can specify a different scale type for each of the [different drawables](drawee-components.html) in your Drawee.
+여러 타입의 scale을 Drawee의 [여러가지 drawables different drawables](drawee-components.html) 에 각각 적용할 수 있습니다.
 
-### Available scale types
+### 여러가지 scale 타입  Available scale types
 
-| Scale Type | Explanation |
+| scale 타입 | 설명|
 | --------- | ----------- |
-| center | Center the image in the view, but perform no scaling. |
-| centerCrop | Scales the image so that both dimensions will be greater than or equal to the corresponding dimension of the parent. <br>One of width or height will fit exactly. <br>The image is centered within parent's bounds. |
-| [focusCrop](#focusCrop) | Same as centerCrop, but based around a caller-specified focus point instead of the center.
-| centerInside | Downscales the image so that it fits entirely inside the parent. <br>Unlike `fitCenter,` no upscaling will be performed. <br>Aspect ratio is preserved. <br>The image is centered within parent's bounds. |
-| fitCenter | Scales the image so that it fits entirely inside the parent. <br>One of width or height will fit exactly. <br>Aspect ratio is preserved. <br>The image is centered within the parent's bounds. |
-| fitStart | Scales the image so that it fits entirely inside the parent. <br>One of width or height will fit exactly. <br>Aspect ratio is preserved. <br>The image is aligned to the top-left corner of the parent.
-| fitEnd | Scales the image so that it fits entirely inside the parent. <br>One of width or height will fit exactly. <br>Aspect ratio is preserved. <br>The image is aligned to the bottom-right corner of the parent.
-| fitXY | Scales width and height independently, so that the image matches the parent exactly. <br>Aspect ratio is not preserved.
-| [none](#none) | Used for Android's tile mode. |
+| center | scale없이 뷰의 중심에 이미지 놓음|
+| centerCrop |이미지를 scale하여 부모 뷰의 높이나 넓이 한 쪽 크기보다 크거나 같도록 맞춥니다.<br> 넓이나 높이 중 하나가 정확하게 맞춰집니다.<br>이미지는 부모 뷰의 중심에 놓임.|
+| [focusCrop](#focusCrop) |centerCrop과 비슷합니다. 하지만 중심이 호출자가 지정한 좌표를 중심으로 합니다|
+| centerInside |  이미지를 축소하여 전체가 부모 뷰의 안에 들어오도록 합니다. <br>'fitCenter' 처럼 확대되지 않는 것이 다릅니다.<br> 비율은 유지됩니다.<br>이미지는 부모 뷰의 중심에 놓입니다. |
+| fitCenter | 이미지를 scale하여 전체가 부모 뷰의 내부에 맞게 그립니다. <br> 넓이, 높이 중 하나가 정확하게 맞춰 집니다.<br> 이미지는 부모 뷰의 중심에 높입니다.|
+| fitStart | 이미지를 scale하여 부모 뷰의 내부에 딱 맞도록 합니다. <br>높이나 넓이 중 하나는 정확하게 일치합니다. <br>비율은 유지됩니다. <br>이미지는 왼쪽 위 가장자리에 놓입니다.
+| fitEnd |이미지를 scale하여 부모 뷰의 내부에 딱 맞도록 합니다. <br>높이나 넓이 중 하나는 정확하게 일치합니다. <br>비율은 유지됩니다<br> 이미지는 부모 뷰의 오른쪽 아래 가장자리에 놓입니다. 
+| fitXY | 높이와 넓이를 독립적으로 scale합니다. 이미지는 부모 뷰의 내부에 꽉 찹니다.  <br>비율은 유지되지 않습니다.
+| [none](#none) |Android'의 타일모드를 위해 사용됩니다.|
 
-These are mostly the same as those supported by the Android [ImageView](http://developer.android.com/reference/android/widget/ImageView.ScaleType.html) class.
+이것들은 Android [ImageView](http://developer.android.com/reference/android/widget/ImageView.ScaleType.html) 클래스와 거의 비슷합니다.
 
 The one unsupported type is `matrix.` In its place, Fresco offers `focusCrop,` which will usually work better.
+하나 지원하지 않는 타입은 `matrix` 입니다. 대신 Fresco는 `focusCrop`을 제공하지요. 보통 더 나은 성능을 제공합니다.
 
-### How to set
+### 사용하는 방법
 
 Actual, placeholder, retry, and failure images can all be [set in XML](using-drawees-xml.html), using attributes like `fresco:actualImageScaleType`. You can also set them [in code](using-drawees-code.html) using the [GenericDraweeHierarchyBuilder](../javadoc/reference/com/facebook/drawee/generic/GenericDraweeHierarchyBuilder.html) class.
+Actual, placeholder, 재시도, 실패 이미지는 [XML 에서 설정하기](using-drawees-xml.html)에서 `fresco:actualImageScaleType` 같은 속성을 사용해 설정할 수 있습니다. 또한 [코드에서 설정하기](using-drawees-code.html) 에서도 [GenericDraweeHierarchyBuilder](../javadoc/reference/com/facebook/drawee/generic/GenericDraweeHierarchyBuilder.html) 를 이용할 수도 있습니다.
 
 Even after your hierarchy is built, the actual image scale type can be modified on the fly using  [GenericDraweeHierarchy](../javadoc/reference/com/facebook/drawee/generic/GenericDraweeHierarchy.html).
+또 상속 속성을 만든 후에는 실제 이미지의 scale 타입은  [GenericDraweeHierarchy](../javadoc/reference/com/facebook/drawee/generic/GenericDraweeHierarchy.html)를 이용해 수정될 수 있습니다.
 
 However, do **not** use the `android:scaleType` attribute, nor the `.setScaleType` method. These have no effect on Drawees.
+하지만 `android:scaleType` 속성과 `.setScaleType`은 **사용하지 마세요**. 이것들은 Drawees에선 쓸모 없습니다.
 
 ### focusCrop
 
 Android, and Fresco, offer a `centerCrop` scale type, which will fill the entire viewing area while preserving the aspect ratio of the image, cropping as necessary.
+`centerCrop` scale 타입을 제공하는 Android와 Fresco는 이미지의 비율을 보존하며 필요한 만큼 잘라 전체 뷰 영역을 채웁니다.
 
 This is very useful, but the trouble is the cropping doesn't always happen where you need it. If, for instance, you want to crop to someone's face in the bottom right corner of the image, `centerCrop` will do the wrong thing.
-
+focusCrop은 아주 유용하지만 문제는 잘라내기가 항상 필요한 곳에서 일어나지 않는 것입니다. 예를 들어 당신이 누군가의 얼굴 이미지를 오른쪽 아래 구석으로 자르고 싶다면 `centerCrop`은 원했던 방식으로 동작하지 않습니다.
 By specifying a focus point, you can say which part of the image should be centered in the view. If you specify the focus point to be at the top of the image, such as (0.5f, 0f), we guarantee that, no matter what, this point will be visible and centered in the view as much as possible.
+focus 위치를 잡아 어떤 부분이 뷰의 중심에 놓일 것인지 기술할 수 있습니다. 만약 이 focus 위치를 이미지의 위쪽 상단에 놓고 싶으면 다른 것 필요없이 (0.5f, 0f) 로 설정하면 됩니다. 이 위치는 가능한 많은 뷰의 중심을 부분을 보여줄 것입니다.
 
-Focus points are specified in a relative coordinate system. That is, (0f, 0f) is the top-left corner, and (1f, 1f) is the bottom-right corner. Relative coordinates allow focus points to be scale-invariant, which is highly useful.
+Focus 위치는 상대적 좌표 시스템으로 기술됩니다. 즉 (0f, 0f)는 왼쪽 상단 구석이고, (1f,1f)는 우측 하단 구석입니다. 상대적 좌표는 Scale불변이며 따라서 아주 유용합니다.
 
-A focus point of (0.5f, 0.5f) is equivalent to a scale type of `centerCrop.`
-
-To use focus points, you must first set the right scale type in your XML:
-
+(0.5f, 0.5f)의 focus위치는 `centerCrop` 과 일치합니다.
+focus 위치를 사용하려면 올바른 scale 타입을 XML에 설정해야 합니다.
 ```xml
   fresco:actualImageScaleType="focusCrop"
 ```
-  
+
 In your Java code, you must programmatically set the correct focus point for your image:
-  
+Java코드에선 꼭 올바른 focus위치를 설정해야 합니다.
 ```java
 PointF focusPoint;
 // your app populates the focus point
@@ -67,3 +72,4 @@ mSimpleDraweeView
 
 If you are using Drawables that make use of Android's tile mode, you need to use the `none` scale type for this to work correctly.
 
+만약 Drawable을 Android의 tile 형식으로 사용하려면 `none` scale 타입을 사용하면 됩니다.
