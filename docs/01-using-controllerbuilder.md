@@ -6,14 +6,14 @@ permalink: /docs/using-controllerbuilder.html
 prev: rounded-corners-and-circles.html
 next: progressive-jpegs.html
 ---
+`SimpleDraweeView` 는 이미지 처리를 위해 두 메소드를 제공합니다. 가장 쉬운 방법은 `setImageURI`를 호출하는 겁니다.
 
-`SimpleDraweeView` has two methods for specifying an image. The easy way is to just call `setImageURI.` 
-
+Drawee를 이용해 여러가지 방법으로 이미지 처리를 하고 싶다면, [DraweeController](concepts.html)를 사용할 수 있습니다. 이 페이지는 이 빌더를 어떻게 빌드하고 사용하는지 설명합니다.
 If you want more control over how the Drawee displays your image, you can use a [DraweeController](concepts.html). This page explains how to build and use one.
 
-### Building a DraweeController
+### DraweeController 빌드하기
 
-Then pass the image request to a [PipelineDraweeControllerBuilder](../javadoc/reference/com/facebook/drawee/backends/pipeline/PipelineDraweeControllerBuilder.html). You then specify additional options for the controller:
+[PipelineDraweeControllerBuilder](../javadoc/reference/com/facebook/drawee/backends/pipeline/PipelineDraweeControllerBuilder.html)에 이미지 요청을 전달해봅시다. 몇가지 옵션을 이 컨트롤러에 추가할 수 있는데요.
 
 ```java
 ControllerListener listener = new BaseControllerListener() {...}
@@ -27,16 +27,15 @@ DraweeController controller = Fresco.newDraweeControllerBuilder()
 
 mSimpleDraweeView.setController(controller);
 ```
-
+새로운 컨트롤러를 빌드할 때, 항상 `setOldController`를 호출하세요.이것은 불필요한 메모리 할당을 방지합니다.
 You should always call `setOldController` when building a new controller. This prevents an unneeded memory allocation.
 
-More details:
+더 자세히 보기: 
 
 * [Controller Listeners](listening-download-events.html)
 
 ### <a name="ImageRequest"></a>Customizing the ImageRequest
-
-For still more advanced usage, you might need to send an [ImageRequest](../javadoc/reference/com/facebook/imagepipeline/request/ImageRequest.html) to the pipeline, instead of merely a URI. An example of this is using a [postprocessor](modifying-image.html).
+여전히 몇가지 사용법이 더 있습니다. [ImageRequest](../javadoc/reference/com/facebook/imagepipeline/request/ImageRequest.html)를 단순히 URI대신에 파이프라인에 전달하는 것이 필요할 수도 있는데요. [postprocessor](modifying-image.html)에 예제가 있습니다.
 
 ```java
 Uri uri;
@@ -52,7 +51,7 @@ DraweeController controller = Fresco.newDraweeControllerBuilder()
     .build();
 ```
 
-More details:
+더 자세히 보기:
 
 * [Postprocessors](modifying-image.html)
 * [Requesting Multiple Images](requesting-multiple-images.html)

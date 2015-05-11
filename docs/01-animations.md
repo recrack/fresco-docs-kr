@@ -6,14 +6,14 @@ permalink: /docs/animations.html
 prev: progressive-jpegs.html
 next: requesting-multiple-images.html
 ---
+Fresco는 움직이는 GIF와 WebP 이미지도 지원합니다.
 
-Fresco supports animated GIF and WebP images.
-
+OS지원 없이도 안드로이드 2.3 버전까지 WebP 애니메이션 - 확장된 WebP형식까지 - 을 지원합니다.
 We support WebP animations, even in the extended WebP format, on versions of Android going back to 2.3, even those that don't have built-in native support.
 
-### Playing animations automatically
+### 자동으로 애니메이션 시작하기
 
-If you want your animated image to start playing automatically when it comes on-screen, and stop when it goes off, just say so in your [image request](image-requests.html):
+화면에 나타났을 때 자동으로 애니메이션이 시작되거나, 화면이 꺼졌을 때 멈추기 원한다면  [image request](image-requests.html)를 보세요.
 
 ```java
 Uri uri;
@@ -25,9 +25,8 @@ DraweeController controller = Fresco.newDraweeControllerBuilder()
 mSimpleDraweeView.setController(controller);
 ```
 
-### Playing animations manually
-
-You may prefer to directly control the animation in your own code. In that case you'll need to listen for when the image has loaded, so it's even possible to do that. 
+### 수동으로 애니메이션 시작하기
+애니메이션을 코드에서 직접 조종하는 것을 더 선호할 수 있습니다. 이 경우에 당신은 이미지 로딩이 완료되었다는 것을 확인해야할 필요가 있습니다. 그래서 이것도 가능하도록 해놓았습니다.
 
 ```java
 ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
@@ -62,6 +61,7 @@ if (animatable != null) {
 }
 ```
 
-### Limitations
+### 제약 Limitations
 
+애니메이션은 [postprocessors](modifying-image.html)에선 지원하지 않습니다.
 Animations do not currently support [postprocessors](modifying-image.html).
