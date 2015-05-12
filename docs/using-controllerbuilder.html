@@ -301,13 +301,14 @@
     </h1>
     <p></p>
 
-    <p><code>SimpleDraweeView</code> has two methods for specifying an image. The easy way is to just call <code>setImageURI.</code> </p>
+    <p><code>SimpleDraweeView</code> 는 이미지 처리를 위해 두 메소드를 제공합니다. 가장 쉬운 방법은 <code>setImageURI</code>를 호출하는 겁니다.</p>
 
-<p>If you want more control over how the Drawee displays your image, you can use a <a href="concepts.html">DraweeController</a>. This page explains how to build and use one.</p>
+<p>Drawee를 이용해 여러가지 방법으로 이미지 처리를 하고 싶다면, <a href="concepts.html">DraweeController</a>를 사용할 수 있습니다. 이 페이지는 이 빌더를 어떻게 빌드하고 사용하는지 설명합니다.
+If you want more control over how the Drawee displays your image, you can use a <a href="concepts.html">DraweeController</a>. This page explains how to build and use one.</p>
 
-<h3>Building a DraweeController</h3>
+<h3>DraweeController 빌드하기</h3>
 
-<p>Then pass the image request to a <a href="../javadoc/reference/com/facebook/drawee/backends/pipeline/PipelineDraweeControllerBuilder.html">PipelineDraweeControllerBuilder</a>. You then specify additional options for the controller:</p>
+<p><a href="../javadoc/reference/com/facebook/drawee/backends/pipeline/PipelineDraweeControllerBuilder.html">PipelineDraweeControllerBuilder</a>에 이미지 요청을 전달해봅시다. 몇가지 옵션을 이 컨트롤러에 추가할 수 있는데요.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ControllerListener</span> <span class="n">listener</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">BaseControllerListener</span><span class="o">()</span> <span class="o">{...}</span>
 
 <span class="n">DraweeController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">Fresco</span><span class="o">.</span><span class="na">newDraweeControllerBuilder</span><span class="o">()</span>
@@ -319,9 +320,10 @@
 
 <span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">setController</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
 </code></pre></div>
-<p>You should always call <code>setOldController</code> when building a new controller. This prevents an unneeded memory allocation.</p>
+<p>새로운 컨트롤러를 빌드할 때, 항상 <code>setOldController</code>를 호출하세요.이것은 불필요한 메모리 할당을 방지합니다.
+You should always call <code>setOldController</code> when building a new controller. This prevents an unneeded memory allocation.</p>
 
-<p>More details:</p>
+<p>더 자세히 보기: </p>
 
 <ul>
 <li><a href="listening-download-events.html">Controller Listeners</a></li>
@@ -329,7 +331,7 @@
 
 <h3><a name="ImageRequest"></a>Customizing the ImageRequest</h3>
 
-<p>For still more advanced usage, you might need to send an <a href="../javadoc/reference/com/facebook/imagepipeline/request/ImageRequest.html">ImageRequest</a> to the pipeline, instead of merely a URI. An example of this is using a <a href="modifying-image.html">postprocessor</a>.</p>
+<p>여전히 몇가지 사용법이 더 있습니다. <a href="../javadoc/reference/com/facebook/imagepipeline/request/ImageRequest.html">ImageRequest</a>를 단순히 URI대신에 파이프라인에 전달하는 것이 필요할 수도 있는데요. <a href="modifying-image.html">postprocessor</a>에 예제가 있습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Uri</span> <span class="n">uri</span><span class="o">;</span>
 <span class="n">Postprocessor</span> <span class="n">myPostprocessor</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Postprocessor</span><span class="o">()</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
 <span class="n">ImageRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">ImageRequestBuilder</span><span class="o">.</span><span class="na">newBuilderWithSource</span><span class="o">(</span><span class="n">uri</span><span class="o">)</span>
@@ -342,7 +344,7 @@
     <span class="c1">// other setters as you need</span>
     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 </code></pre></div>
-<p>More details:</p>
+<p>더 자세히 보기:</p>
 
 <ul>
 <li><a href="modifying-image.html">Postprocessors</a></li>

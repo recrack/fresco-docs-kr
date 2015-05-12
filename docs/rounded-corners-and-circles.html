@@ -301,76 +301,94 @@
     </h1>
     <p></p>
 
-    <p>Not every image is a rectangle. Apps frequently need images that appear with softer, rounded corners, or as circles. Drawee supports a variety of scenarios, all without the memory overhead of copying bitmaps.</p>
+    <p>모든 아미지가 네모는 아닙니다. 앱은 자주 부드럽고, 가장자리가 둥글게 처리되거나 아예 둥글게 필요한 경우가 있습니다. Drawee 는 비트맵 복사를 메모리 오버헤드 없이 다양한 시나리오로 제공합니다.</p>
 
-<h3>What</h3>
+<h3>무엇을</h3>
 
-<p>Images can be rounded in two shapes:</p>
+<p>Images can be rounded in two shapes:
+이미지는 2가지 형태로 둥글게 처리될 수 있습니다.</p>
 
 <ol>
 <li>As a circle - set <code>roundAsCircle</code> to true.</li>
 <li>As a rectangle, but with rounded corners. Set <code>roundedCornerRadius</code> to some value.</li>
+<li>원모양으로 처리 - <code>roundAsCircle</code> 속성을 true로 설정</li>
+<li>네모지만 가장자리르 둥글게 처리 - <code>roundedCornerRadius</code> 에 값을 설정</li>
 </ol>
 
 <p>Rectangles support having each of the four corners have a different radius, but this must be specified in Java code rather than XML.</p>
 
-<h3>How</h3>
+<p>네모는 각 가장자리가 다른 곡률을 가지도록 할 수 있습니다. 하지만 이 일은 XML보단 Java 코드에서 꼭 설정되어야만 합니다.</p>
 
-<p>Images can be rounded with two different methods:</p>
+<h3>어떻게</h3>
+
+<p>이미지를 둥글게 처리하는 방벙은 2가지가 있습니다.
+Images can be rounded with two different methods:</p>
 
 <ol>
 <li><code>BITMAP_ONLY</code> - Uses a shader to draw the bitmap with rounded corners. This is the default rounding method. This works only on the actual image and the <a href="drawee-components.html">placeholder</a>. Other branches, like failure and retry images, are not rounded. Furthermore, this rounding method doesn&#39;t support animations.</li>
 <li><code>OVERLAY_COLOR</code> - Draws rounded corners by overlaying a solid color, specified by the caller. The Drawee&#39;s background should be static and of the same solid color. Use <code>roundWithOverlayColor</code> in XML, or <code>setOverlayColor</code> in code, for this effect.</li>
+<li><code>BITMAP_ONLY</code> - 쉐이더를 사용해 비트맵을 그리고 가장자리를 둥글게 처리합니다. 이것은 기본 메소드입니다. actual 이미지와 <a href="drawee-components.html">placeholder</a>에만 동작합니다. 다른 것들 - 이미지 그리기 실패, 재시도 이미지 -는 지원하지 않습니다. 또 애니메이션도 지원되지 않습니다.</li>
+<li><code>OVERLAY_COLOR</code> - 가장자리를 호출자가 지정한 특정 색깔로 덮어 그립니다. Drawee의 배경은 같은 색깔로 채워집니다. XML의 <code>roundWithOverlayColor</code> 나, 코드에서 <code>setOverlayColor</code>를 사용하세요. - 선호 : 실제 사용해보고 보완하기. static and of same solid color?</li>
 </ol>
 
-<h3>In XML</h3>
+<h3>XML 에서</h3>
 
-<p>The <code>SimpleDraweeView</code> class will forward several attributes over to <code>RoundingParams</code>:</p>
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;com.facebook.drawee.view.SimpleDraweeView</span>
-   <span class="err">...</span>
-   <span class="na">fresco:roundedCornerRadius=</span><span class="s">&quot;5dp&quot;</span>
-   <span class="na">fresco:roundBottomLeft=</span><span class="s">&quot;false&quot;</span>
-   <span class="na">fresco:roundBottomRight=</span><span class="s">&quot;false&quot;</span>
-   <span class="na">fresco:roundWithOverlayColor=</span><span class="s">&quot;@color/blue&quot;</span>
-   <span class="na">fresco:roundingBorderWidth=</span><span class="s">&quot;1dp&quot;</span>
-   <span class="na">fresco:roundingBorderColor=</span><span class="s">&quot;@color/red&quot;</span>
-</code></pre></div>
-<h3>In code</h3>
+<p>The <code>SimpleDraweeView</code> class will forward several attributes over to <code>RoundingParams</code>:
+<code>SimpleDraweeView</code> 클래스는 몇가지 <code>RoundingParams</code> 속성을 제공합니다.
+<code>xml
+&lt;com.facebook.drawee.view.SimpleDraweeView
+   ...
+   fresco:roundedCornerRadius=&quot;5dp&quot;
+   fresco:roundBottomLeft=&quot;false&quot;
+   fresco:roundBottomRight=&quot;false&quot;
+   fresco:roundWithOverlayColor=&quot;@color/blue&quot;
+   fresco:roundingBorderWidth=&quot;1dp&quot;
+   fresco:roundingBorderColor=&quot;@color/red&quot;
+</code></p>
 
-<p>When <a href="using-drawees-code.html">constructing a hierarchy</a>, you can pass an instance of <a href="../javadoc/reference/com/facebook/drawee/generic/RoundingParams.html">RoundingParams</a> to your <code>GenericDraweeHierarchyBuilder:</code></p>
+<h3>코드에서</h3>
+
+<p><a href="using-drawees-code.html">constructing a hierarchy</a>에서 [RoundingParams] 인스턴스를 <code>GenericDraweeHierarchyBuilder:</code>로 전달할 수 있습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">RoundingParams</span> <span class="n">roundingParams</span> <span class="o">=</span> <span class="n">RoundingParams</span><span class="o">.</span><span class="na">fromCornersRadius</span><span class="o">(</span><span class="mi">7</span><span class="n">f</span><span class="o">);</span>
 <span class="n">roundingParams</span><span class="o">.</span><span class="na">setOverlayColor</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">color</span><span class="o">.</span><span class="na">green</span><span class="o">);</span>
 <span class="c1">// alternatively use fromCornersRadii or asCircle</span>
 <span class="n">genericDraweeHierarchyBuilder</span>
     <span class="o">.</span><span class="na">setRoundingParams</span><span class="o">(</span><span class="n">roundingParams</span><span class="o">);</span>
 </code></pre></div>
-<p>You can also change most of the rounding parameters on the fly:</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">RoundingParams</span> <span class="n">roundingParams</span> <span class="o">=</span> 
+<p>또 대부분의 둥글게 처리하는 파라미터를 바꿀 수 있습니다.
+You can also change most of the rounding parameters on the fly:</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">RoundingParams</span> <span class="n">roundingParams</span> <span class="o">=</span>
     <span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">getHierarchy</span><span class="o">().</span><span class="na">getRoundingParams</span><span class="o">();</span>
 <span class="n">roundingParams</span><span class="o">.</span><span class="na">setBorder</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">color</span><span class="o">.</span><span class="na">red</span><span class="o">,</span> <span class="mf">1.0</span><span class="o">);</span>
 <span class="n">roundingParams</span><span class="o">.</span><span class="na">setRoundAsCircle</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 <span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">getHierarchy</span><span class="o">().</span><span class="na">setRoundingParams</span><span class="o">(</span><span class="n">roundingParams</span><span class="o">);</span>
 </code></pre></div>
-<p>The one exception to this is that the <code>RoundingMethod</code> cannot be changed when changing dynamically. Attempting to do so will throw an <code>IllegalStateException.</code></p>
+<p>한 예외는 <code>RoundingMethod</code>는 동적으로 바꿀 수 없다는 것입니다. 그런데도 시도한다면 <code>IllegalStateException</code>을 발생시킵니다.
+The one exception to this is that the <code>RoundingMethod</code> cannot be changed when changing dynamically. Attempting to do so will throw an <code>IllegalStateException.</code></p>
 
 <h3>Caveats</h3>
 
-<p>There are some limitations when <code>BITMAP_ONLY</code> (the default) mode is used:</p>
+<p>There are some limitations when <code>BITMAP_ONLY</code> (the default) mode is used:
+기본 설정인 <code>BITMAP_ONLY</code>모드에는 몇가지 제한이 있습니다:
+- Not all image branches are rounded. Only the placeholder and the actual image are rounded. We are in the process of adding support for rounding backgrounds.
+- 모든 이미지 종류가 둥글게 되진 않습니다. placeholder와 actual 이미지만 둥글게 됩니다. 다른 것들은 현재 작업 중이에요.
+- Only images that resolve to <code>BitmapDrawable</code> or <code>ColorDrawable</code> can be rounded. Rounding <code>NinePatchDrawable</code>, <code>ShapeDrawable</code> and other such drawables is not supported (regardless whether they are specified in XML or programmatically).
+- <code>BitmapDrawable</code>이나 <code>ColorDrawable</code>로 쓸 수 있는 것만 둥글게 처리될 수 있습니다. <code>NinePatchDrawable</code>, <code>ShapeDrawable</code> 그리고 다른 Drawable을 둥글게 처리하도록 지원하진 않습니다. (XML이나 코드에서 쓸 수 있도록 간주하지 않음)
+- Animations are not rounded.
+- 애니메이션도 둥글게 처리 안되요.
+- Due to a limitation of Android&#39;s <code>BitmapShader</code>, if the image doesn&#39;t fully cover the view, isntead of drawing nothing, edges are repeated. One workaround is to use a different scale type (e.g. centerCrop) that ensures that the whole view is covered.
+- 안드로이드의 <code>BitmapShader</code> 한계 때문에, 만약 아무것도 그리지 않는 대신 이미지가view를 전부 덮지 않는다면, 가장자리는 반복됩니다.? 한가지 차선책은 뷰 전체가 덮이도록 다른 scale 타입(e.g centerCrop)을 사용하는 겁니다.</p>
 
-<ul>
-<li>Not all image branches are rounded. Only the placeholder and the actual image are rounded. We are in the process of adding support for rounding backgrounds.</li>
-<li>Only images that resolve to <code>BitmapDrawable</code> or <code>ColorDrawable</code> can be rounded. Rounding <code>NinePatchDrawable</code>, <code>ShapeDrawable</code> and other such drawables is not supported (regardless whether they are specified in XML or programmatically).</li>
-<li>Animations are not rounded.</li>
-<li>Due to a limitation of Android&#39;s <code>BitmapShader</code>, if the image doesn&#39;t fully cover the view, isntead of drawing nothing, edges are repeated. One workaround is to use a different scale type (e.g. centerCrop) that ensures that the whole view is covered.</li>
-</ul>
+<p><code>OVERLAY_COLOR</code>모드는 앞서 언급한 제한이 없습니다. 하지만 단순한 색깔로 가장자리를 덮기 때문에 정적거나 같은 색깔의 뷰 배경에서만 보기에 좋습니다.</p>
 
-<p>The <code>OVERLAY_COLOR</code> mode doesn&#39;t have the aforementioned limitations, but since it simulates rounded corners by overlying a solid color over the image, this only looks good if the background under the view is static and of the same color.</p>
+<p>Drawee는 내부적으로 <code>CLIPPING</code> 모드를 구현합니다. 하지만 이 모드는 어떤 <code>Canvas</code>에선 사용가능하지 않거나 노출되지 않기 때문에 경로클리핑(path clipping)은 지원하지 않습니다. 또, canvas 클리핑은 픽셀단pixelated)로 가장자리를 둥글게 처리하는 안티앨리어싱을 지원하지 않습니다.
+Drawee internally has an implementation for <code>CLIPPING</code> mode, but this mode has been disabled and not exposed as some <code>Canvas</code> implementation do not support path clipping. Furthermore, canvas clipping doesn&#39;t support antialiasing which makes the rounded edges very pixelated.</p>
 
-<p>Drawee internally has an implementation for <code>CLIPPING</code> mode, but this mode has been disabled and not exposed as some <code>Canvas</code> implementation do not support path clipping. Furthermore, canvas clipping doesn&#39;t support antialiasing which makes the rounded edges very pixelated.</p>
+<p>마지막으로, 모든 이슈들은 임시 비트맵으로 회피할 순 있습니다. 하지만 이는 심각한 메모리 오버헤드때문에 지원되지 않습니다.
+Finally, all of those issues could be avoided by using a temporary bitmap, but this imposes a significant memory overhead and has not been supported because of that.</p>
 
-<p>Finally, all of those issues could be avoided by using a temporary bitmap, but this imposes a significant memory overhead and has not been supported because of that.</p>
-
-<p>As explained above, there is no really good solution for rounding corners on Android and one has to choose between the aforementioned trade-offs.</p>
+<p>위에서 설명한 것 처럼, 가장자리를 둥글게 처리하는 최적의 솔루션은 없습니다. 하나를 선택해야만 한다면 앞에서 언급한 것과 트레이드오프 해야 될 것 입니다.
+As explained above, there is no really good solution for rounding corners on Android and one has to choose between the aforementioned trade-offs.</p>
 
 
     <div class="docs-prevnext">

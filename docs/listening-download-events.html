@@ -303,57 +303,63 @@
 
     <h4>Motivation</h4>
 
-<p>Your app may want to execute actions of its own when an image arrives - perhaps make another view visible, or show a caption. You may also want to do something in case of a network failure, like showing an error message to the user. </p>
+<p>Your app may want to execute actions of its own when an image arrives - perhaps make another view visible, or show a caption. You may also want to do something in case of a network failure, like showing an error message to the user.
+당신의 앱은 이미지 불러오기가 완료되때 어떤 액션 - 뷰를 보이게 한다던가 캡션을 보이게 한다던가 -을 하도록 원할 수 있습니다. 네트워크가 연결되지 않을 때 에러메시지를 보여주는 것 처럼 어떤 것을 원할 수도 있습니다.</p>
 
-<p>Loading images is, of course, asynchronous. So you need some way of listening to events posted by the DraweeController. The mechanism for doing this is a controller listener.</p>
+<p>Loading images is, of course, asynchronous. So you need some way of listening to events posted by the DraweeController. The mechanism for doing this is a controller listener.
+물론 이미지를 불러오는 것은 비동기 작업입니다. 그래서 DraweeController에 게시해 놓은 몇가지 이벤트를 잡을 수 있는 방법이 필요합니다. 컨트롤러 리스너가 이것의 작동원리입니다.</p>
 
-<p><em>Note: this does not allow you to modify the image itself. To do that, use a <a href="modifying-image.html">Postprocessor</a>.</em></p>
+<p><em>Note: this does not allow you to modify the image itself. To do that, use a <a href="modifying-image.html">Postprocessor</a>.</em>
+*주의: 이것은 이미지 그 자체를 수정하지 못합니다. 이미지를 수정하려면 <a href="modifying-image.html">Postprocessor</a>를 사용하세요.</p>
 
-<h4>Usage</h4>
+<h4>사용법 Usage</h4>
 
-<p>To use it, you merely define an instance of the <code>ControllerListener</code> interface. We recommend subclassing <code>BaseControllerListener:</code></p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ControllerListener</span> <span class="n">controllerListener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BaseControllerListener</span><span class="o">&lt;</span><span class="n">ImageInfo</span><span class="o">&gt;()</span> <span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFinalImageSet</span><span class="o">(</span>
-        <span class="n">String</span> <span class="n">id</span><span class="o">,</span>
-        <span class="nd">@Nullable</span> <span class="n">ImageInfo</span> <span class="n">imageInfo</span><span class="o">,</span>
-        <span class="nd">@Nullable</span> <span class="n">Animatable</span> <span class="n">anim</span><span class="o">)</span> <span class="o">{</span>
-      <span class="k">if</span> <span class="o">(</span><span class="n">imageInfo</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span><span class="o">;</span>
-      <span class="o">}</span>
-      <span class="n">QualityInfo</span> <span class="n">qualityInfo</span> <span class="o">=</span> <span class="n">imageInfo</span><span class="o">.</span><span class="na">getQualityInfo</span><span class="o">();</span>
-      <span class="n">FLog</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&quot;Final image received! &quot;</span> <span class="o">+</span> 
-          <span class="s">&quot;Size %d x %d&quot;</span><span class="o">,</span>
-          <span class="s">&quot;Quality level %d, good enough: %s, full quality: %s&quot;</span><span class="o">,</span>
-          <span class="n">imageInfo</span><span class="o">.</span><span class="na">getWidth</span><span class="o">(),</span>
-          <span class="n">imageInfo</span><span class="o">.</span><span class="na">getHeight</span><span class="o">(),</span>
-          <span class="n">qualityInfo</span><span class="o">.</span><span class="na">getQuality</span><span class="o">(),</span>
-          <span class="n">qualityInfo</span><span class="o">.</span><span class="na">isOfGoodEnoughQuality</span><span class="o">(),</span>
-          <span class="n">qualityInfo</span><span class="o">.</span><span class="na">isOfFullQuality</span><span class="o">());</span>
-    <span class="o">}</span>
+<p>To use it, you merely define an instance of the <code>ControllerListener</code> interface. We recommend subclassing <code>BaseControllerListener:</code>
+리스너를 사용하려면 <code>ControllerListener</code> 인터페이스 인스턴스만 있으면 됩니다. 하위 클래스인 <code>BaseControllerLIstener</code>를 추천합니다.
+```java
+ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
+    @Override
+    public void onFinalImageSet(
+        String id,
+        @Nullable ImageInfo imageInfo,
+        @Nullable Animatable anim) {
+      if (imageInfo == null) {
+        return;
+      }
+      QualityInfo qualityInfo = imageInfo.getQualityInfo();
+      FLog.d(&quot;Final image received! &quot; + 
+          &quot;Size %d x %d&quot;,
+          &quot;Quality level %d, good enough: %s, full quality: %s&quot;,
+          imageInfo.getWidth(),
+          imageInfo.getHeight(),
+          qualityInfo.getQuality(),
+          qualityInfo.isOfGoodEnoughQuality(),
+          qualityInfo.isOfFullQuality());
+    }</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">@Override 
+public void onIntermediateImageSet(String id, @Nullable ImageInfo imageInfo) {
+  FLog.d(&quot;Intermediate image received&quot;);
+}
 
-    <span class="nd">@Override</span> 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onIntermediateImageSet</span><span class="o">(</span><span class="n">String</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="n">ImageInfo</span> <span class="n">imageInfo</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">FLog</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">&quot;Intermediate image received&quot;</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailure</span><span class="o">(</span><span class="n">String</span> <span class="n">id</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">FLog</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">getClass</span><span class="o">(),</span> <span class="n">throwable</span><span class="o">,</span> <span class="s">&quot;Error loading %s&quot;</span><span class="o">,</span> <span class="n">id</span><span class="o">)</span>
-    <span class="o">}</span>
-<span class="o">};</span>
-
-<span class="n">Uri</span> <span class="n">uri</span><span class="o">;</span>
-<span class="n">DraweeController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">Fresco</span><span class="o">.</span><span class="na">newControllerBuilder</span><span class="o">()</span>
-    <span class="o">.</span><span class="na">setControllerListener</span><span class="o">(</span><span class="n">controllerListener</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">setUri</span><span class="o">(</span><span class="n">uri</span><span class="o">);</span>
-    <span class="c1">// other setters</span>
-    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">setController</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
+@Override
+public void onFailure(String id, Throwable throwable) {
+  FLog.e(getClass(), throwable, &quot;Error loading %s&quot;, id)
+}
 </code></pre></div>
-<p><code>onFinalImageSet</code> or <code>onFailure</code> is called for all image loads. </p>
+<p>};</p>
 
-<p>If <a href="progressive-jpegs.html">progressive decoding</a> is enabled, and the image supports it, <code>onIntermediateImageSet</code> is called in response to each scan that gets decoded. Which scans get decoded is determined by your <a href="progressive-jpegs.html">configuration</a>.</p>
+<p>Uri uri;
+DraweeController controller = Fresco.newControllerBuilder()
+    .setControllerListener(controllerListener)
+    .setUri(uri);
+    // other setters
+    .build();
+mSimpleDraweeView.setController(controller);
+```</p>
+
+<p><code>onFinalImageSet</code> 이나 <code>onFailure</code>에서 모든 이미지불러오기가 호출됩니다.</p>
+
+<p>만약 <a href="progressive-jpegs.html">progressive decoding 진보된 디코딩하기</a>이 사용가능 하고 그 이미지가 지원된다면 각각의 디코딩되는 스캔에 대해 <code>onIntermediateImageSet</code>이 호출됩니다. 디코딩 된 것은  설정<a href="progressive-jpegs.html">configuration</a>에서 결정됩니다.</p>
 
 
     <div class="docs-prevnext">
