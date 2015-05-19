@@ -6,10 +6,9 @@ permalink: /docs/image-requests.html
 prev: modifying-image.html
 next: writing-custom-views.html
 ---
+URI만 있는 `ImageRequest`가 필요하다면, `ImageRequest.fromURI`의 헬퍼메소드를 이용할 수 있습니다. 일반적인 경우 [여러개의 이미지](requesting-multiple-images.html)를 불러올 수 있습니다.
 
-If you need an `ImageRequest` that consists only of a URI, you can use the helper method `ImageRequest.fromURI`. Loading [multiple-images](requesting-multiple-images.html) is a common case of this.
-
-If you need to tell the image pipeline anything more than a simple URI, you need to use `ImageRequestBuilder`:
+단순히 URI 요청하는 것 외에 더 많은게 필요하다면 `ImageRequestBuilder`로 이미지 파이프라인을 이용하세요.
 
 ```java
 Uri uri;
@@ -28,30 +27,29 @@ ImageRequest request = ImageRequestBuilder
     .build();
 ```
 
-#### Fields in ImageRequest
+#### ImageRequest 필드
 
-- `uri` - the only mandatory field. See [Supported URIs](supported-uris.html)
-- `autoRotateEnabled` - whether to enable [auto-rotation](resizing--rotating.html#rotate).
-- `progressiveEnabled` - whether to enable [progressive loading](progressive-jpegs.html).
-- `postprocessor` - component to [postprocess](modifying-image.html) the decoded image.
-- `resizeOptions` - desired width and height. Use with caution. See [Resizing](resizing-rotating.html).
- 
-#### Lowest Permitted Request Level
+- `uri` - 필수 필드입니다. [Supported URIs](supported-uris.html) 참조하세요
+- `autoRotateEnabled` - [auto-rotation](resizing--rotating.html#rotate)을 결정.
+- `progressiveEnabled` - [progressive loading](progressive-jpegs.html)을 결정.
+- `postprocessor` - 디코딩된 이미지를 [후처리(postprocess)](modifying-image.html) 하는 컴퍼넌트.
+- `resizeOptions` - 원하는 가로와 세로 길이.주의해서 사용하세요.[Resizing](resizing-rotating.html) 참조.
 
-The image pipeline follows a [definite sequence](intro-image-pipeline.html) in where it looks for the image. 
+#### 제일 낮은 수준으로 허가된 요청? Lowest Permitted Request Level
 
-1. Check the bitmap cache. This is nearly instant. If found, return.
-2. Check the encoded memory cache. If found, decode the image and return.
-3. Check the "disk" (local storage) cache. If found, load from disk, decode, and return.
-4. Go to the original file on network or local file. Download, resize and/or rotate if requested, decode, and return. For network images in particular, this will be the slowest by a long shot.
+이미지 파이프라인은 이미지를 찾을 때 [정리된 순서 definite sequence](intro-image-pipeline.html) 를 따릅니다.
 
-The `setLowestPermittedRequestLevel` field lets you control how far down this list the pipeline will go. Possible values are:
+1. 비트맵 캐시를 체크합니다. 빠르며 발견되면 돌려줍니다.
+2. 인코드된 메모리 캐시를 체크합니다. 발견되면 이미지를 디코드하고 돌려줍니다.
+3. 디스크(로컬 스토리지) 캐시를 체크합니다. 발견하면 디스크에서 가져와 디코드하고 돌려줍니다.
+4. 네트워크나 로컬의 원본을 찾습니다. 가져오거나 리사이즈, 회전하고 디코드해 돌려줍니다. 네트워크 이미지의 경우 아주 느릴 수 있습니다.
+
+The `setLowestPermittedRequestLevel` 속성은 어느 수준까지 이 파이프라인이 비트맵을 찾을 것인지 조절할 수 있습니다. 아래는 쓸 수 있는 값들 입니다.
 
 - `BITMAP_MEMORY_CACHE`
-- `ENCODED_MEMORY_CACHE` 
-- `DISK_CACHE` 
+- `ENCODED_MEMORY_CACHE`
+- `DISK_CACHE`
 - `FULL_FETCH`
 
 This is useful in situations where you need an instant, or at least relatively fast, image or none at all.
-
-
+이미지가 빠르게, 혹은 상대적으로 빨리 필요하거나 그렇지 않을 때 유용합니다.

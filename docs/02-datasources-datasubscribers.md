@@ -7,38 +7,42 @@ prev: using-image-pipeline.html
 next: closeable-references.html
 ---
 
-A [DataSource](../javadoc/reference/com/facebook/datasource/DataSource.html) is, like a Java [Future](http://developer.android.com/reference/java/util/concurrent/Future.html), the result of an asynchronous computation. The different is that, unlike a Future, a DataSource can return you a whole series of results from a single command, not just one.
+비동기 연산의 결과인 [DataSource](../javadoc/reference/com/facebook/datasource/DataSource.html)는 자바의 [Future](http://developer.android.com/reference/java/util/concurrent/Future.html)와 같습니다. Future와 다른것은, DataSource는 하나의 명령에서 모든 결과 목록을 가져올 수 있지만 하나만 돌려줍니다.
 
-After submitting an image request, the image pipeline returns a data source. To get a result out if it, you need to use a [DataSubscriber](../javadoc/reference/com/facebook/datasource/DataSubscriber.html).
+이미지 요청 후에, 이미지 파이프라인은 데이터 소스를 돌려줍니다. 이를 얻으려면 [DataSubscriber](../javadoc/reference/com/facebook/datasource/DataSubscriber.html)가 필요합니다.
 
-### I just want a bitmap...
+### 그냥 비트맵만 필요하다면...
 
-If your request to the pipeline is for a decoded image - an Android [Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html), you can take advantage of our easier-to-use [BaseBitmapDataSubscriber](../javadoc/reference/com/facebook/imagepipeline/datasource/BaseBitmapDataSubscriber):
+이미지 파이프라인에 디코드된 이미지 - 안드로이드의 [Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html) - 를 요청하고 싶다면, [BaseBitmapDataSubscriber](../javadoc/reference/com/facebook/imagepipeline/datasource/BaseBitmapDataSubscriber)를 사용하세요.
 
 ```java
 dataSource.subscribe(new BaseBitmapDataSubscriber() {
     @Override
     public void onNewResultImpl(@Nullable Bitmap bitmap) {
-	   // You can use the bitmap in only limited ways
-      // No need to do any cleanup.
+	   // 제한된 방법으로 이미지를 사용할 수 있습니다.
+      // 정리할게 없습니다. ??No need to do any cleanup.
     }
  
     @Override
     public void onFailureImpl(DataSource dataSource) {
-      // No cleanup required here.
+      // ???No cleanup required here.
     }
-  });
+  },
+  executor);
 ```
 
-A snap to use, right? There is a caveat. 
+A snap to use, right? There is a caveat.
+사용 예제 입니다. 저작권보호 신청되있어요.???농담인가
 
-You can **not** assign the bitmap to any variable not in the scope of the `onNewResultImpl` method. The reason is that, after the subscriber has finished executing, the image pipeline will recycle the bitmap and free its memory. If you try to draw the bitmap after that, your app will crash with an `IllegalStateException.`
+`onNewResultImpl`메소드의 스코프에 어떤 비트맵 변수도 할당하면 **안 됩니다**.
+이유는 이 subscriber가 실행이 끝난 뒤 이미지 파이프라인은 비트맵을 재활용하고 메모리를 해제해버립니다. 만약 이후에 비트맵을 그리려고 한다면 앱은 곧 `IllegalStateException`을 발생 시킬겁니다.
 
-You can still safely pass the Bitmap to an Android [notification](https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setLargeIcon\(android.graphics.Bitmap\)) or [remote view](http://developer.android.com/reference/android/widget/RemoteViews.html#setImageViewBitmap\(int, android.graphics.Bitmap\)). If Android needs your Bitmap in order to pass it to a system process, it makes a copy of the Bitmap data in ashmem - the same heap used by Fresco. So Fresco's automatic cleanup will work without issue.
+안드로이드 [notification](https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setLargeIcon\(android.graphics.Bitmap\)) 이나 [remote view](http://developer.android.com/reference/android/widget/RemoteViews.html#setImageViewBitmap\(int, android.graphics.Bitmap\))에 안전하게 비트맵을 전달할 수 있습니다. 안드로이드가 시스템 처리에 필요한 비트맵이 필요하다면, ashmeme에 있는 비트맵데이터의 복사본(프레스코가 같은 힙에서 사용되는 것)을 만들 것입니다. 그래서 프레스코의 자동 정리 기법은 이슈없이 동작할 것입니다.
 
-### General-purpose solution
 
-If you want to keep the bitmap around, you can't use raw Bitmaps at all. You must make use of [closeable references](closeable-references.html) and the [BaseDataSubscriber](../javadoc/reference/com/facebook/datasource/BaseDataSubscriber.html):
+### 일반적인 목적의 솔루션
+
+비트맵을 유지하고 싶으면 raw 비트맵을 사용할 수 없습니다. [closeable references](closeable-references.html)나 [BaseDataSubscriber](../javadoc/reference/com/facebook/datasource/BaseDataSubscriber.html)을 사용해야만 합니다:
 
 ```java
 DataSubscriber dataSubscriber =
@@ -71,5 +75,4 @@ DataSubscriber dataSubscriber =
 dataSource.subscribe(dataSubscriber, executor);
 ```
 
-If you want to deviate from the example above and assign the `CloseableReference` to another variable somewhere else, you can. Just be sure to [follow the rules](closeable-references.html).
-
+위의 예제를 쓰고 싶지 않고 `CloseableReference`를 다른데서 할당하고 싶으면 할 수 있습니다. [follow the rules](closeable-references.html)를 확인하세요.
