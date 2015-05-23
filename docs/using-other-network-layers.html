@@ -301,28 +301,32 @@
     </h1>
     <p></p>
 
-    <p>By default, the image pipeline uses the <a href="https://developer.android.com/training/basics/network-ops/connecting.html">HttpURLConnection</a> networking library bundled with Android. Apps may have their own network layer they may wish to use instead.</p>
+    <p>기본적으로 안드로이드에서 이미지 파이프 라인은 <a href="https://developer.android.com/training/basics/network-ops/connecting.html">HttpURLConnection</a> 네트워크 라이브러리를 사용합니다. 앱들은 자신들이 사용하는 네트워크 레이어를 대신해서 사용하고 싶어합니다.</p>
 
 <h3>Using OkHttp</h3>
 
-<p><a href="http://square.github.io/okhttp">OkHttp</a> is a popular open-source networking library. The image pipeline has a backend that uses OkHttp instead of the Android default.</p>
+<p>OkHttp 사용법</p>
+
+<p><a href="http://square.github.io/okhttp">OkHttp</a>는 많이 사용되는 오픈소스 네트워크 라이브러리 입니다. 이미지 파이프라인 백앤드는 안드로이드 기본 라이르버리 대신 OkHttp를 사용합니다.</p>
 
 <h5>OkHttp in Gradle</h5>
 
-<p>In order to use it, the <code>dependencies</code> section of your <code>build.gradle</code> file needs to be changed. Do <strong>not</strong> use the Gradle dependencies given on the <a href="index.html">download</a> page. Use these instead:</p>
+<p>사용하는 방법은 프로젝트의 <code>build.gradle</code> 파일에서 <code>dependencies</code> 섹션을 수정해야 합니다. <a href="index.html">다운로드</a> 페이지에서 제공되어지는 Gradle dependencies를 사용하면 <strong>안됩니다.</strong>
+대신에 이것을 사용하세요:</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span>
   <span class="c1">// your project&#39;s other dependencies</span>
   <span class="n">compile</span> <span class="s2">&quot;com.facebook.fresco:fresco:0.4.0+&quot;</span>
   <span class="n">compile</span> <span class="s2">&quot;com.facebook.fresco:imagepipeline-okhttp:0.4.0+&quot;</span>
 <span class="o">}</span>
 </code></pre></div>
-<h5>OkHttp in Eclipse</h5>
+<h5>Eclipse에서 OkHttp 사용하기</h5>
 
-<p>Eclipse users should depend on <strong>both</strong> the <code>fresco</code> and <code>imagepipeline-okhttp</code> directories in the <code>frescolib</code> tree as described in the <a href="index.html#eclipse-adt">Eclipse instructions</a>.</p>
+<p>Eclipse users should depend on <strong>both</strong> the <code>fresco</code> and <code>imagepipeline-okhttp</code> directories in the <code>frescolib</code> tree as described in the <a href="index.html#eclipse-adt">Eclipse instructions</a>.
+Eclipse 사용자는 <code>fresco</code> 와 <code>imagepipeline-okhttp</code>를 <code>frescolib</code> 에 ...??</p>
 
-<h5>Configuring the image pipeline with OkHttp</h5>
+<h5>이미지 파이프라인을 OkHttp와 사용하는 방법</h5>
 
-<p>You must also configure the image pipeline a little differently. Instead of using <code>ImagePipelineConfig.newBuilder</code>, use <code>OkHttpImagePipelineConfigFactory</code> instead:</p>
+<p>당신은 이미지 파이프라인을 조금 다르게 구성을 해야합니다. <code>ImagePipelineConfig.newBuilder</code> 대신 <code>OkHttpImagePipelineConfigFactory</code>를 사용합니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Context</span> <span class="n">context</span><span class="o">;</span>
 <span class="n">OkHttpClient</span> <span class="n">okHttpClient</span><span class="o">;</span> <span class="c1">// build on your own</span>
 <span class="n">ImagePipelineConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">OkHttpImagePipelineConfigFactory</span>
@@ -332,13 +336,13 @@
     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="n">Fresco</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">config</span><span class="o">);</span>
 </code></pre></div>
-<h3>Using your own network fetcher (optional)</h3>
+<h3>당신이 사용하는 Network fetcher와 사용하는 방법(옵션)</h3>
 
-<p>For complete control on how the networking layer should behave, you can provide one for your app. You must subclass <a href="../javadoc/reference/com/facebook/imagepipeline/producers/NetworkFetcher.html">NetworkFetcher</a>, which controls communications to the network. You can also optionally subclass <a href="../javadoc/reference/com/facebook/imagepipeline/producers/FetchState.html">FetchState</a>, which is a data structure for request-specific information.</p>
+<p>Network layer에서 완벽하게 제어하는 방법은 당신의 앱에서 제공되어야합니다. Network 통신에 대해 제어하기 위해서는 <a href="../javadoc/reference/com/facebook/imagepipeline/producers/NetworkFetcher.html">NetworkFetcher</a>를 subclass로 사용해야합니다. 또한 Data structure 구체적인 정보를 요청하기 위해서는 <a href="../javadoc/reference/com/facebook/imagepipeline/producers/FetchState.html">FetchState</a>를 subclass로 사용하면 됩니다.</p>
 
 <p>Our default implementation for <code>HttpURLConnection</code> can be used as an example. See <a href="https://github.com/facebook/fresco/blob/master/imagepipeline-backends/imagepipeline-okhttp/src/main/java/com/facebook/imagepipeline/backends/okhttp/OkHttpNetworkFetcher.java">its source code</a>.</p>
 
-<p>You must pass your network producer to the image pipeline when <a href="configuring-image-pipeline.html">configuring it</a>:</p>
+<p>당신은 반드시 이미지 파이프라인을 <a href="configuring-image-pipeline.html">구성할때</a>, network producer를 이미지 파이프라인에 통과시켜야합니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ImagePipelineConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">ImagePipelineConfig</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
   <span class="o">.</span><span class="na">setNetworkFetcher</span><span class="o">(</span><span class="n">myNetworkFetcher</span><span class="o">);</span>
   <span class="o">.</span> <span class="c1">// other setters</span>
