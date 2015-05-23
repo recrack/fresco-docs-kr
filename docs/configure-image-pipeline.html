@@ -301,12 +301,15 @@
     </h1>
     <p></p>
 
-    <p>Most apps can initialize Fresco completely by the simple command:</p>
+    <p>Most apps can initialize Fresco completely by the simple command:
+대부분의 앱은 프레스코를 간단한 명령으로 초기화 할 수 있습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Fresco</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
 </code></pre></div>
-<p>For those apps that need more advanced customization, we offer it using the <a href="../javadoc/reference/com/facebook/imagepipeline/core/ImagePipelineConfig.html">ImagePipelineConfig</a> class.</p>
+<p>For those apps that need more advanced customization, we offer it using the <a href="../javadoc/reference/com/facebook/imagepipeline/core/ImagePipelineConfig.html">ImagePipelineConfig</a> class.
+더 향상된 커스텀을 필요로 하는 앱들은 <a href="../javadoc/reference/com/facebook/imagepipeline/core/ImagePipelineConfig.html">ImagePipelineConfig</a>클래스를 사용할 수 있습니다.</p>
 
-<p>Here is a maximal example. Rare is the app that actually needs all of these settings, but here they are for reference.</p>
+<p>Here is a maximal example. Rare is the app that actually needs all of these settings, but here they are for reference.
+여기에 최고의 예제가 있습니다. 극소수의 앱만 이러한 설정이 필요하겠지만 그들을 위해 레퍼런스를 만들었습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ImagePipelineConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">ImagePipelineConfig</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
     <span class="o">.</span><span class="na">setBitmapMemoryCacheParamsSupplier</span><span class="o">(</span><span class="n">bitmapCacheParamsSupplier</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setCacheKeyFactory</span><span class="o">(</span><span class="n">cacheKeyFactory</span><span class="o">)</span>
@@ -323,53 +326,60 @@
     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="n">Fresco</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">config</span><span class="o">);</span>
 </code></pre></div>
-<p>Be sure to pass your <code>ImagePipelineConfig</code> object to <code>Fresco.initialize!</code> Otherwise, Fresco will use a default configuration instead of the one you built.</p>
+<p>Be sure to pass your <code>ImagePipelineConfig</code> object to <code>Fresco.initialize!</code> Otherwise, Fresco will use a default configuration instead of the one you built.
+<code>ImagePipelineConfig</code> 객체를 <code>Fresco.initialize</code>에 꼭 전달하세요. 그렇지 않으면 프레스코는 당신이 만든 것 대신 기본 설정을 사용할겁니다.</p>
 
-<h3>Understanding Suppliers</h3>
+<h3>공급자(Supplier) 이해하기</h3>
 
-<p>Several of the configuration builder&#39;s methods take arguments of a <a href="../javadoc/reference/com/facebook/common/internal/Supplier.html">Supplier</a> of an instance rather than an instance itself. This is a little more complex to create, but allows you to change behaviors while your app is running. Memory caches, for one, check their Supplier every five minutes.</p>
+<p>몇몇 설정 빌더 메소드는 자기 자체 인스턴스보다 <a href="../javadoc/reference/com/facebook/common/internal/Supplier.html">Supplier</a> 인스턴스를 사용합니다.</p>
 
-<p>If you don&#39;t need to dynamically change the params, use a Supplier that returns the same object each time:</p>
+<p>이는 만들기 좀 복잡해 보이지만, 당신의 앱이 실행 중 일때 동작방식을 바꿀 수 있도록 합니다. 메모리캐시는 Supplier를 5분 마다 체크합니다.</p>
+
+<p>파라미터를 직접 바꿀 필요가 없다면 매 시간마다 같은 객체를 돌려주는 Supplier를 사용하세요</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">X</span><span class="o">&gt;</span> <span class="n">xSupplier</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">X</span><span class="o">&gt;()</span> <span class="o">{</span>
   <span class="kd">public</span> <span class="n">X</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="k">new</span> <span class="nf">X</span><span class="o">(</span><span class="n">xparam1</span><span class="o">,</span> <span class="n">xparam2</span><span class="o">...);</span>
   <span class="o">}</span>
 <span class="o">);</span>
-<span class="c1">// when creating image pipeline</span>
+<span class="c1">//이미지 파이프라인이 만들어질 때</span>
 <span class="o">.</span><span class="na">setXSupplier</span><span class="o">(</span><span class="n">xSupplier</span><span class="o">);</span>
 </code></pre></div>
-<h3>Thread pools</h3>
+<h3>쓰레드 풀</h3>
 
-<p>By default, the image pipeline uses three thread pools:</p>
+<p>By default, the image pipeline uses three thread pools:
+기본적으로 이미지 파이프라인은 3가지 쓰레드 풀을 사용합니다:</p>
 
 <ol>
-<li>Three threads for network downloads</li>
-<li>Two threads for all disk operations - local file reads, and the disk cache</li>
-<li>Two threads for all CPU-bound operations - decodes, transforms, and background operations, such as postprocessing.</li>
+<li>네트워크 파일을 내려받을 3개의 쓰레드</li>
+<li>모든 디스크 동작을 위한 두개의 쓰레드 - 로컬파일 읽기, 디스크캐시</li>
+<li>CPU기반 작업- 디코드, 모양 변환, 백그라운드 작업, 후처리 작업등 -을 위한 두개의 쓰레드</li>
 </ol>
 
-<p>You can customize networking behavior by <a href="using-other-network-layers.html">setting your own network layer</a>.</p>
+<p><a href="using-other-network-layers.html">네트워크 레이어 설정</a>으로 네트워크 동작을 커스텀할 수 있습니다.</p>
 
-<p>To change the behavior for all other operations, pass in an instance of <a href="../javadoc/reference/com/facebook/imagepipeline/core/ExecutorSupplier.html">ExecutorSupplier</a>.</p>
+<p>To change the behavior for all other operations, pass in an instance of <a href="../javadoc/reference/com/facebook/imagepipeline/core/ExecutorSupplier.html">ExecutorSupplier</a>.
+다른 동작을 바꾸려면 <a href="../javadoc/reference/com/facebook/imagepipeline/core/ExecutorSupplier.html">ExecutorSupplier</a>인스턴스를 전달 하세요.</p>
 
-<h3>Configuring the memory caches</h3>
+<h3>메모리캐시 설정하기</h3>
 
-<p>The bitmap cache and the encoded memory cache are configured by a Supplier of a <a href="../javadoc/reference/com/facebook/imagepipeline/cache/MemoryCacheParams.html#MemoryCacheParams(int,%20int,%20int,%20int,%20int)">MemoryCacheParams</a> object.</p>
+<p>The bitmap cache and the encoded memory cache are configured by a Supplier of a <a href="../javadoc/reference/com/facebook/imagepipeline/cache/MemoryCacheParams.html#MemoryCacheParams(int,%20int,%20int,%20int,%20int)">MemoryCacheParams</a> object.
+비트맵 캐시와 인코드된 메모리 캐시는 <a href="../javadoc/reference/com/facebook/imagepipeline/cache/MemoryCacheParams.html#MemoryCacheParams(int,%20int,%20int,%20int,%20int)">MemoryCacheParams</a> 객체의 공급자(Supplier)로 설정될 수 있습니다.</p>
 
-<h3>Configuring the disk cache</h3>
+<h3>디스크 캐시 설정하기</h3>
 
-<p>You use the builder pattern to create a <a href="../javadoc/reference/com/facebook/cache/disk/DiskCacheConfig.Builder.html">DiskCacheConfig</a> object:</p>
+<p><a href="../javadoc/reference/com/facebook/cache/disk/DiskCacheConfig.Builder.html">DiskCacheConfig</a> 객체를 만들기 위해 빌더패턴을 사용할 수 있습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DiskCacheConfig</span> <span class="n">diskCacheConfig</span> <span class="o">=</span> <span class="n">DiskCacheConfig</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
    <span class="o">.</span><span class="na">set</span><span class="o">....</span>
    <span class="o">.</span><span class="na">set</span><span class="o">....</span>
    <span class="o">.</span><span class="na">build</span><span class="o">()</span>
 
-<span class="c1">// when building ImagePipelineConfig</span>
+<span class="c1">//ImagePipelineConfig 만들 때</span>
 <span class="o">.</span><span class="na">setMainDiskCacheConfig</span><span class="o">(</span><span class="n">diskCacheConfig</span><span class="o">)</span>
 </code></pre></div>
-<h3>Keeping cache stats</h3>
+<h3>캐시 상태 유지하기</h3>
 
-<p>If you want to keep track of metrics like the cache hit rate, you can implement the <a href="../javadoc/reference/com/facebook/imagepipeline/cache/ImageCacheStatsTracker.html">ImageCacheStatsTracker</a> class. This provides callbacks for every cache event that you can use to keep your own statistics.</p>
+<p>If you want to keep track of metrics like the cache hit rate, you can implement the <a href="../javadoc/reference/com/facebook/imagepipeline/cache/ImageCacheStatsTracker.html">ImageCacheStatsTracker</a> class. This provides callbacks for every cache event that you can use to keep your own statistics.
+캐시 히트율을 계속 추적하고 싶다면 <a href="../javadoc/reference/com/facebook/imagepipeline/cache/ImageCacheStatsTracker.html">ImageCacheStatsTracker</a> 를 이용하세요. 이것은 모든 캐시 이벤트의 콜백을 제공하고 당신은 통계를 내는데 사용할 수 있습니다.</p>
 
 
     <div class="docs-prevnext">

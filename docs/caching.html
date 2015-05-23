@@ -301,55 +301,56 @@
     </h1>
     <p></p>
 
-    <h3>The three caches</h3>
+    <h3>세가지 캐시</h3>
 
-<h4>1. Bitmap cache</h4>
+<h4>1. 비트맵 캐시</h4>
 
-<p>The bitmap cache stores Android <code>Bitmap</code> objects. These are fully decoded images ready for display or <a href="modifying-image.html">postprocessing</a>. </p>
+<p>비트맵 캐시는 안드로이드 <code>Bitmap</code>객체 입니다. 이것은 <a href="modifying-image.html">후처리 postprocessing</a>나 화면에 표시하기 위해 완전히 디코드되어 준비된 이미지입니다.</p>
 
-<p>On Android 4.x and lower, the bitmap cache&#39;s data lives in the <em>ashmem</em> heap, not in the Java heap. This means that images don&#39;t force extra runs of the garbage collector, slowing down your app.</p>
+<p>안드로이드 4.x나 더 낮은 버전에선, 비트맵 캐시는 자바 힙이 아닌 <em>ashmem</em> 힙 영역에 있습니다. 이는 이미지는 추가적인 가비지 컬렉터 수행을 강제하지 않아 당신의 앱을 느리게 하는 요인이 될 수 있습니다.</p>
 
-<p>Android 5.0 has much improved memory management than earlier versions, so it is safer to leave the bitmap cache on the Java heap.</p>
+<p>안드로이드 5.0은 이전 버전에 비해 엄청나게 향상된 메모리 관리기법을 가지고 있습니다. 그래서 자바 힙에 비트맵 캐시를 더 안전하게 남겨놀 수 있습니다.(*역주 : 5.0 버전에 기본 메모리를 2배에서 3배 점유함 확인필요??)</p>
 
-<p>When your app is backgrounded, the bitmap cache is emptied.</p>
+<p>앱이 백그라운드에서 돌 때, 비트맵 캐시는 비워집니다.</p>
 
-<h4>2. Encoded memory cache</h4>
+<h4>2. 인코드된 메모리 캐시</h4>
 
-<p>This cache stores images in their original compressed form. Images retrieved from this cache must be decoded before display. </p>
+<p>이 메모리 캐시는 원본의 압축된 형식으로 저장합니다. 이미지는 화면에 표시되기 전에 이 캐시에서 디코드되어 가져옵니다.</p>
 
-<p>If other transformations, such as <a href="resizing-rotating.html">resizing, rotating</a> or <a href="#webp">transcoding</a> were requested, that happens before decode.</p>
+<p><a href="resizing-rotating.html">크기변환, 회전</a> or <a href="#webp">transcoding</a> 같은 다른 가져오기 형식으로 요청될 땐 디코드하기 전에 수행합니다.</p>
 
-<p>This cache is also emptied when your app is backgrounded.</p>
+<p>이 캐시는 앱이 백그라운드로 가면 비워집니다.</p>
 
-<h4>3. Disk cache</h4>
+<h4>3. 디스크 캐시</h4>
 
-<p>(Yes, we know phones don&#39;t have disks, but it&#39;s too tedious to keep saying <em>local storage cache</em>...)</p>
+<p>물론 폰엔 디스크가 없습니다. 하지만 <em>로컬 저장 캐시</em>를 계속 언급하는 것도 따분한 일입니다.</p>
 
-<p>Like the encoded memory cache, this cache stores compressed image, which must be decoded and sometimes transformed before display.</p>
+<p>인코드된 메모리캐시 같이 디코드 되거나 가끔 화면에 표시하기 전 변환되어야 하는 압축된 이미지를 제공합니다.</p>
 
-<p>Unlike the others, this cache is not cleared when your app is backgrounded, or if it exits, or even if the device is turned off. The user can, of course, always clear it from Android&#39;s Settings menu.</p>
+<p>다른 것 과는 달리 이 캐시는 앱이 백그라운드 상태거나, 종료, 장치가 꺼졌을 때 없어지지 않습니다. 물론, 사용자는 안드로이드 설정메뉴에서 이것을 없앨 수 있습니다.</p>
 
-<h3>Using one disk cache or two?</h3>
+<h3>몇개의 디스크 캐시를 써야 하나?</h3>
 
-<p>Most apps need only a single disk cache. But in some circumstances you may want to keep smaller images in a separate cache, to prevent them from getting evicted too soon by larger images.</p>
+<p>대부분의 앱은 디스크 캐시가 한개만 필요합니다. 하지만 어떤 조건에선 더 작은 이미지를 분리된 캐시에서 계속 유지하거나, 큰 이미지에 의해 너무 빨리 없어지는 것을 막고 싶을 수 있습니다.</p>
 
-<p>To do this, just call both <code>setMainDiskCacheConfig</code> and <code>setSmallImageDiskCacheConfig</code> methods when <a href="configure-image-pipeline.html">configuring the image pipeline</a>.</p>
+<p><a href="configure-image-pipeline.html">이미지 파이프 라인을 설정</a>할 때, 다음의 두 메소드<code>setMainDiskCacheConfig</code>, <code>setSmallImageDiskCacheConfig</code>를 사용하세요.</p>
 
-<p>What defines <em>small?</em> Your app does. When <a href="image-requests.html">making an image request</a>, you set its <a href="../javadoc/reference/com/facebook/imagepipeline/request/ImageRequest.ImageType.html">ImageType</a>:</p>
+<p>What defines <em>작은 것?</em> Your app does. When <a href="image-requests.html">making an image request</a>, you set its <a href="../javadoc/reference/com/facebook/imagepipeline/request/ImageRequest.ImageType.html">ImageType</a>:
+<em>작은 이미지</em>는 어떻게 정의할까요? <a href="image-requests.html">이미지 리퀘스트를 만들 때</a>나 <a href="../javadoc/reference/com/facebook/imagepipeline/request/ImageRequest.ImageType.html">ImageType</a>을 설정하면 됩니다:</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ImageRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">ImageRequest</span><span class="o">.</span><span class="na">newBuilderWithSourceUri</span><span class="o">(</span><span class="n">uri</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setImageType</span><span class="o">(</span><span class="n">ImageType</span><span class="o">.</span><span class="na">SMALL</span><span class="o">)</span>
 </code></pre></div>
-<p>If you need only one cache, you can simply avoid calling <code>setSmallImageDiskCacheConfig</code>. The pipeline will default to using the same cache for both and <code>ImageType</code> will be ignored.</p>
+<p>하나의 캐시만 필요하다면, 단순히 <code>setSmallImageDiskCacheConfig</code>를 호출하면 됩니다. 이미지 파이프라인은 <code>ImageType</code>을 무시한 채 같은 캐시만 쓸 것입니다.</p>
 
-<h3>Trimming the caches</h3>
+<h3>캐시 제거</h3>
 
-<p>When <a href="configure-image-pipeline.html">configuring</a> the image pipeline, you can set the maximum size of each of the caches. But there are times when you might want to go lower than that. For instance, your application might have caches for other kinds of data that might need more space and crowd out Fresco&#39;s. Or you might be checking to see if the device as a whole is running out of storage space.</p>
+<p><a href="configure-image-pipeline.html">이미지 파이프라인을 설정할 때</a> 각 캐시의 최대 갯수를 고를 수 있습니다. 그 외에도 최대 갯수보다 적게 쓰고싶을 때도 있을 것입니다. 예를 들면 당신의 앱이 더 많은 공간과 복잡한 데이터 종류를 캐시하고 싶을 수 있습니다. 아니면 용량이 가득 차거나, 저장소를 체크하고 싶을 수 있습니다.??? For instance, your application might have caches for other kinds of data that might need more space and crowd out Fresco&#39;s. Or you might be checking to see if the device as a whole is running out of storage space.</p>
 
-<p>Fresco&#39;s caches implement the <a href="../javadoc/reference/com/facebook/common/disk/DiskTrimmable.html">DiskTrimmable</a> or <a href="../javadoc/reference/com/facebook/common/memory/MemoryTrimmable.html">MemoryTrimmable</a> interfaces. These are hooks into which your app can tell them to do emergency evictions.</p>
+<p>프레스코 캐시는 <a href="../javadoc/reference/com/facebook/common/disk/DiskTrimmable.html">DiskTrimmable</a>나 <a href="../javadoc/reference/com/facebook/common/memory/MemoryTrimmable.html">MemoryTrimmable</a>인터페이스를 구현합니다. 이것들은 앱에 긴급하게 캐시를 정리하라고 전달 할 수 있습니다.</p>
 
-<p>Your application can then configure the pipeline with objects implementing the <a href="../javadoc/reference/com/facebook/common/disk/DiskTrimmableRegistry.html">DiskTrimmableRegistry</a> and <a href="../javadoc/reference/com/facebook/common/memory/MemoryTrimmableRegistry.html">MemoryTrimmableRegistry</a> interfaces. </p>
+<p>당신의 앱은 이 <a href="../javadoc/reference/com/facebook/common/disk/DiskTrimmableRegistry.html">DiskTrimmableRegistry</a>와 <a href="../javadoc/reference/com/facebook/common/memory/MemoryTrimmableRegistry.html">MemoryTrimmableRegistry</a> 인터페이스를 구현한 객체로 파이프라인을 설정할 수 있습니다.</p>
 
-<p>These objects must keep a list of trimmables. They must use app-specific logic to determine when memory or disk space must be preserved. They then notify the trimmable  objects to carry out their trims.</p>
+<p>이 객체들은 제거가능하도록 유지되어야 합니다. 이것들은 메모리나 디스크 공간이 반드시 유지되도록 앱의 상세한 로직을 사용해야만 합니다. 그러면 이것들은 이 제거가능한 객체들에 제거명령을 통보 할 수 있습니다.</p>
 
 
     <div class="docs-prevnext">
