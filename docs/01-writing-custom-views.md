@@ -1,6 +1,6 @@
 ---
 id: writing-custom-views
-title: Writing Custom Views
+title: 커스텀 뷰 사용하기
 layout: docs
 permalink: /docs/writing-custom-views.html
 prev: image-requests.html
@@ -16,12 +16,11 @@ next: gotchas.html
 * 이미지 한 장을 위한 `DraweeHolder`
 * 여러 이미지를 위한 `MultiDraweeHolder`
 
-### Responsibilities of custom views 커스텀 뷰의 응답성
+### 커스텀 뷰의 응답성
 
-Android lays out View objects, and only they get told of system events. `DraweeViews` handle these events and use them to manage memory effectively. When using the holders, you must implement some of this functionality yourself.
 안드로이드는 뷰 오브젝트를 시스템이벤트로만 다룹니다. `DraweeViews`는 이 이벤트를 다루면서 메모리를 효율적으로 관리합니다. 이 holder를 사용할 땐 몇가지 기능을 필수로 구현해야합니다.
 
-#### attach/detach이벤트 다루기
+#### attach/detach 이벤트 다루기
 
 **주의 : 아래 사항을 숙지하지 않으면 메모리릭이 생길수도 있습니다.**
 안드로이드에서 뷰가 화면에 더이상 나타나지 않을 때 - 리스트뷰에서 스크롤되어 화면에 나타나지 않을 때나 다른 방식으로 나타나지 않을 때 - 메모리에 있는 이미지를 다루는 방법은 없습니다. Drawee는 이런 현상들을 알아채서 메모리를 해제합니다. 이미지가 화면에 다시 나타나면 자동으로 불러옵니다.
@@ -58,7 +57,7 @@ public void onFinishTemporaryDetach() {
 
 #### 터치 이벤트 다루기
 
-Drawee에서 [탭해서 다시 가져오기tap to retry](drawee-components.html#Retry)를 활성화 했다면, 사용자가 화면을 터치했다고 전달해줘야 합니다. 아래와 같이 해보세요.
+Drawee에서 [탭해서 다시 가져오기](drawee-components.html#Retry)를 활성화 했다면, 사용자가 화면을 터치했다고 전달해줘야 합니다. 아래와 같이 해보세요.
 
 ```java
 @Override
@@ -70,6 +69,7 @@ public boolean onTouchEvent(MotionEvent event) {
 #### onDraw 커스텀하기
 
 다음을 꼭 호출 하세요.
+
 ```java
 Drawable drawable = mDraweeHolder.getHierarchy().getTopLevelDrawable();
 drawable.setBounds(...);
@@ -77,9 +77,9 @@ drawable.setBounds(...);
 안하면 Drawee는 이미지를 나타내지 않을겁니다.
 
 * Drawable은 하위 캐스팅 하지 마세요.
-* Do not translate it. 변환하지 마세요??
+* 변환하지 마세요
 
-#### Other responsibilities 다른 응답성들
+#### 다른 응답성들
 
 * `verifyDrawable` 오버라이딩 :
 
@@ -89,7 +89,7 @@ protected boolean verifyDrawable(Drawable who) {
   if (who == mDraweeHolder.getHierarchy().getTopLevelDrawable()) {
     return true;
   }
-  // other logic for other Drawables in your view, if any
+  // 뷰에 사용할 다른 로직
 }
 ```
 
@@ -120,7 +120,7 @@ protected boolean verifyDrawable(Drawable who) {
 class CustomView extends View {
   DraweeHolder<GenericDraweeHierarchy> mDraweeHolder;
 
-  // constructors following above pattern
+  // 위의 패턴을 이용한 생성자
 
   private void init() {
     GenericDraweeHierarchy hierarchy = new GenericDraweeHierarchyBuilder(getResources());
@@ -134,7 +134,7 @@ class CustomView extends View {
 
 #### 이미지 세팅하기
 
-뷰대신 홀더의 `setController`를 호출하여 [controller builder](using-controllerbuilder.html)를 사용하세요.
+뷰대신 홀더의 `setController`를 호출하여 [컨트롤러 빌더](using-controllerbuilder.html)를 사용하세요.
 
 ```java
 DraweeController controller = Fresco.newControllerBuilder()

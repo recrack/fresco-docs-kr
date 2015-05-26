@@ -1,27 +1,26 @@
 ---
 id: closeable-references
-title: Closeable References
+title: 닫을 수 있는 참조
 layout: docs
 permalink: /docs/closeable-references.html
 prev: datasources-datasubscribers.html
 next: using-other-network-layers.html
 ---
 
-**이 페이지는 고급 개발용입니다..**
+**이 페이지는 고급 개발용입니다.**
 
 대부분의 앱은 [Drawees](using-drawees-xml.html)를 사용하고 close 코드를 넣을 필요가 없습니다.
 
-자바 언어는 쓸모없는 자원을 회수하고 대부분의 개발자는 객체를 willy-nilly하게 만들고 관리해 결국엔 메모리에서 사라지도록 권한을 부여합니다.
+자바 언어는 쓸모없는 자원을 회수하고 대부분의 개발자는 객체를 싫든 좋든(willy-nilly) 만들고 관리해 결국엔 메모리에서 사라지도록 권한을 부여합니다.
 
-안드로이드 5.0의 향상까지, 이것은 비트맵에 대해 좋은 생각은 아니었습니다. 이것은 큰 모바일 단말의 메모리를 공유합니다. 메모리 내부의 비트맵은 가비지 컬렉터를 더 자주 실행하도록 만들며, 이미지가 많이 사용되는 앱을 느려지게 하거나 janky하게 만듭니다.
+안드로이드 5.0의 향상까지, 이것은 비트맵에 대해 좋은 생각은 아니었습니다. 이것은 큰 모바일 단말의 메모리를 공유합니다. 메모리 내부의 비트맵은 가비지 컬렉터를 더 자주 실행하도록 만들며, 이미지가 많이 사용되는 앱을 느려지게 하거나 좋지 않은 품질로(janky) 만듭니다.
 
 비트맵은 자바 개발자가 C++과 [Boost](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/smart_ptr.htm)같은 똑똑한 라이브러리를 그리워지게 만드는 것 중 하나입니다.
 
-프레스코의 솔류션은 [CloseableReference](../javadoc/reference/com/facebook/common/references/CloseableReference.html) 클래스에서 볼 수 있습니다. 올바르게 사용하려면 아래 규칙을 따르세요 :
+Fresco의 솔류션은 [CloseableReference](../javadoc/reference/com/facebook/common/references/CloseableReference.html) 클래스에서 볼 수 있습니다. 올바르게 사용하려면 아래 규칙을 따르세요 :
 
 #### 1. 호출자는 레퍼런스를 소유합니다.
 
-Here, we create a reference, but since we're passing it to a caller, the caller takes it:
 여기에 레퍼런스가 있습니다. 그리고 호출자에게 값을 전달하였기 때문에 호출자가 레퍼런스를 갖고 있습니다.
 
 ```java
@@ -46,7 +45,7 @@ void gee() {
 }
 ```
 
-The `finally` block is almost always the best way to do this. `finally` 블록은 거의 항상 이것을 수행하는 최고의 방법입니다.
+`finally` 블록은 거의 항상 이것을 수행하는 최고의 방법입니다.
 
 #### 3. 어떤 것은 레퍼런스를 close하면 안됩니다.
 

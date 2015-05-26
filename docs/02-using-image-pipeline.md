@@ -1,6 +1,6 @@
 ---
 id: using-image-pipeline
-title: Using the Image Pipeline Directly
+title: 이미지 파이프라인 직접 사용하기
 layout: docs
 permalink: /docs/using-image-pipeline.html
 prev: caching.html
@@ -12,7 +12,6 @@ next: datasources-datasubscribers.html
 
 이 이미지 파이프라인은 [CloseableReference](closeable-references.html)를 감싼 객체를 돌려줍니다. Drawee는 작업이 완료되면 이 객체의 `.close()`를 호출합니다. 만약 당신의 앱이 Drawee를 사용하지 않는 다면 이와 비슷한 작업을 해야만 합니다.
 
-The Java garbage collector will free image memory when Bitmap objects go out of scope, but this may be too late. Garbage collection is expensive, and relying on it for large objects leads to performance issues. This is especially true on Android 4.x and lower, when Android did not maintain a separate memory space for Bitmaps.
 자바의 가비지 컬렉터는 비트맵 객체가 스코브를 벗어나면 이미지 메모리를 해제합니다. 하지만 매우 늦게 작동할 수도 있습니다. 가비지 컬렉션은 비용이 많이 나가고 큰 객체를 다룰 때 성능 이슈도 있습니다. 이것은 특히 안드로이드 4.x나 하위버전에서 분리된 비트맵 메모리 공간을 유지하지 않았을 때 발생합니다.
 
 #### 파이프라인 호출하기
@@ -21,17 +20,17 @@ The Java garbage collector will free image memory when Bitmap objects go out of 
 
 ```java
 ImagePipeline imagePipeline = Fresco.getImagePipeline();
-DataSource<CloseableReference<CloseableImage>> 
+DataSource<CloseableReference<CloseableImage>>
     dataSource = imagePipeline.fetchDecodedImage(imageRequest);
 ```
  어떻게 이미지 파이프라인에서 데이터를 받는지는 [DataSources](datasources-datasubscribers.html)를 보세요.
 
-#### Skipping the decode 디코드 건너 뛰기
+#### 디코드 건너 뛰기
 
 이미지를 디코드하기 싫고 원본 압축 형식을 사용하고 싶다면 `fetchEncodedImage`를 사용하세요 :
 
 ```java
-DataSource<CloseableReference<PooledByteBuffer>> 
+DataSource<CloseableReference<PooledByteBuffer>>
     dataSource = imagePipeline.fetchEncodedImage(imageRequest);
 ```
 
@@ -63,7 +62,7 @@ try {
 
 이미지가 보여지기 전에 미리 판독하는 것은 가끔 사용자에게 더 적은 대기시간을 제공할 수 있습니다. 하지만 트레이드-오프를 생각해야 합니다. Prefetch는 사용자의 데이터를 취하고, CPU와 메모리를 공유합니다. 일반적으로 prefetching은 대부분의 앱에서는 추천되지 않습니다.
 
-그럼에도 불구하고, 이미지 파이프라인은 디스크와 비트맵 캐시를 prefetch할 수 있습니다. 두개 다 네트워크 URI를 위해 더 많은 데이터를 이용합니다. 하지만 이 디스크 캐시는 디코드를 하지 않기 때문에 더 적은 CPU를 이용하빈다.
+그럼에도 불구하고, 이미지 파이프라인은 디스크와 비트맵 캐시를 prefetch할 수 있습니다. 두개 다 네트워크 URI를 위해 더 많은 데이터를 이용합니다. 하지만 이 디스크 캐시는 디코드를 하지 않기 때문에 더 적은 CPU를 이용합니다.
 
 디스크에서 prefetch하기 :
 
@@ -71,7 +70,7 @@ try {
 imagePipeline.prefetchToDiskCache(imageRequest);
 ```
 
-Prefetch to bitmap cache:
+비트맵 캐시 Prefetch:
 
 ```java
 imagePipeline.prefetchToBitmapCache(imageRequest);

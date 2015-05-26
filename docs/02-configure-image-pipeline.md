@@ -1,23 +1,20 @@
 ---
 id: configure-image-pipeline
-title: Configuring the Image Pipeline
+title: 이미지 파이프라인 구성하기
 layout: docs
 permalink: /docs/configure-image-pipeline.html
 prev: intro-image-pipeline.html
 next: caching.html
 ---
 
-Most apps can initialize Fresco completely by the simple command:
-대부분의 앱은 프레스코를 간단한 명령으로 초기화 할 수 있습니다.
+대부분의 앱은 Fresco를 간단한 명령으로 초기화 할 수 있습니다.
 
 ```java
 Fresco.initialize(context);
 ```
 
-For those apps that need more advanced customization, we offer it using the [ImagePipelineConfig](../javadoc/reference/com/facebook/imagepipeline/core/ImagePipelineConfig.html) class.
 더 향상된 커스텀을 필요로 하는 앱들은 [ImagePipelineConfig](../javadoc/reference/com/facebook/imagepipeline/core/ImagePipelineConfig.html)클래스를 사용할 수 있습니다.
 
-Here is a maximal example. Rare is the app that actually needs all of these settings, but here they are for reference.
 여기에 최고의 예제가 있습니다. 극소수의 앱만 이러한 설정이 필요하겠지만 그들을 위해 레퍼런스를 만들었습니다.
 
 ```java
@@ -28,7 +25,7 @@ ImagePipelineConfig config = ImagePipelineConfig.newBuilder()
     .setExecutorSupplier(executorSupplier)
     .setImageCacheStatsTracker(imageCacheStatsTracker)
     .setMainDiskCacheConfig(mainDiskCacheConfig)
-    .setMemoryTrimmableRegistry(memoryTrimmableRegistry) 
+    .setMemoryTrimmableRegistry(memoryTrimmableRegistry)
     .setNetworkFetchProducer(networkFetchProducer)
     .setPoolFactory(poolFactory)
     .setProgressiveJpegConfig(progressiveJpegConfig)
@@ -38,8 +35,7 @@ ImagePipelineConfig config = ImagePipelineConfig.newBuilder()
 Fresco.initialize(context, config);
 ```
 
-Be sure to pass your `ImagePipelineConfig` object to `Fresco.initialize!` Otherwise, Fresco will use a default configuration instead of the one you built.
-`ImagePipelineConfig` 객체를 `Fresco.initialize`에 꼭 전달하세요. 그렇지 않으면 프레스코는 당신이 만든 것 대신 기본 설정을 사용할겁니다.
+`ImagePipelineConfig` 객체를 `Fresco.initialize`에 꼭 전달하세요. 그렇지 않으면 Fresco는 당신이 만든 것 대신 기본 설정을 사용할겁니다.
 
 ### 공급자(Supplier) 이해하기
 
@@ -61,7 +57,6 @@ Supplier<X> xSupplier = new Supplier<X>() {
 
 ### 쓰레드 풀
 
-By default, the image pipeline uses three thread pools:
 기본적으로 이미지 파이프라인은 3가지 쓰레드 풀을 사용합니다:
 
 1. 네트워크 파일을 내려받을 3개의 쓰레드
@@ -70,15 +65,13 @@ By default, the image pipeline uses three thread pools:
 
 [네트워크 레이어 설정](using-other-network-layers.html)으로 네트워크 동작을 커스텀할 수 있습니다.
 
-To change the behavior for all other operations, pass in an instance of [ExecutorSupplier](../javadoc/reference/com/facebook/imagepipeline/core/ExecutorSupplier.html).
 다른 동작을 바꾸려면 [ExecutorSupplier](../javadoc/reference/com/facebook/imagepipeline/core/ExecutorSupplier.html)인스턴스를 전달 하세요.
 
-### 메모리캐시 설정하기
+### 메모리캐시 구성하기
 
-The bitmap cache and the encoded memory cache are configured by a Supplier of a [MemoryCacheParams](../javadoc/reference/com/facebook/imagepipeline/cache/MemoryCacheParams.html#MemoryCacheParams\(int, int, int, int, int\)) object.
 비트맵 캐시와 인코드된 메모리 캐시는 [MemoryCacheParams](../javadoc/reference/com/facebook/imagepipeline/cache/MemoryCacheParams.html#MemoryCacheParams\(int, int, int, int, int\)) 객체의 공급자(Supplier)로 설정될 수 있습니다.
 
-### 디스크 캐시 설정하기
+### 디스크 캐시 구성하기
 
 [DiskCacheConfig](../javadoc/reference/com/facebook/cache/disk/DiskCacheConfig.Builder.html) 객체를 만들기 위해 빌더패턴을 사용할 수 있습니다.
 
@@ -95,5 +88,4 @@ DiskCacheConfig diskCacheConfig = DiskCacheConfig.newBuilder()
 
 ### 캐시 상태 유지하기
 
-If you want to keep track of metrics like the cache hit rate, you can implement the [ImageCacheStatsTracker](../javadoc/reference/com/facebook/imagepipeline/cache/ImageCacheStatsTracker.html) class. This provides callbacks for every cache event that you can use to keep your own statistics.
 캐시 히트율을 계속 추적하고 싶다면 [ImageCacheStatsTracker](../javadoc/reference/com/facebook/imagepipeline/cache/ImageCacheStatsTracker.html) 를 이용하세요. 이것은 모든 캐시 이벤트의 콜백을 제공하고 당신은 통계를 내는데 사용할 수 있습니다.
