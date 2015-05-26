@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | Supported URIs</title>
+    <title>Fresco | 지원하는 URIs</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="Supported URIs" />
+    <meta property="og:title" content="지원하는 URIs" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,14 +296,14 @@
 
 <article class='withtoc'>
     <h1>
-      Supported URIs
+      지원하는 URIs
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/00-supported-uris.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
 
-    <p>Fresco는 다양한 환경의 이미지를 지원합니다. </p>
+    <p>Fresco는 다양한 환경의 이미지를 지원합니다.</p>
 
-<p>Fresco는 <strong>상대경로 URI는 지원되지 않습니다</strong>. 모든 URI는 절대경로거나 scheme을 포함해야 합니다.</p>
+<p>Fresco는 <strong>상대경로 URI는 지원하지 않습니다</strong>. 모든 URI는 절대경로거나 scheme을 포함해야 합니다.</p>
 
 <p>아레는 지원되는 URI scheme 종류입니다:</p>
 
@@ -315,12 +315,12 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>File on network</td>
+<td>network의 파일</td>
 <td><code>http://,</code> <code>https://</code></td>
-<td><code>HttpURLConnection</code> or <a href="using-other-network-layers.html">network layer</a></td>
+<td><code>HttpURLConnection</code> 혹은 <a href="using-other-network-layers.html">network layer</a></td>
 </tr>
 <tr>
-<td>File on device</td>
+<td>단말의 파일</td>
 <td><code>file://</code></td>
 <td><code>FileInputStream</code></td>
 </tr>
@@ -330,18 +330,18 @@
 <td><code>ContentResolver</code></td>
 </tr>
 <tr>
-<td>Asset in app</td>
+<td>앱의 Asset</td>
 <td><code>asset://</code></td>
 <td><code>AssetManager</code></td>
 </tr>
 <tr>
-<td>Resource in app</td>
+<td>앱의 리소스</td>
 <td><code>res://</code></td>
 <td><code>Resources.openRawResource</code></td>
 </tr>
 </tbody></table>
 
-<p>이미지 리소스는 오직 이미지 파이프라인으로만 사용됩니다(e.g a PNG 이미지). String이나 XML Drawable 같은 다른 리소스 타잎은 이미지 파이프라인의 컨텍스트와 일치하지 않고 따라서 정의에 의해 사용될 수 없습니다. 잠재적인 혼란스러운 케이스는 XML에 선언된 drawable입니다(e.g. ShapeDrawable). 기억해야 할 중요한 것은 이것이 <strong>이미지가 아니라는 것입니다</strong>. 만약 XML drawable을 주요 이미지로 화면에 표시하고 싶다면, 대기이미지 - <a href="using-drawees-code.html#change_placeholder">placeholder</a>-나 <code>null</code> uri를 지정하세요.   </p>
+<p>이미지 리소스는 오직 이미지 파이프라인으로만 사용됩니다(e.g a PNG 이미지). String이나 XML Drawable 같은 다른 리소스 타잎은 이미지 파이프라인의 컨텍스트와 일치하지 않고 따라서 정의에 의해 사용될 수 없습니다. 잠재적인 혼란스러운 케이스는 XML에 선언된 drawable입니다(e.g. ShapeDrawable). 기억해야 할 중요한 것은 이것이 <strong>이미지가 아니라는 것입니다</strong>. 만약 XML drawable을 주요 이미지로 화면에 표시하고 싶다면, 대기이미지 - <a href="using-drawees-code.html#change_placeholder">placeholder</a>-나 <code>null</code> uri를 지정하세요.</p>
 
 
     <div class="docs-prevnext">
@@ -368,10 +368,10 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>

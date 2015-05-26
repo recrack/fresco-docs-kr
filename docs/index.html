@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | Adding Fresco to your Project</title>
+    <title>Fresco | 프로젝트에 Fresco 추가하기</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="Adding Fresco to your Project" />
+    <meta property="og:title" content="프로젝트에 Fresco 추가하기" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,7 +296,7 @@
 
 <article class='withtoc'>
     <h1>
-      Adding Fresco to your Project
+      프로젝트에 Fresco 추가하기
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/00-index.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
@@ -305,17 +305,17 @@
 
 <p>Android프로젝트에 Fresco를 추가하는 방법입니다.</p>
 
-<h3>Android Studio or Gradle</h3>
+<h3>Android Studio 나 Gradle</h3>
 
-<p>&#39;build.gradle&#39;파일을 수정하세요. 그리고 아래 구문을 &#39;dependencies&#39;에 추가하세요. </p>
+<p>&#39;build.gradle&#39;파일을 수정하세요. 그리고 아래 구문을 &#39;dependencies&#39;에 추가하세요.</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">dependencies</span> <span class="o">{</span> <span class="o">}</span>
     <span class="c1">//your app&#39;s other dependencies</span>
     <span class="n">compile</span> <span class="err">&#39;</span><span class="n">com</span><span class="o">.</span><span class="na">facebook</span><span class="o">.</span><span class="na">fresco</span><span class="o">:</span><span class="nl">fresco:</span><span class="mf">0.4</span><span class="o">.</span><span class="mi">0</span><span class="o">+</span>
 </code></pre></div>
 <h3>MAVEN</h3>
 
-<p>&#39;pom.xml&#39;에 아래 <code>&lt;dependencies&gt;</code>를 추가하세요 </p>
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span> 
+<p>&#39;pom.xml&#39;에 아래 <code>&lt;dependencies&gt;</code>를 추가하세요</p>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
 <span class="nt">&lt;groupId&gt;</span>com.facebook.fresco<span class="nt">&lt;/groupId&gt;</span>
 <span class="nt">&lt;artifactId&gt;</span>fresco<span class="nt">&lt;/artifactId&gt;</span>
 <span class="nt">&lt;version&gt;</span>LATEST<span class="nt">&lt;/version&gt;</span>
@@ -323,27 +323,27 @@
 </code></pre></div>
 <h3>Eclipse ADT</h3>
 
-<p>압축 파일 다운받기 </p>
+<p><a href="https://github.com/facebook/fresco/releases/download/v0.4.0/frescolib-v0.4.0.zip">압축 파일 다운받기</a>.</p>
 
-<p>압축해제하면 &#39;frescolib&#39;폴더가 만들어 질 것입니다. 이 위치를 기억해 놓으세요. </p>
+<p>압축해제하면 &#39;frescolib&#39;폴더가 만들어 질 것입니다. 이 위치를 기억해 놓으세요.</p>
 
-<p>1.<strong>File</strong>메뉴에서 <strong>Import</strong>를 누르세요. </p>
+<p>1.<strong>File</strong>메뉴에서 <strong>Import</strong>를 누르세요.</p>
 
-<p>2.<strong>Android</strong>를 열고, <strong>Existing Android Code Into Workspace</strong>를 누르고 <strong>Next</strong>를 누르세요. </p>
+<p>2.<strong>Android</strong>를 열고, <strong>Existing Android Code Into Workspace</strong>를 누르고 <strong>Next</strong>를 누르세요.</p>
 
-<p>3.<strong>Browse</strong>를 누르고 아까 알려준 <em>frescolib</em> 디렉토리를 찾은 후 <strong>OK</strong>를 누르세요. </p>
+<p>3.<strong>Browse</strong>를 누르고 아까 알려준 <em>frescolib</em> 디렉토리를 찾은 후 <strong>OK</strong>를 누르세요.</p>
 
-<p>4.다섯개의 프로젝트가 추가 될 겁니다. <em>drawee, fbcore, fresco, imagepipeline, imagepipeline-okhttp</em>. 처음 4개의 프로젝트가 체크됬는지 다시 확인하고 <strong>Finish</strong>를 누르세요. </p>
+<p>4.다섯개의 프로젝트가 추가 될 겁니다. <em>drawee, fbcore, fresco, imagepipeline, imagepipeline-okhttp</em>. 처음 4개의 프로젝트가 체크됬는지 다시 확인하고 <strong>Finish</strong>를 누르세요.</p>
 
-<p>5.추가된 프로젝트에서 마우스 우버튼(맥사용자는 Ctrl-클릭)을 누르세요. <em>Properties</em>를 누르고 <em>Android</em>를 누르세요. </p>
+<p>5.추가된 프로젝트에서 마우스 우버튼(맥사용자는 Ctrl-클릭)을 누르세요. <em>Properties</em>를 누르고 <em>Android</em>를 누르세요.</p>
 
-<p>6.우측 아래의 <em>Add</em>버튼을 누르고 Fresco를 누른 뒤 <em>OK</em>를 누르세요. </p>
+<p>6.우측 아래의 <em>Add</em>버튼을 누르고 Fresco를 누른 뒤 <em>OK</em>를 누르세요.</p>
 
 <p>이제 Fresco를 빌드할 수 있게 되었습니다.</p>
 
-<p>만약 네트워크 계층의 OkHttp를 사용하고 싶다면, 여기를 봐보세요. </p>
+<p>만약 네트워크 계층의 OkHttp를 사용하고 싶다면, <a href="using-other-network-layers.html#_">여기</a>를 봐보세요.</p>
 
-<p><em>android-support-v4.jar</em>와 관련된 &quot;Jar mismatch&quot;가 발생하면, <em>frescolib/imagepipeline/libs</em>의 저 <em>android-support-v4.jar</em>파일 하나를 지우시면 됩니다.</p>
+<p><code>android-support-v4.jar</code>와 관련된 <code>Jar mismatch</code>가 발생하면, <code>frescolib/imagepipeline/libs</code>의 저 <code>android-support-v4.jar</code>파일 하나를 지우시면 됩니다.</p>
 
 
     <div class="docs-prevnext">
@@ -368,10 +368,10 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>

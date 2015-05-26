@@ -2,16 +2,16 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | 컨셉</title>
+    <title>Fresco | Fresco에 프로가드 사용하기</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="컨셉" />
+    <meta property="og:title" content="Fresco에 프로가드 사용하기" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
-    <meta property='og:url' content="http://facebook.github.io/fresco/docs/concepts.html">
+    <meta property='og:url' content="http://facebook.github.io/fresco/docs/proguard.html">
     
     <meta property='og:type' content='website'>
     
@@ -72,7 +72,7 @@
           </li>
         
           <li>
-            <a href="/docs/concepts.html#_" class="active">
+            <a href="/docs/concepts.html#_">
               Concepts
             </a>
             
@@ -296,54 +296,41 @@
 
 <article class='withtoc'>
     <h1>
-      컨셉
-      <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/00-concepts.md" target="_blank">Edit on GitHub</a>
+      Fresco에 프로가드 사용하기
+      <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/04-proguard.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
 
-    <h2>Drawees</h2>
+    <p>프레스코는 내려받기에 용량이 많아 보일 수 있습니다. 하지만 두려워하지 마세요. ProGuard 툴을 강력하게 추천합니다.</p>
 
-<p>Drawees는 이미지가 구현되는 공간입니다. Model-View-Controller 프레임워크같이 3가지 컴포넌트로 구성되어 있습니다.</p>
+<p>프레스코의 ProGuard 파일 <a href="https://raw.githubusercontent.com/facebook/fresco/master/proguard-fresco.pro">proguard-fresco.pro</a>을 받으세요. 그리고 프로젝트에 추가하세요.</p>
 
-<h3>DraweeView</h3>
+<h3>Android Studio / Gradle</h3>
 
-<p>Android의 <a href="http://developer.android.com/reference/android/view/View.html">View</a>클래스를 상속받은 클래스입니다.
-대부분의 앱은 SimpleDraweeView 클래스를 사용하면 됩니다. XML이나 Java코드에 추가하세요. <a href="index.html">GettingStarted</a>페이지에 설명한 것 처럼, setImageURI메소드로 URI를 지정하고 로드하면 됩니다.
-XML에서 <a href="using-drawees-xml.html">customizing 할 수도 있어요</a>.</p>
+<p><code>build.gradle</code>파일에 다음을 추가하세요.
+<code>groovy
+android {
+  buildTypes {
+    release {
+      minifyEnabled true
+      proguardFiles getDefaultProguardFile(&#39;proguard-android.txt&#39;), 
+        &#39;proguard-fresco.pro&#39;
+    }
+  }
+}
+</code></p>
 
-<h3>DraweeHierarchy</h3>
+<h3>Eclipse</h3>
 
-<p>컨텐츠를 실제로 그려주는 Android 의 <a href="http://developer.android.com/reference/android/graphics/drawable/Drawable.html">Drawable</a> 객체의 상속 판입니다. MVC패턴의 Model입니다.
-이미지를 <a href="using-drawees-code.html">Java에서 custom 하여 표현하고 싶을 때,</a> 살펴보세요.</p>
-
-<h3>DraweeController</h3>
-
-<p>DraweeControllere는 이미지를 불러오는 기본적인 기능들- Fresco 의 이미지 파이프라인이나 그 외에 것- 을 담당합니다.
-URI 하나 말고 더 많은 것을 전달해, 이미지를 화면에 표시하고 싶을 때 다루게 될 클래스입니다.</p>
-
-<h3>DraweeControllerBuilder</h3>
-
-<p>DraweeControllers 는 한번 생성되면 바꿀 수 없습니다(immutable). <a href="using-controllerbuilder.html">Builder패턴</a>으로 만들어졌습니다.</p>
-
-<h3>Listeners</h3>
-
-<p>builder로 만들어진 것 중 하나입니다. <a href="listening-download-events.html">Listener</a> 는 이미지를 모두 혹은 부분적으로 받아졌을 때 실행됩니다.</p>
-
-<h3>이미지 파이프라인</h3>
-
-<p>내부적으로 Fresco의 이미지 파이프라인은 이미지 처리작업 과정을 다룹니다. 네트워크, 내부파일, 컨텐트프로비더, 내부 리소스로부터 이미지를 추출합니다. 내부저장소에서 압축된 이미지를 계속 캐싱하고, 두 번째로 메모리에 압축을 푼 이미지를 캐싱합니다.</p>
-
-<p>이미지 파이프라인은 Java 힙에서 이미지를 떨어트리기 위해 <em>pinned purgeables</em>라는 특별한 기술을 사용합니다. 호출자는 이미지 작업이 완료되면 <code>close</code> 사용을 필요로 합니다.</p>
-
-<p><code>SimpleDraweeView</code>는 이를 자동으로 관리하기 때문에 보통 처음 사용하기 좋습니다. 아주 적은 앱만이 이미지 파이프라인 직접 사용을 필요로 합니다.</p>
+<p><a href="https://raw.githubusercontent.com/facebook/fresco/master/proguard-fresco.pro">proguard-fresco.pro</a>를 포함시키기 위해<a href="http://developer.android.com/tools/help/proguard.html#enabling">proguard.cfg</a>을 수정하세요.</p>
 
 
     <div class="docs-prevnext">
       
-        <a href="/docs/index.html#_">&larr; Prev</a>
+        <a href="/docs/using-other-image-loaders.html#_">&larr; Prev</a>
       
       
-        <a class="right" href="/docs/supported-uris.html#_">Next &rarr;</a>
+        <a class="right" href="/docs/multiple-apks.html#_">Next &rarr;</a>
       
     </div>
 

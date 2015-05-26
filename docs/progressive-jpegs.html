@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | Progressive JPEGs</title>
+    <title>Fresco | 진보된 JPEGs</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="Progressive JPEGs" />
+    <meta property="og:title" content="진보된 JPEGs" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,7 +296,7 @@
 
 <article class='withtoc'>
     <h1>
-      Progressive JPEGs
+      진보된 JPEGs
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/01-progressive-jpegs.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
@@ -307,13 +307,11 @@
 
 <p>이미지를 보려면 다운로드 받은 후 볼 수 있습니다. 사용자는 이미지의 품질이 낮음에서 시작해 점점 높아짐을 볼 수 있습니다.</p>
 
-<p>This is only supported for network images. Local images are decoded at once, so no need for progressiveness. Also, keep in mind that not all JPEG images are encoded in progressive format, and for those that are not, it is not possible to display them progressively.
-이것은 오직 네트워크 이미지에만 지원됩니다. 로컬 이미지는 한번에 복호화됨으로 더 할 것이 없습니다. 또한 모든 JPEG이미지가 개선된 형식의 보여줄 수 있는 방식으로 인코딩되어있진 않습니다. 이런 것들은 미리 화면에 표시할 수 없음을 명심하세요.</p>
+<p>이것은 오직 네트워크 이미지에만 지원됩니다. 로컬 이미지는 한번에 복호화됨으로 더 할 것이 없습니다. 또한 모든 JPEG이미지가 개선된 형식의 보여줄 수 있는 방식으로 인코딩되어있진 않습니다. 이런 것들은 미리 화면에 표시할 수 없음을 명심하세요.</p>
 
 <h4>이미지 요청 빌드하기</h4>
 
-<p>당신은 이미지요청을 빌드하는 동시에 진보적인 렌더링 방법을 명시적으로 요청해야만 합니다.
-Currently, you must explicitly request progressive rendering while building the image request:</p>
+<p>당신은 이미지요청을 빌드하는 동시에 진보적인 렌더링 방법을 명시적으로 요청해야만 합니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Uri</span> <span class="n">uri</span><span class="o">;</span>
 <span class="n">ImageRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">ImageRequestBuilder</span><span class="o">.</span><span class="na">newBuilderWithSource</span><span class="o">(</span><span class="n">uri</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setProgressiveRenderingEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
@@ -324,8 +322,7 @@ Currently, you must explicitly request progressive rendering while building the 
     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">setController</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
 </code></pre></div>
-<p>우린 <code>setImageURI</code> 로 개선된 이미지를 이용한 지원을 추가할 예정입니다. 
-We hope to add support for using progressive images with <code>setImageURI</code> in a future release.</p>
+<p>우린 <code>setImageURI</code> 로 개선된 이미지를 이용한 지원을 추가할 예정입니다.</p>
 
 
     <div class="docs-prevnext">
@@ -352,10 +349,10 @@ We hope to add support for using progressive images with <code>setImageURI</code
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>

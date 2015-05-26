@@ -2,16 +2,16 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | 컨셉</title>
+    <title>Fresco | 여러개의 APK 등록하기</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="컨셉" />
+    <meta property="og:title" content="여러개의 APK 등록하기" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
-    <meta property='og:url' content="http://facebook.github.io/fresco/docs/concepts.html">
+    <meta property='og:url' content="http://facebook.github.io/fresco/docs/multiple-apks.html">
     
     <meta property='og:type' content='website'>
     
@@ -72,7 +72,7 @@
           </li>
         
           <li>
-            <a href="/docs/concepts.html#_" class="active">
+            <a href="/docs/concepts.html#_">
               Concepts
             </a>
             
@@ -296,54 +296,71 @@
 
 <article class='withtoc'>
     <h1>
-      컨셉
-      <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/00-concepts.md" target="_blank">Edit on GitHub</a>
+      여러개의 APK 등록하기
+      <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/04-multiple-apks.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
 
-    <h2>Drawees</h2>
+    <p>프레스코는 대부분 자바로 만들어 졌습니다. 하지만 C++코드도 조금 들어있습니다. C++코드는 CPU종류(&quot;ABIs&quot;)에 따라 컴파일 되어야만 하며, 안드로이드에서 할 수 있습니다. 현재 프레스코는 3가지 ABIs를 지원합니다.</p>
 
-<p>Drawees는 이미지가 구현되는 공간입니다. Model-View-Controller 프레임워크같이 3가지 컴포넌트로 구성되어 있습니다.</p>
+<ol>
+<li><code>armeabiv-v7a</code>: ARM프로세서 7 혹은 상위버전. 대부분의 안드로이드 폰은 2011년 이후 이것을 사용해 출시되었습니다.</li>
+<li><code>armeabi</code>: v5나 v6의 ARM프로세서를 사용한 옛날 폰.</li>
+<li><code>x86</code>: 데스크탑이나 랩탑에서 에뮬레이터로 돌아가는 것.</li>
+</ol>
 
-<h3>DraweeView</h3>
+<p>내려받을 수 있는 프레스코의 바이너리는 이 3가지 플랫폼의 네이티브<code>.so</code>파일 복사본을 가집니다. 프로세서 종류에 따라 APK를 분리하여 만들도록 고려하면 앱의 크기를 줄일 수 있습니다.</p>
 
-<p>Android의 <a href="http://developer.android.com/reference/android/view/View.html">View</a>클래스를 상속받은 클래스입니다.
-대부분의 앱은 SimpleDraweeView 클래스를 사용하면 됩니다. XML이나 Java코드에 추가하세요. <a href="index.html">GettingStarted</a>페이지에 설명한 것 처럼, setImageURI메소드로 URI를 지정하고 로드하면 됩니다.
-XML에서 <a href="using-drawees-xml.html">customizing 할 수도 있어요</a>.</p>
+<p>앱이 안드로이드 2.3(Gingerbread)에서 돌아가지 않는다면 <code>armeabi</code>는 필요 없습니다. 테스트용으로 에뮬레이터가 필요하지 않다면 <code>x86</code>도 필요없습니다.</p>
 
-<h3>DraweeHierarchy</h3>
+<h3>Android Studio / Gradle</h3>
 
-<p>컨텐츠를 실제로 그려주는 Android 의 <a href="http://developer.android.com/reference/android/graphics/drawable/Drawable.html">Drawable</a> 객체의 상속 판입니다. MVC패턴의 Model입니다.
-이미지를 <a href="using-drawees-code.html">Java에서 custom 하여 표현하고 싶을 때,</a> 살펴보세요.</p>
+<p><code>build.gradle</code>을 아래와 같이 수정하세요:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">android</span> <span class="o">{</span>
+  <span class="c1">// 앱 로직의 남은 부분</span>
+  <span class="n">productFlavors</span> <span class="o">{</span>
+    <span class="n">armv7</span> <span class="o">{</span>
+      <span class="n">ndk</span> <span class="o">{</span>
+        <span class="n">abiFilter</span> <span class="s2">&quot;armeabi-v7a&quot;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">arm</span> <span class="o">{</span>
+      <span class="n">ndk</span> <span class="o">{</span>
+        <span class="n">abiFilter</span> <span class="s2">&quot;armeabi&quot;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">x86</span> <span class="o">{</span>
+      <span class="n">ndk</span> <span class="o">{</span>
+        <span class="n">abiFilter</span> <span class="s2">&quot;x86&quot;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>CPU종류에 따른 더 자세한 것을 보려면 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Product-flavors">Android Gradle 문서</a>을 확인하세요.</p>
 
-<h3>DraweeController</h3>
+<h3>이클립스</h3>
 
-<p>DraweeControllere는 이미지를 불러오는 기본적인 기능들- Fresco 의 이미지 파이프라인이나 그 외에 것- 을 담당합니다.
-URI 하나 말고 더 많은 것을 전달해, 이미지를 화면에 표시하고 싶을 때 다루게 될 클래스입니다.</p>
+<p>기본적으로 이클립스는 모든 CPU를 위해 하나의 APK를 만듭니다. CPU종류에 따라 분리하려면 그래들보다 더 복잡한 노력이 필요합니다.</p>
 
-<h3>DraweeControllerBuilder</h3>
+<p>프레스코의 이클립스를 위한 표준 압축파일 대신, <a href="https://github.com/facebook/fresco/releases/download/v0.4.0/frescolib-v0.4.0-multi.zip">multi-APK 압축 파일</a>을 내려받으세요. 하지만 내려받는 것으론 부족합니다. 프로젝트 설정도 바꿔야 합니다.</p>
 
-<p>DraweeControllers 는 한번 생성되면 바꿀 수 없습니다(immutable). <a href="using-controllerbuilder.html">Builder패턴</a>으로 만들어졌습니다.</p>
+<ol>
+<li>multi-APK 프로젝트로 만들려면 <a href="http://developer.android.com/training/multiple-apks/api.html">Android&#39;s 교본</a>을 따르세요. 같은  <code>AndroidManifest.xml</code>을 각각의 프로젝트에 사용할 수 있습니다.</li>
+<li>각각의 프로젝트는<code>fresco-&lt;flavor&gt;</code> 프로젝트에 맞게 의존해야 합니다. ( OkHttp를 사용한다면 , <code>imagepipeline-okhttp-&lt;flavor&gt;</code>프로젝트를 의존해야 합니다.) ?? 의존하다를 다른걸로 바꿔야 할듯</li>
+</ol>
 
-<h3>Listeners</h3>
+<h3>Play Store에 올리기</h3>
 
-<p>builder로 만들어진 것 중 하나입니다. <a href="listening-download-events.html">Listener</a> 는 이미지를 모두 혹은 부분적으로 받아졌을 때 실행됩니다.</p>
-
-<h3>이미지 파이프라인</h3>
-
-<p>내부적으로 Fresco의 이미지 파이프라인은 이미지 처리작업 과정을 다룹니다. 네트워크, 내부파일, 컨텐트프로비더, 내부 리소스로부터 이미지를 추출합니다. 내부저장소에서 압축된 이미지를 계속 캐싱하고, 두 번째로 메모리에 압축을 푼 이미지를 캐싱합니다.</p>
-
-<p>이미지 파이프라인은 Java 힙에서 이미지를 떨어트리기 위해 <em>pinned purgeables</em>라는 특별한 기술을 사용합니다. 호출자는 이미지 작업이 완료되면 <code>close</code> 사용을 필요로 합니다.</p>
-
-<p><code>SimpleDraweeView</code>는 이를 자동으로 관리하기 때문에 보통 처음 사용하기 좋습니다. 아주 적은 앱만이 이미지 파이프라인 직접 사용을 필요로 합니다.</p>
+<p>모든 사용자가 받을 수 있는 하나의 APK를 업로드 할 수 있거나 각각의 CPU에 맞는 더 작은 APK로 분리할 수 있습니다. <a href="http://developer.android.com/google/play/publishing/multiple-apks.html">Play Store 문서</a>가 제공하는 교본을 보고 따라해보세요.</p>
 
 
     <div class="docs-prevnext">
       
-        <a href="/docs/index.html#_">&larr; Prev</a>
+        <a href="/docs/proguard.html#_">&larr; Prev</a>
       
       
-        <a class="right" href="/docs/supported-uris.html#_">Next &rarr;</a>
+        <a class="right" href="/docs/building-from-source.html#_">Next &rarr;</a>
       
     </div>
 

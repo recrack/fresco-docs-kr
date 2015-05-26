@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | DataSources and DataSubscribers</title>
+    <title>Fresco | 데이터소스와 데이터 구독자(DataSubscribers)</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="DataSources and DataSubscribers" />
+    <meta property="og:title" content="데이터소스와 데이터 구독자(DataSubscribers)" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,7 +296,7 @@
 
 <article class='withtoc'>
     <h1>
-      DataSources and DataSubscribers
+      데이터소스와 데이터 구독자(DataSubscribers)
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/02-datasources-datasubscribers.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
@@ -311,28 +311,27 @@
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">dataSource</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="k">new</span> <span class="nf">BaseBitmapDataSubscriber</span><span class="o">()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNewResultImpl</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">Bitmap</span> <span class="n">bitmap</span><span class="o">)</span> <span class="o">{</span>
-       <span class="c1">// 제한된 방법으로 이미지를 사용할 수 있습니다.</span>
-      <span class="c1">// 정리할게 없습니다. ??No need to do any cleanup.</span>
+      <span class="c1">// 제한된 방법으로 이미지를 사용할 수 있습니다.</span>
+      <span class="c1">// No cleanup required here.</span>
     <span class="o">}</span>
 
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailureImpl</span><span class="o">(</span><span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">)</span> <span class="o">{</span>
-      <span class="c1">// ???No cleanup required here.</span>
+      <span class="c1">// No cleanup required here.</span>
     <span class="o">}</span>
   <span class="o">},</span>
   <span class="n">executor</span><span class="o">);</span>
 </code></pre></div>
-<p>A snap to use, right? There is a caveat.
-사용 예제 입니다. 저작권보호 신청되있어요.???농담인가</p>
+<p>사용 예제 입니다. 저작권보호 신청되있어요.</p>
 
 <p><code>onNewResultImpl</code>메소드의 스코프에 어떤 비트맵 변수도 할당하면 <strong>안 됩니다</strong>.
 이유는 이 subscriber가 실행이 끝난 뒤 이미지 파이프라인은 비트맵을 재활용하고 메모리를 해제해버립니다. 만약 이후에 비트맵을 그리려고 한다면 앱은 곧 <code>IllegalStateException</code>을 발생 시킬겁니다.</p>
 
-<p>안드로이드 <a href="https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setLargeIcon(android.graphics.Bitmap)">notification</a> 이나 <a href="http://developer.android.com/reference/android/widget/RemoteViews.html#setImageViewBitmap(int,%20android.graphics.Bitmap)">remote view</a>에 안전하게 비트맵을 전달할 수 있습니다. 안드로이드가 시스템 처리에 필요한 비트맵이 필요하다면, ashmeme에 있는 비트맵데이터의 복사본(프레스코가 같은 힙에서 사용되는 것)을 만들 것입니다. 그래서 프레스코의 자동 정리 기법은 이슈없이 동작할 것입니다.</p>
+<p>안드로이드  <a href="https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setLargeIcon(android.graphics.Bitmap)">notification</a>이나 <a href="http://developer.android.com/reference/android/widget/RemoteViews.html#setImageViewBitmap(int,%20android.graphics.Bitmap)">remote view</a>에 안전하게 비트맵을 전달할 수 있습니다. 안드로이드가 시스템 처리에 필요한 비트맵이 필요하다면, ashmem에 있는 비트맵데이터의 복사본(프레스코가 같은 힙에서 사용되는 것)을 만들 것입니다. 그래서 프레스코의 자동 정리 기법은 이슈없이 동작할 것입니다.</p>
 
 <h3>일반적인 목적의 솔루션</h3>
 
-<p>비트맵을 유지하고 싶으면 raw 비트맵을 사용할 수 없습니다. <a href="closeable-references.html">closeable references</a>나 <a href="../javadoc/reference/com/facebook/datasource/BaseDataSubscriber.html">BaseDataSubscriber</a>을 사용해야만 합니다:</p>
+<p>raw 비트맵을 사용해 비트맵을 유지할 수는 없습니다. <a href="closeable-references.html">closeable references</a>나 <a href="../javadoc/reference/com/facebook/datasource/BaseDataSubscriber.html">BaseDataSubscriber</a>을 사용해야만 합니다:</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataSubscriber</span> <span class="n">dataSubscriber</span> <span class="o">=</span>
     <span class="k">new</span> <span class="n">BaseDataSubscriber</span><span class="o">&lt;</span><span class="n">CloseableReference</span><span class="o">&lt;</span><span class="n">CloseableImage</span><span class="o">&gt;&gt;()</span> <span class="o">{</span>
   <span class="nd">@Override</span>
@@ -341,7 +340,7 @@
 
     <span class="k">if</span> <span class="o">(!</span><span class="n">dataSource</span><span class="o">.</span><span class="na">isFinished</span><span class="o">())</span> <span class="o">{</span>
       <span class="n">FLog</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">&quot;Not yet finished - this is just another progressive scan.&quot;</span><span class="o">);</span>
-    <span class="o">}</span>  
+    <span class="o">}</span>
 
     <span class="n">CloseableReference</span><span class="o">&lt;</span><span class="n">CloseableImage</span><span class="o">&gt;</span> <span class="n">imageReference</span> <span class="o">=</span> <span class="n">dataSource</span><span class="o">.</span><span class="na">getResult</span><span class="o">();</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">imageReference</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
@@ -362,7 +361,7 @@
 
 <span class="n">dataSource</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">dataSubscriber</span><span class="o">,</span> <span class="n">executor</span><span class="o">);</span>
 </code></pre></div>
-<p>위의 예제를 쓰고 싶지 않고 <code>CloseableReference</code>를 다른데서 할당하고 싶으면 할 수 있습니다. <a href="closeable-references.html">follow the rules</a>를 확인하세요.</p>
+<p>위의 예제를 쓰고 싶지 않고 <code>CloseableReference</code>를 다른데서 할당하고 싶으면 할 수 있습니다. <a href="closeable-references.html">규칙 따르기</a>를 확인하세요.</p>
 
 
     <div class="docs-prevnext">
@@ -389,10 +388,10 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>

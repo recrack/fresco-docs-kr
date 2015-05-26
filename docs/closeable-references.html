@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | Closeable References</title>
+    <title>Fresco | 닫을 수 있는 참조</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="Closeable References" />
+    <meta property="og:title" content="닫을 수 있는 참조" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,27 +296,26 @@
 
 <article class='withtoc'>
     <h1>
-      Closeable References
+      닫을 수 있는 참조
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/02-closeable-references.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
 
-    <p><strong>이 페이지는 고급 개발용입니다..</strong></p>
+    <p><strong>이 페이지는 고급 개발용입니다.</strong></p>
 
 <p>대부분의 앱은 <a href="using-drawees-xml.html">Drawees</a>를 사용하고 close 코드를 넣을 필요가 없습니다.</p>
 
-<p>자바 언어는 쓸모없는 자원을 회수하고 대부분의 개발자는 객체를 willy-nilly하게 만들고 관리해 결국엔 메모리에서 사라지도록 권한을 부여합니다.</p>
+<p>자바 언어는 쓸모없는 자원을 회수하고 대부분의 개발자는 객체를 싫든 좋든(willy-nilly) 만들고 관리해 결국엔 메모리에서 사라지도록 권한을 부여합니다.</p>
 
-<p>안드로이드 5.0의 향상까지, 이것은 비트맵에 대해 좋은 생각은 아니었습니다. 이것은 큰 모바일 단말의 메모리를 공유합니다. 메모리 내부의 비트맵은 가비지 컬렉터를 더 자주 실행하도록 만들며, 이미지가 많이 사용되는 앱을 느려지게 하거나 janky하게 만듭니다.</p>
+<p>안드로이드 5.0의 향상까지, 이것은 비트맵에 대해 좋은 생각은 아니었습니다. 이것은 큰 모바일 단말의 메모리를 공유합니다. 메모리 내부의 비트맵은 가비지 컬렉터를 더 자주 실행하도록 만들며, 이미지가 많이 사용되는 앱을 느려지게 하거나 좋지 않은 품질로(janky) 만듭니다.</p>
 
 <p>비트맵은 자바 개발자가 C++과 <a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/smart_ptr.htm">Boost</a>같은 똑똑한 라이브러리를 그리워지게 만드는 것 중 하나입니다.</p>
 
-<p>프레스코의 솔류션은 <a href="../javadoc/reference/com/facebook/common/references/CloseableReference.html">CloseableReference</a> 클래스에서 볼 수 있습니다. 올바르게 사용하려면 아래 규칙을 따르세요 :</p>
+<p>Fresco의 솔류션은 <a href="../javadoc/reference/com/facebook/common/references/CloseableReference.html">CloseableReference</a> 클래스에서 볼 수 있습니다. 올바르게 사용하려면 아래 규칙을 따르세요 :</p>
 
 <h4>1. 호출자는 레퍼런스를 소유합니다.</h4>
 
-<p>Here, we create a reference, but since we&#39;re passing it to a caller, the caller takes it:
-여기에 레퍼런스가 있습니다. 그리고 호출자에게 값을 전달하였기 때문에 호출자가 레퍼런스를 갖고 있습니다.</p>
+<p>여기에 레퍼런스가 있습니다. 그리고 호출자에게 값을 전달하였기 때문에 호출자가 레퍼런스를 갖고 있습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">CloseableReference</span><span class="o">&lt;</span><span class="n">Val</span><span class="o">&gt;</span> <span class="nf">foo</span><span class="o">()</span> <span class="o">{</span>
   <span class="n">Val</span> <span class="n">val</span><span class="o">;</span>
   <span class="k">return</span> <span class="n">CloseableReference</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
@@ -334,7 +333,7 @@
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div>
-<p>The <code>finally</code> block is almost always the best way to do this. <code>finally</code> 블록은 거의 항상 이것을 수행하는 최고의 방법입니다.</p>
+<p><code>finally</code> 블록은 거의 항상 이것을 수행하는 최고의 방법입니다.</p>
 
 <h4>3. 어떤 것은 레퍼런스를 close하면 안됩니다.</h4>
 
@@ -405,10 +404,10 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>

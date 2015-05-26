@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | Getting started with Fresco</title>
+    <title>Fresco | Fresco 시작하기</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="Getting started with Fresco" />
+    <meta property="og:title" content="Fresco 시작하기" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,32 +296,28 @@
 
 <article class='withtoc'>
     <h1>
-      Getting started with Fresco
+      Fresco 시작하기
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/00-getting-started.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
 
     <p>단순히 이미지를 다운받거나 대기이미지를 화면에 표시하고싶다면 <a href="../javadoc/reference/com/facebook/drawee/view/SimpleDraweeView.html">SimpleDraweeView</a>를 사용하세요.</p>
 
-<p>네트워크의 이미지를 받고 싶다면 유저에게 인터넷 접근권한이 필요합니다. 다음을 <code>AndroidManifest.xml</code>에 추가하세요. 
-<code>xml
-  &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;
-</code>
-당신의 앱에서 <code>setContentView()</code>가 실행되기 전에 Fresco클래스를 초기화 해주세요. 
-<code>java
-Fresco.initialize(context);
-</code>
-XML에서 custom namespace를 최 상위 요소로 추가하세요. 
-<code>xml
-&lt;!-- Any valid element will do here --&gt;
-&lt;LinearLayout 
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:fresco=&quot;http://schemas.android.com/apk/res-auto&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:layout_width=&quot;match_parent&quot;&gt;
-</code></p>
-
-<p>그런 후에 <code>SimpleDraweeView</code>를 레이아웃에 넣으세요. </p>
+<p>네트워크의 이미지를 받고 싶다면 유저에게 인터넷 접근권한이 필요합니다. 다음을 <code>AndroidManifest.xml</code>에 추가하세요.</p>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml">  <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.INTERNET&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+<p>당신의 앱에서 <code>setContentView()</code>가 실행되기 전에 Fresco클래스를 초기화 해주세요.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Fresco</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+</code></pre></div>
+<p>XML에서 custom namespace를 최상위 요소로 추가하세요.</p>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 다른 적합한 엘리먼트도 넣으세요.--&gt;</span>
+<span class="nt">&lt;LinearLayout</span>
+    <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="na">xmlns:fresco=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+    <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+<p>그런 후에 <code>SimpleDraweeView</code>를 레이아웃에 넣으세요.</p>
 <div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;com.facebook.drawee.view.SimpleDraweeView</span>
     <span class="na">android:id=</span><span class="s">&quot;@+id/my_image_view&quot;</span>
     <span class="na">android:layout_width=</span><span class="s">&quot;130dp&quot;</span>
@@ -329,14 +325,14 @@ XML에서 custom namespace를 최 상위 요소로 추가하세요.
     <span class="na">fresco:placeholderImage=</span><span class="s">&quot;@drawable/my_drawable&quot;</span>
   <span class="nt">/&gt;</span>
 </code></pre></div>
-<p>아래의 코드로 이미지를 보여줄 수 있습니다. </p>
+<p>아래의 코드로 이미지를 보여줄 수 있습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Uri</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&quot;http://frescolib.org/static/fresco-logo.png&quot;</span><span class="o">);</span>
 <span class="n">SimpleDraweeView</span> <span class="n">draweeView</span> <span class="o">=</span> <span class="o">(</span><span class="n">SimpleDraweeView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">my_image_view</span><span class="o">);</span>
 <span class="n">draweeView</span><span class="o">.</span><span class="na">setImageURI</span><span class="o">(</span><span class="n">uri</span><span class="o">);</span>
 </code></pre></div>
-<p>나머지는 Fresco가 알아서 처리합니다. </p>
+<p>나머지는 Fresco가 알아서 처리합니다.</p>
 
-<p>placeholder는 이미지가 보여지기 전 까지 보여집니다. 이미지는 다운로드, 캐시로 저장, 화면표시, 화면이 꺼지면 뷰의 메모리 해제할 수 있게 됩니다.  </p>
+<p>placeholder는 이미지가 보여지기 전 까지 보여집니다. 이미지는 다운로드, 캐시로 저장, 화면표시, 화면이 꺼지면 뷰의 메모리 해제할 수 있게 됩니다.</p>
 
 
     <div class="docs-prevnext">
@@ -363,10 +359,10 @@ XML에서 custom namespace를 최 상위 요소로 추가하세요.
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>

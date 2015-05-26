@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | Modifying the Image</title>
+    <title>Fresco | 이미지 수정하기</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="Modifying the Image" />
+    <meta property="og:title" content="이미지 수정하기" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,22 +296,20 @@
 
 <article class='withtoc'>
     <h1>
-      Modifying the Image
+      이미지 수정하기
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/01-modifying-image.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
 
     <h4>이유</h4>
 
-<p>Sometimes the image downloaded from the server, or fetched from local storage, is not exactly what you want to display on the screen. If you want to apply custom code to the image in-place, use a Postprocessor. The best way to do this is to subclass <a href="../javadoc/reference/com/facebook/imagepipeline/request/BasePostprocessor.html">BasePostprocessor</a>.
-가끔 서버에서 이미지를 다운받거나 로컬 저장소에서 가져온 이미지가 화면에 나타내고 싶은 이미지가 아닐 수도 있습니다. 만약 이미지에 커스텀 코드를 적용하고 싶다면 Postprocessor를 사용하세요. <a href="../javadoc/reference/com/facebook/imagepipeline/request/BasePostprocessor.html">BasePostprocessor</a> 섭클래스를 사용하면 제일 좋습니다.</p>
+<p>가끔 서버에서 이미지를 다운받거나 로컬 저장소에서 가져온 이미지가 화면에 나타내고 싶은 이미지가 아닐 수도 있습니다. 만약 이미지에 커스텀 코드를 적용하고 싶다면 Postprocessor를 사용하세요. <a href="../javadoc/reference/com/facebook/imagepipeline/request/BasePostprocessor.html">BasePostprocessor</a> 섭클래스를 사용하면 제일 좋습니다.</p>
 
 <h4>예제</h4>
 
-<p>아래 예제는 빨간 그물을 이미지에 적용합니다.
-The following example applies a red mesh to the image:</p>
+<p>아래 예제는 빨간 그물을 이미지에 적용합니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Uri</span> <span class="n">uri</span><span class="o">;</span>
-<span class="n">Postprocessor</span> <span class="n">redMeshPostprocessor</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">BasePostprocessor</span><span class="o">()</span> <span class="o">{</span> 
+<span class="n">Postprocessor</span> <span class="n">redMeshPostprocessor</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">BasePostprocessor</span><span class="o">()</span> <span class="o">{</span>
   <span class="nd">@Override</span>
   <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="s">&quot;redMeshPostprocessor&quot;</span><span class="o">;</span>
@@ -334,24 +332,21 @@ The following example applies a red mesh to the image:</p>
 <span class="n">PipelineDraweeController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">Fresco</span><span class="o">.</span><span class="na">newDraweeControllerBuilder</span><span class="o">()</span>
     <span class="o">.</span><span class="na">setImageRequest</span><span class="o">(</span><span class="n">request</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setOldController</span><span class="o">(</span><span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">getOldController</span><span class="o">())</span>
-    <span class="c1">// other setters as you need</span>
+    <span class="c1">// 필요한 다른 설정</span>
     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">setController</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
 </code></pre></div>
 <h4>알아야 할 것</h4>
 
-<p>The image is copied before it enters your postprocessor. The copy of the image in cache is <em>not</em> affected by any changes you make in your postprocessor. On Android 4.x and lower, the copy is stored outside the Java heap, just as the original image was.
-이미지는 postprocessor가 사용되기 전 복사됩니다. 캐시의 이미지지 복사본은 당신의  postprocessor로 바뀐 어떤 것도 <em>적용되지 않습니다</em>. 안드로이드 4.x 나 더 낮은 버전에서 복사본은 원본이미지처럼 Java 힙의 외부에 저장됩니다.</p>
+<p>이미지는 postprocessor가 사용되기 전 복사됩니다. 캐시의 이미지지 복사본은 당신의  postprocessor로 바뀐 어떤 것도 <em>적용되지 않습니다</em>. 안드로이드 4.x 나 더 낮은 버전에서 복사본은 원본이미지처럼 Java 힙의 외부에 저장됩니다.</p>
 
 <p>만약 같은 이미지를 반복적으로 보여준다면, 요청되었을 때마다 postprocessor를 명시해야합니다. 같은 이미지에 대해 다른 요청의 다른 postprocessor를 사용하는 것은 당신 마음입니다.</p>
 
-<p>Postprocessors are not currently supported for <a href="animations.html">animated</a> images.
-Postprocessor는 <a href="animations.html">움직이는 이미지</a>엔 현재 지원되지 않습니다.</p>
+<p>Postprocessor는 <a href="animations.html">움직이는 이미지</a>엔 현재 지원되지 않습니다.</p>
 
 <h4>비트맵 복사하기</h4>
 
-<p>There may be cases where an in-place post-process is not possible. If that is the case, <code>BasePostprocessor</code> has a second <code>process</code> method that takes two arguments. This example horizontally flips the bitmap:
-post-process 내부에 몇몇 동작하지 않는 경우가 있을 수 있습니다.(in-place???) <code>BasePostprocessor</code>는 두가지 인자를 취하는 두번 째 <code>process</code>메소드가 있습니다. 이 예제는 비트맵을 수평으로 뒤집습니다.</p>
+<p>post-process 내부에 몇몇 동작하지 않는 경우가 있을 수 있습니다. <code>BasePostprocessor</code>는 두가지 인자를 취하는 두번 째 <code>process</code>메소드가 있습니다. 이 예제는 비트맵을 수평으로 뒤집습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">process</span><span class="o">(</span><span class="n">Bitmap</span> <span class="n">destBitmap</span><span class="o">,</span> <span class="n">Bitmap</span> <span class="n">sourceBitmap</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">destBitmap</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span> <span class="n">x</span><span class="o">++)</span> <span class="o">{</span>
@@ -364,19 +359,15 @@ post-process 내부에 몇몇 동작하지 않는 경우가 있을 수 있습니
 <p>원본과 수정본은 같은 크기입니다.</p>
 
 <ul>
-<li>Do <strong>not</strong> modify the source Bitmap. In future releases this will throw an exception.</li>
 <li>원본 비트맵을 <strong>수정하지 마세요</strong>. 추후에 예외를 던지도록 처리할거니까요.</li>
-<li>Do <strong>not</strong> keep a reference to either bitmap. Both have their memory managed by the image pipeline. The destBitmap will end up in your Drawee or DataSource normally.</li>
-<li>원본, 수정본 중 어느 하나도 계속 참조하지 마세요. 둘 다 이미지 파이프라인에서 메모리가 관리됩니다. 수정된 비트맵은 Drawee나 DataSource에서 정상적으로 보여집니다.(end up -&gt; 보여지다? 메모리 해제되다?)</li>
+<li>원본, 수정본 중 어느 하나도 계속 참조하지 마세요. 둘 다 이미지 파이프라인에서 메모리가 관리됩니다. 수정된 비트맵은 Drawee나 DataSource에서 정상적으로 보여집니다 - The destBitmap will end up in your Drawee or DataSource normally.-.</li>
 </ul>
 
 <h4>다른 크기로 복사하기</h4>
 
-<p>If the postprocessed image needs to be a different size from the original, we have a third <code>process</code> method. Here, you can make use of our <a href="../javadoc/reference/com/facebook/imagepipeline/bitmaps/PlatformBitmapFactory.html">PlatformBitmapFactory</a> class to safely create a bitmap, of a size you specify, off the Java heap.
-후처리된 이미지가 원본과 다른 크기가 되야 한다면, 세 번째 <code>process</code>메소드가 있습니다. <a href="../javadoc/reference/com/facebook/imagepipeline/bitmaps/PlatformBitmapFactory.html">PlatformBitmapFactory</a> 클래스를 사용해 원하는 크기의 비트맵을 안전하게 만들고 자바 힙에서 떨어트리세요.???</p>
+<p>후처리된 이미지가 원본과 다른 크기가 되야 한다면, 세 번째 <code>process</code>메소드가 있습니다. <a href="../javadoc/reference/com/facebook/imagepipeline/bitmaps/PlatformBitmapFactory.html">PlatformBitmapFactory</a> 클래스를 사용해 원하는 크기의 비트맵을 안전하게 만들고 자바 힙에서 떨어트리세요.</p>
 
-<p>This example samples every other pixel into a quarter-size bitmap:
-아래 예제는 이미지를 4/1 크기로 줄입니다.</p>
+<p>아래 예제는 이미지를 4/1 크기로 줄입니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="n">CloseableReference</span><span class="o">&lt;</span><span class="n">Bitmap</span><span class="o">&gt;</span> <span class="nf">process</span><span class="o">(</span>
     <span class="n">Bitmap</span> <span class="n">sourceBitmap</span><span class="o">,</span>
@@ -394,13 +385,12 @@ post-process 내부에 몇몇 동작하지 않는 경우가 있을 수 있습니
      <span class="k">return</span> <span class="n">CloseableReference</span><span class="o">.</span><span class="na">cloneOrNull</span><span class="o">(</span><span class="n">bitmapRef</span><span class="o">);</span>
   <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
     <span class="n">CloseableReference</span><span class="o">.</span><span class="na">closeSafely</span><span class="o">(</span><span class="n">bitmapRef</span><span class="o">);</span>
-  <span class="o">}</span> 
+  <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div>
 <p><a href="closeable-references.html">closeable references</a>의 규칙은 지켜야 합니다.</p>
 
-<p>Do <strong>not</strong> use the Android <code>Bitmap.createBitmap</code> method, which creates a bitmap on the Java heap.
-자바 힙에 비트맵을 만드는 안드로이드의 <code>Bitmap.createBitmap</code>메소드는 쓰지 마세요.</p>
+<p>자바 힙에 비트맵을 만드는 안드로이드의 <code>Bitmap.createBitmap</code>메소드는 쓰지 마세요.</p>
 
 <h4>오버라이드 해야할 것은?</h4>
 
@@ -411,7 +401,7 @@ post-process 내부에 몇몇 동작하지 않는 경우가 있을 수 있습니
 <p>한개 이상의 이미지를 후처리 하고 싶나요? 문제없어요. 그냥 <a href="../javadoc/reference/com/facebook/imagepipeline/request/BaseRepeatedPostProcessor.html">BaseRepeatedPostprocessor</a>클래스를 상속받으세요. 이 클래스는 postprocessor를 실행할 때 계속 호출되는 <code>update</code>메소드를 가지고 있습니다.</p>
 
 <p>아래 예제는 아무때나 그물의 색깔을 바꿉니다.</p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MeshPostprocessor</span> <span class="kd">extends</span> <span class="n">BaseRepeatedPostprocessor</span> <span class="o">{</span> 
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MeshPostprocessor</span> <span class="kd">extends</span> <span class="n">BaseRepeatedPostprocessor</span> <span class="o">{</span>
   <span class="kd">private</span> <span class="kt">int</span> <span class="n">mColor</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="na">TRANSPARENT</span><span class="o">;</span>
 
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setColor</span><span class="o">(</span><span class="kt">int</span> <span class="n">color</span><span class="o">)</span> <span class="o">{</span>
@@ -435,13 +425,12 @@ post-process 내부에 몇몇 동작하지 않는 경우가 있을 수 있습니
 <span class="o">}</span>
 <span class="n">MeshPostprocessor</span> <span class="n">meshPostprocessor</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">MeshPostprocessor</span><span class="o">();</span>
 
-<span class="c1">/// setPostprocessor as in above example</span>
+<span class="c1">/// 위의 예제처럼 setPostprocessor</span>
 
 <span class="n">meshPostprocessor</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">);</span>
 <span class="n">meshPostprocessor</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">);</span>
 </code></pre></div>
-<p>이미지 리퀘스트 인스턴스 하나당 한개의 <code>Postprocessor</code>가 있어야 합니다. <code>Postprocessor</code>는 내부적으로 네트워크 연결상태를 추적할 수 있습니다.???
-as internally the class is stateful.</p>
+<p>이미지 리퀘스트 인스턴스 하나당 한개의 <code>Postprocessor</code>가 있어야 합니다. <code>Postprocessor</code>는 내부적으로 네트워크 연결상태를 추적할 수 있습니다.</p>
 
 
     <div class="docs-prevnext">
@@ -468,10 +457,10 @@ as internally the class is stateful.</p>
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>

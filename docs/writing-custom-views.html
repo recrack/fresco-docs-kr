@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | Writing Custom Views</title>
+    <title>Fresco | 커스텀 뷰 사용하기</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="Writing Custom Views" />
+    <meta property="og:title" content="커스텀 뷰 사용하기" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,7 +296,7 @@
 
 <article class='withtoc'>
     <h1>
-      Writing Custom Views
+      커스텀 뷰 사용하기
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/01-writing-custom-views.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
@@ -312,12 +312,11 @@
 <li>여러 이미지를 위한 <code>MultiDraweeHolder</code></li>
 </ul>
 
-<h3>Responsibilities of custom views 커스텀 뷰의 응답성</h3>
+<h3>커스텀 뷰의 응답성</h3>
 
-<p>Android lays out View objects, and only they get told of system events. <code>DraweeViews</code> handle these events and use them to manage memory effectively. When using the holders, you must implement some of this functionality yourself.
-안드로이드는 뷰 오브젝트를 시스템이벤트로만 다룹니다. <code>DraweeViews</code>는 이 이벤트를 다루면서 메모리를 효율적으로 관리합니다. 이 holder를 사용할 땐 몇가지 기능을 필수로 구현해야합니다.</p>
+<p>안드로이드는 뷰 오브젝트를 시스템이벤트로만 다룹니다. <code>DraweeViews</code>는 이 이벤트를 다루면서 메모리를 효율적으로 관리합니다. 이 holder를 사용할 땐 몇가지 기능을 필수로 구현해야합니다.</p>
 
-<h4>attach/detach이벤트 다루기</h4>
+<h4>attach/detach 이벤트 다루기</h4>
 
 <p><strong>주의 : 아래 사항을 숙지하지 않으면 메모리릭이 생길수도 있습니다.</strong>
 안드로이드에서 뷰가 화면에 더이상 나타나지 않을 때 - 리스트뷰에서 스크롤되어 화면에 나타나지 않을 때나 다른 방식으로 나타나지 않을 때 - 메모리에 있는 이미지를 다루는 방법은 없습니다. Drawee는 이런 현상들을 알아채서 메모리를 해제합니다. 이미지가 화면에 다시 나타나면 자동으로 불러옵니다.</p>
@@ -351,7 +350,7 @@
 </code></pre></div>
 <h4>터치 이벤트 다루기</h4>
 
-<p>Drawee에서 <a href="drawee-components.html#Retry">탭해서 다시 가져오기tap to retry</a>를 활성화 했다면, 사용자가 화면을 터치했다고 전달해줘야 합니다. 아래와 같이 해보세요.</p>
+<p>Drawee에서 <a href="drawee-components.html#Retry">탭해서 다시 가져오기</a>를 활성화 했다면, 사용자가 화면을 터치했다고 전달해줘야 합니다. 아래와 같이 해보세요.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onTouchEvent</span><span class="o">(</span><span class="n">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">return</span> <span class="n">mDraweeHolder</span><span class="o">.</span><span class="na">onTouchEvent</span><span class="o">(</span><span class="n">event</span><span class="o">)</span> <span class="o">||</span> <span class="kd">super</span><span class="o">.</span><span class="na">onTouchEvent</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
@@ -359,19 +358,18 @@
 </code></pre></div>
 <h4>onDraw 커스텀하기</h4>
 
-<p>다음을 꼭 호출 하세요.
-<code>java
-Drawable drawable = mDraweeHolder.getHierarchy().getTopLevelDrawable();
-drawable.setBounds(...);
-</code>
-안하면 Drawee는 이미지를 나타내지 않을겁니다.</p>
+<p>다음을 꼭 호출 하세요.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Drawable</span> <span class="n">drawable</span> <span class="o">=</span> <span class="n">mDraweeHolder</span><span class="o">.</span><span class="na">getHierarchy</span><span class="o">().</span><span class="na">getTopLevelDrawable</span><span class="o">();</span>
+<span class="n">drawable</span><span class="o">.</span><span class="na">setBounds</span><span class="o">(...);</span>
+</code></pre></div>
+<p>안하면 Drawee는 이미지를 나타내지 않을겁니다.</p>
 
 <ul>
 <li>Drawable은 하위 캐스팅 하지 마세요.</li>
-<li>Do not translate it. 변환하지 마세요??</li>
+<li>변환하지 마세요</li>
 </ul>
 
-<h4>Other responsibilities 다른 응답성들</h4>
+<h4>다른 응답성들</h4>
 
 <ul>
 <li><code>verifyDrawable</code> 오버라이딩 :</li>
@@ -381,7 +379,7 @@ drawable.setBounds(...);
   <span class="k">if</span> <span class="o">(</span><span class="n">who</span> <span class="o">==</span> <span class="n">mDraweeHolder</span><span class="o">.</span><span class="na">getHierarchy</span><span class="o">().</span><span class="na">getTopLevelDrawable</span><span class="o">())</span> <span class="o">{</span>
     <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
   <span class="o">}</span>
-  <span class="c1">// other logic for other Drawables in your view, if any</span>
+  <span class="c1">// 뷰에 사용할 다른 로직</span>
 <span class="o">}</span>
 </code></pre></div>
 <ul>
@@ -412,7 +410,7 @@ drawable.setBounds(...);
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">CustomView</span> <span class="kd">extends</span> <span class="n">View</span> <span class="o">{</span>
   <span class="n">DraweeHolder</span><span class="o">&lt;</span><span class="n">GenericDraweeHierarchy</span><span class="o">&gt;</span> <span class="n">mDraweeHolder</span><span class="o">;</span>
 
-  <span class="c1">// constructors following above pattern</span>
+  <span class="c1">// 위의 패턴을 이용한 생성자</span>
 
   <span class="kd">private</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
     <span class="n">GenericDraweeHierarchy</span> <span class="n">hierarchy</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">GenericDraweeHierarchyBuilder</span><span class="o">(</span><span class="n">getResources</span><span class="o">());</span>
@@ -425,7 +423,7 @@ drawable.setBounds(...);
 </code></pre></div>
 <h4>이미지 세팅하기</h4>
 
-<p>뷰대신 홀더의 <code>setController</code>를 호출하여 <a href="using-controllerbuilder.html">controller builder</a>를 사용하세요.</p>
+<p>뷰대신 홀더의 <code>setController</code>를 호출하여 <a href="using-controllerbuilder.html">컨트롤러 빌더</a>를 사용하세요.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DraweeController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">Fresco</span><span class="o">.</span><span class="na">newControllerBuilder</span><span class="o">()</span>
     <span class="o">.</span><span class="na">setUri</span><span class="o">(</span><span class="n">uri</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setOldController</span><span class="o">(</span><span class="n">mDraweeHolder</span><span class="o">.</span><span class="na">getController</span><span class="o">())</span>
@@ -473,10 +471,10 @@ drawable.setBounds(...);
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>

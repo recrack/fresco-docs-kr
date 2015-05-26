@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | Configuring the Image Pipeline</title>
+    <title>Fresco | 이미지 파이프라인 구성하기</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="Configuring the Image Pipeline" />
+    <meta property="og:title" content="이미지 파이프라인 구성하기" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,20 +296,17 @@
 
 <article class='withtoc'>
     <h1>
-      Configuring the Image Pipeline
+      이미지 파이프라인 구성하기
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/02-configure-image-pipeline.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
 
-    <p>Most apps can initialize Fresco completely by the simple command:
-대부분의 앱은 프레스코를 간단한 명령으로 초기화 할 수 있습니다.</p>
+    <p>대부분의 앱은 Fresco를 간단한 명령으로 초기화 할 수 있습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Fresco</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
 </code></pre></div>
-<p>For those apps that need more advanced customization, we offer it using the <a href="../javadoc/reference/com/facebook/imagepipeline/core/ImagePipelineConfig.html">ImagePipelineConfig</a> class.
-더 향상된 커스텀을 필요로 하는 앱들은 <a href="../javadoc/reference/com/facebook/imagepipeline/core/ImagePipelineConfig.html">ImagePipelineConfig</a>클래스를 사용할 수 있습니다.</p>
+<p>더 향상된 커스텀을 필요로 하는 앱들은 <a href="../javadoc/reference/com/facebook/imagepipeline/core/ImagePipelineConfig.html">ImagePipelineConfig</a>클래스를 사용할 수 있습니다.</p>
 
-<p>Here is a maximal example. Rare is the app that actually needs all of these settings, but here they are for reference.
-여기에 최고의 예제가 있습니다. 극소수의 앱만 이러한 설정이 필요하겠지만 그들을 위해 레퍼런스를 만들었습니다.</p>
+<p>여기에 최고의 예제가 있습니다. 극소수의 앱만 이러한 설정이 필요하겠지만 그들을 위해 레퍼런스를 만들었습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ImagePipelineConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">ImagePipelineConfig</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
     <span class="o">.</span><span class="na">setBitmapMemoryCacheParamsSupplier</span><span class="o">(</span><span class="n">bitmapCacheParamsSupplier</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setCacheKeyFactory</span><span class="o">(</span><span class="n">cacheKeyFactory</span><span class="o">)</span>
@@ -317,7 +314,7 @@
     <span class="o">.</span><span class="na">setExecutorSupplier</span><span class="o">(</span><span class="n">executorSupplier</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setImageCacheStatsTracker</span><span class="o">(</span><span class="n">imageCacheStatsTracker</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setMainDiskCacheConfig</span><span class="o">(</span><span class="n">mainDiskCacheConfig</span><span class="o">)</span>
-    <span class="o">.</span><span class="na">setMemoryTrimmableRegistry</span><span class="o">(</span><span class="n">memoryTrimmableRegistry</span><span class="o">)</span> 
+    <span class="o">.</span><span class="na">setMemoryTrimmableRegistry</span><span class="o">(</span><span class="n">memoryTrimmableRegistry</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setNetworkFetchProducer</span><span class="o">(</span><span class="n">networkFetchProducer</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setPoolFactory</span><span class="o">(</span><span class="n">poolFactory</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setProgressiveJpegConfig</span><span class="o">(</span><span class="n">progressiveJpegConfig</span><span class="o">)</span>
@@ -326,8 +323,7 @@
     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="n">Fresco</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">config</span><span class="o">);</span>
 </code></pre></div>
-<p>Be sure to pass your <code>ImagePipelineConfig</code> object to <code>Fresco.initialize!</code> Otherwise, Fresco will use a default configuration instead of the one you built.
-<code>ImagePipelineConfig</code> 객체를 <code>Fresco.initialize</code>에 꼭 전달하세요. 그렇지 않으면 프레스코는 당신이 만든 것 대신 기본 설정을 사용할겁니다.</p>
+<p><code>ImagePipelineConfig</code> 객체를 <code>Fresco.initialize</code>에 꼭 전달하세요. 그렇지 않으면 Fresco는 당신이 만든 것 대신 기본 설정을 사용할겁니다.</p>
 
 <h3>공급자(Supplier) 이해하기</h3>
 
@@ -346,8 +342,7 @@
 </code></pre></div>
 <h3>쓰레드 풀</h3>
 
-<p>By default, the image pipeline uses three thread pools:
-기본적으로 이미지 파이프라인은 3가지 쓰레드 풀을 사용합니다:</p>
+<p>기본적으로 이미지 파이프라인은 3가지 쓰레드 풀을 사용합니다:</p>
 
 <ol>
 <li>네트워크 파일을 내려받을 3개의 쓰레드</li>
@@ -357,15 +352,13 @@
 
 <p><a href="using-other-network-layers.html">네트워크 레이어 설정</a>으로 네트워크 동작을 커스텀할 수 있습니다.</p>
 
-<p>To change the behavior for all other operations, pass in an instance of <a href="../javadoc/reference/com/facebook/imagepipeline/core/ExecutorSupplier.html">ExecutorSupplier</a>.
-다른 동작을 바꾸려면 <a href="../javadoc/reference/com/facebook/imagepipeline/core/ExecutorSupplier.html">ExecutorSupplier</a>인스턴스를 전달 하세요.</p>
+<p>다른 동작을 바꾸려면 <a href="../javadoc/reference/com/facebook/imagepipeline/core/ExecutorSupplier.html">ExecutorSupplier</a>인스턴스를 전달 하세요.</p>
 
-<h3>메모리캐시 설정하기</h3>
+<h3>메모리캐시 구성하기</h3>
 
-<p>The bitmap cache and the encoded memory cache are configured by a Supplier of a <a href="../javadoc/reference/com/facebook/imagepipeline/cache/MemoryCacheParams.html#MemoryCacheParams(int,%20int,%20int,%20int,%20int)">MemoryCacheParams</a> object.
-비트맵 캐시와 인코드된 메모리 캐시는 <a href="../javadoc/reference/com/facebook/imagepipeline/cache/MemoryCacheParams.html#MemoryCacheParams(int,%20int,%20int,%20int,%20int)">MemoryCacheParams</a> 객체의 공급자(Supplier)로 설정될 수 있습니다.</p>
+<p>비트맵 캐시와 인코드된 메모리 캐시는 <a href="../javadoc/reference/com/facebook/imagepipeline/cache/MemoryCacheParams.html#MemoryCacheParams(int,%20int,%20int,%20int,%20int)">MemoryCacheParams</a> 객체의 공급자(Supplier)로 설정될 수 있습니다.</p>
 
-<h3>디스크 캐시 설정하기</h3>
+<h3>디스크 캐시 구성하기</h3>
 
 <p><a href="../javadoc/reference/com/facebook/cache/disk/DiskCacheConfig.Builder.html">DiskCacheConfig</a> 객체를 만들기 위해 빌더패턴을 사용할 수 있습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DiskCacheConfig</span> <span class="n">diskCacheConfig</span> <span class="o">=</span> <span class="n">DiskCacheConfig</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
@@ -378,8 +371,7 @@
 </code></pre></div>
 <h3>캐시 상태 유지하기</h3>
 
-<p>If you want to keep track of metrics like the cache hit rate, you can implement the <a href="../javadoc/reference/com/facebook/imagepipeline/cache/ImageCacheStatsTracker.html">ImageCacheStatsTracker</a> class. This provides callbacks for every cache event that you can use to keep your own statistics.
-캐시 히트율을 계속 추적하고 싶다면 <a href="../javadoc/reference/com/facebook/imagepipeline/cache/ImageCacheStatsTracker.html">ImageCacheStatsTracker</a> 를 이용하세요. 이것은 모든 캐시 이벤트의 콜백을 제공하고 당신은 통계를 내는데 사용할 수 있습니다.</p>
+<p>캐시 히트율을 계속 추적하고 싶다면 <a href="../javadoc/reference/com/facebook/imagepipeline/cache/ImageCacheStatsTracker.html">ImageCacheStatsTracker</a> 를 이용하세요. 이것은 모든 캐시 이벤트의 콜백을 제공하고 당신은 통계를 내는데 사용할 수 있습니다.</p>
 
 
     <div class="docs-prevnext">
@@ -406,10 +398,10 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>

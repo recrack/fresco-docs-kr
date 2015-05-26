@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | Animated Images</title>
+    <title>Fresco | 움직이는 이미지</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="Animated Images" />
+    <meta property="og:title" content="움직이는 이미지" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,24 +296,23 @@
 
 <article class='withtoc'>
     <h1>
-      Animated Images
+      움직이는 이미지
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/01-animations.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
 
     <p>Fresco는 움직이는 GIF와 WebP 이미지도 지원합니다.</p>
 
-<p>OS지원 없이도 안드로이드 2.3 버전까지 WebP 애니메이션 - 확장된 WebP형식까지 - 을 지원합니다.
-We support WebP animations, even in the extended WebP format, on versions of Android going back to 2.3, even those that don&#39;t have built-in native support.</p>
+<p>OS지원 없이도 안드로이드 2.3 버전까지 WebP 애니메이션 - 확장된 WebP형식까지 - 을 지원합니다.</p>
 
 <h3>자동으로 애니메이션 시작하기</h3>
 
-<p>화면에 나타났을 때 자동으로 애니메이션이 시작되거나, 화면이 꺼졌을 때 멈추기 원한다면  <a href="image-requests.html">image request</a>를 보세요.</p>
+<p>화면에 나타났을 때 자동으로 애니메이션이 시작되거나, 화면이 꺼졌을 때 멈추기 원한다면  <a href="image-requests.html">이미지 요청하기</a>를 보세요.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Uri</span> <span class="n">uri</span><span class="o">;</span>
 <span class="n">DraweeController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">Fresco</span><span class="o">.</span><span class="na">newDraweeControllerBuilder</span><span class="o">()</span>
     <span class="o">.</span><span class="na">setUri</span><span class="o">(</span><span class="n">uri</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setAutoPlayAnimations</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
-    <span class="o">.</span> <span class="c1">// other setters</span>
+    <span class="o">.</span> <span class="c1">// 다른 설정들</span>
     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">setController</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
 </code></pre></div>
@@ -336,11 +335,11 @@ We support WebP animations, even in the extended WebP format, on versions of And
 <span class="n">DraweeController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">Fresco</span><span class="o">.</span><span class="na">newDraweeControllerBuilder</span><span class="o">()</span>
     <span class="o">.</span><span class="na">setUri</span><span class="o">(</span><span class="n">uri</span><span class="o">)</span>
     <span class="o">.</span><span class="na">setControllerListener</span><span class="o">(</span><span class="n">controllerListener</span><span class="o">)</span>
-    <span class="c1">// other setters</span>
+    <span class="c1">// 다른 설정들</span>
     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">setController</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
 </code></pre></div>
-<p>The controller exposes an instance of the <a href="http://developer.android.com/reference/android/graphics/drawable/Animatable.html">Animatable</a> interface. If non-null, you can drive your animation with it:</p>
+<p>컨트롤러는 <a href="http://developer.android.com/reference/android/graphics/drawable/Animatable.html">움직일 수 있는</a> 인터페이스 인스턴스를 보여줍니다. null만 아니라면 애니메이션을 사용할 수 있습니다.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Animatable</span> <span class="n">animatable</span> <span class="o">=</span> <span class="n">mSimpleDraweeView</span><span class="o">.</span><span class="na">getController</span><span class="o">().</span><span class="na">getAnimatable</span><span class="o">();</span>
 <span class="k">if</span> <span class="o">(</span><span class="n">animatable</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
   <span class="n">animatable</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
@@ -348,10 +347,9 @@ We support WebP animations, even in the extended WebP format, on versions of And
   <span class="n">animatable</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
 <span class="o">}</span>
 </code></pre></div>
-<h3>제약 Limitations</h3>
+<h3>제한</h3>
 
-<p>애니메이션은 <a href="modifying-image.html">postprocessors</a>에선 지원하지 않습니다.
-Animations do not currently support <a href="modifying-image.html">postprocessors</a>.</p>
+<p>애니메이션은 <a href="modifying-image.html">postprocessors</a>에선 지원하지 않습니다.</p>
 
 
     <div class="docs-prevnext">
@@ -378,10 +376,10 @@ Animations do not currently support <a href="modifying-image.html">postprocessor
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>

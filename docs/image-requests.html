@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset='utf-8'>
-    <title>Fresco | Image Requests</title>
+    <title>Fresco | 이미지 리퀘스트</title>
     <link rel='stylesheet' href='/static/site.css' type='text/css'/>
     <link rel="stylesheet" href='/static/pygments.css' type='text/css'/>
     <link rel='shortcut icon' href='/static/favicon.png'>
     <meta name='viewport' content='width=480'>
-    <meta property="og:title" content="Image Requests" />
+    <meta property="og:title" content="이미지 리퀘스트" />
     <meta property="og:site_name" content="fresco">
     <meta property='og:description' content='Fresco is an image management library.'>
     <meta property='og:image' content='http://facebook.github.io/fresco/static/fresco-og-image.png'>
@@ -296,12 +296,12 @@
 
 <article class='withtoc'>
     <h1>
-      Image Requests
+      이미지 리퀘스트
       <a class="edit-page-link" href="https://github.com/facebook/fresco/tree/gh-pages/docs/02-image-requests.md" target="_blank">Edit on GitHub</a>
     </h1>
     <p></p>
 
-    <p>URI만 있는 <code>ImageRequest</code>가 필요하다면, <code>ImageRequest.fromURI</code>의 헬퍼메소드를 이용할 수 있습니다. 일반적인 경우 <a href="requesting-multiple-images.html">여러개의 이미지</a>를 불러올 수 있습니다.</p>
+    <p>URI만 있는 <code>ImageRequest</code>가 필요하다면, <code>ImageRequest.fromURI</code>의 헬퍼메소드를 이용할 수 있습니다. 일반적인 경우 <a href="requesting-multiple-images.html">여러개의 이미지를 요청하기</a>할 수 있습니다.</p>
 
 <p>단순히 URI 요청하는 것 외에 더 많은게 필요하다면 <code>ImageRequestBuilder</code>로 이미지 파이프라인을 이용하세요.</p>
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Uri</span> <span class="n">uri</span><span class="o">;</span>
@@ -322,16 +322,16 @@
 <h4>ImageRequest 필드</h4>
 
 <ul>
-<li><code>uri</code> - 필수 필드입니다. <a href="supported-uris.html">Supported URIs</a> 참조하세요</li>
-<li><code>autoRotateEnabled</code> - <a href="resizing--rotating.html#rotate">auto-rotation</a>을 결정.</li>
-<li><code>progressiveEnabled</code> - <a href="progressive-jpegs.html">progressive loading</a>을 결정.</li>
+<li><code>uri</code> - 필수 필드입니다. <a href="supported-uris.html">지원하는 URIs</a> 참조하세요</li>
+<li><code>autoRotateEnabled</code> - <a href="resizing--rotating.html#rotate">자동 회전하기</a>을 결정.</li>
+<li><code>progressiveEnabled</code> - <a href="progressive-jpegs.html">진보적인 불러오기</a>을 결정.</li>
 <li><code>postprocessor</code> - 디코딩된 이미지를 <a href="modifying-image.html">후처리(postprocess)</a> 하는 컴퍼넌트.</li>
-<li><code>resizeOptions</code> - 원하는 가로와 세로 길이.주의해서 사용하세요.<a href="resizing-rotating.html">Resizing</a> 참조.</li>
+<li><code>resizeOptions</code> - 원하는 가로와 세로 길이.주의해서 사용하세요.<a href="resizing-rotating.html">리사이징</a> 참조.</li>
 </ul>
 
-<h4>제일 낮은 수준으로 허가된 요청? Lowest Permitted Request Level</h4>
+<h4>제일 낮은 수준으로 허가된 요청 레벨</h4>
 
-<p>이미지 파이프라인은 이미지를 찾을 때 <a href="intro-image-pipeline.html">정리된 순서 definite sequence</a> 를 따릅니다.</p>
+<p>이미지 파이프라인은 이미지를 찾을 때 <a href="intro-image-pipeline.html">정의된 순서</a> 를 따릅니다.</p>
 
 <ol>
 <li>비트맵 캐시를 체크합니다. 빠르며 발견되면 돌려줍니다.</li>
@@ -349,8 +349,7 @@
 <li><code>FULL_FETCH</code></li>
 </ul>
 
-<p>This is useful in situations where you need an instant, or at least relatively fast, image or none at all.
-이미지가 빠르게, 혹은 상대적으로 빨리 필요하거나 그렇지 않을 때 유용합니다.</p>
+<p>이미지가 빠르게, 혹은 상대적으로 빨리 필요하거나 그렇지 않을 때 유용합니다.</p>
 
 
     <div class="docs-prevnext">
@@ -377,10 +376,10 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
- 
-  ga('create', 'UA-44373548-3', 'auto');
+
+  ga('create', 'UA-39814281-9', 'auto');
   ga('send', 'pageview');
- 
+
 </script>
 <script src="/static/linkify.js"></script>
 </body>
