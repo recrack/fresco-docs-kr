@@ -20,7 +20,7 @@ prev: multiple-apks.html
 그래들을 받을 필욘 없습니다. 빌드스크립트나 안드로이드 스튜디오가 역활을 대신할 것입니다.
 
 Eclipse users can already [include](index.html#) inde
-프레스코는 이클립스, Ant, Maven에서 원본 소스 빌드를 지원하지 않습니다. 지원할 계획도 없습니다. 이클립스 사용자는 대신 프로젝트에 [Fresco를 포함할 수 있습니다.](index.html#)
+프레스코는 이클립스, Ant, Maven에서 원본 소스 빌드를 지원하지 않습니다. 지원할 계획도 없습니다. 이클립스 사용자는 대신 프로젝트에 [Fresco를 포함할 수 있습니다.](index.html#eclipse-adt)
 
 ### Gradle 설정하기
 

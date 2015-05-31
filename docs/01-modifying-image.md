@@ -37,9 +37,9 @@ ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
     .setPostprocessor(redMeshPostprocessor)
     .build();
 
-PipelineDraweeController controller = Fresco.newDraweeControllerBuilder()
+PipelineDraweeController controller = (PipelineDraweeController) Fresco.newDraweeControllerBuilder()
     .setImageRequest(request)
-    .setOldController(mSimpleDraweeView.getOldController())
+    .setOldController(mSimpleDraweeView.getController())
     // 필요한 다른 설정
     .build();
 mSimpleDraweeView.setController(controller);
@@ -62,7 +62,7 @@ post-process 내부에 몇몇 동작하지 않는 경우가 있을 수 있습니
 public void process(Bitmap destBitmap, Bitmap sourceBitmap) {
   for (int x = 0; x < destBitmap.getWidth(); x++) {
     for (int y = 0; y < destBitmap.getHeight(); y++) {
-      destBitmap.setPixel(destBitmap.getWidth() - x, y, sourceBitmap.getPixel(x, y));
+      destBitmap.setPixel(x, y, sourceBitmap.getPixel(x, y));
     }
   }
 }

@@ -19,17 +19,6 @@ dependencies { }
 	//your app's other dependencies
     compile 'com.facebook.fresco:fresco:{{site.current_version}}+
 ```
-###MAVEN
-
-'pom.xml'에 아래 `<dependencies>`를 추가하세요
-
-```xml
-<dependency>
-<groupId>com.facebook.fresco</groupId>
-<artifactId>fresco</artifactId>
-<version>LATEST</version>
-</dependency>
-```
 
 ### Eclipse ADT
 
