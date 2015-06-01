@@ -6,7 +6,7 @@ relative_permalinks: false
 markdown: RedCarpet
 redcarpet:
   extensions: ["tables"]
-description: 이미지 관리 라이브러
+description: 이미지 관리 라이브러리
 timezone: America/Los_Angeles
 
 safe: true
