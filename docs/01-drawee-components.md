@@ -105,7 +105,7 @@ XML 에선 오직 하나의 속성에서만 지정할 수 있지만, 코드에�
 XML 속성: `backgroundImage`  
 Hierarchy 빌더 메소드: `setBackground,` `setBackgrounds`  
 기본 값: None  
-기본 scale 타입 : N/A
+기본 스케일 타입 : N/A
 
 ## Overlays - 오버레이
 
