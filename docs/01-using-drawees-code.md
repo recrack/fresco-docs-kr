@@ -50,7 +50,7 @@ GenericDraweeHierarchy hierarchy = mSimpleDraweeView.getHierarchy();
 <a name="change_placeholder"></a>
 #### 대기이미지 바꾸기
 
-resource id 로 대기이미지도 바꿀 수 있습니다.
+리소스 id로 대기이미지를 바꿀 수 있습니다.
 
 ```java
 hierarchy.setPlaceholderImage(R.drawable.placeholderId);
@@ -82,7 +82,7 @@ hierarchy.setActualImageFocusPoint(point);
 
 ```java
 ColorFilter filter;
-// create your filter
+// 당신만의 필터 만들기
 hierarchy.setActualImageColorFilter(filter);
 ```
 

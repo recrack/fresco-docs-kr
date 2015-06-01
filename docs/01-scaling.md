@@ -7,7 +7,7 @@ prev: progress-bars.html
 next: rounded-corners-and-circles.html
 ---
 
-여러 타입의 스케일을 Drawee의 [여러가지 drawables different drawables](drawee-components.html) 에 각각 적용할 수 있습니다.
+여러 타입의 스케일을 Drawee의 [여러가지 drawables](drawee-components.html)에 각각 적용할 수 있습니다.
 
 ### 여러가지 스케일 타입
 

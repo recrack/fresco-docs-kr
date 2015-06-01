@@ -29,23 +29,23 @@
   - id: animations
     title: 움직이는 이미지
   - id: requesting-multiple-images
-    title: 이미지 여러개 요청하
+    title: 이미지 여러개 요청하기
   - id: listening-download-events
     title: 다운로드 이벤트 리스닝
   - id: resizing-rotating
     title: 리사이징과 회전
   - id: modifying-image
-    title: 이미지 수정하
+    title: 이미지 수정하기
   - id: image-requests
     title: 이미지 리퀘스트
   - id: writing-custom-views    
-    title: 커스텀 뷰 사용하
+    title: 커스텀 뷰 사용하기
   - id: gotchas
     title: 갓챠
 - title: 이미지 파이프라인 가이드
   items:
   - id: intro-image-pipeline
-    title: 이미지 파이프라인 소
+    title: 이미지 파이프라인 소개
   - id: configure-image-pipeline
     title: 이미지 파이프라인 구성하기
   - id: caching
@@ -61,7 +61,7 @@
   - id: using-other-network-layers
     title: 다른 네트워크 레이어 사용하기
   - id: using-other-image-loaders
-    title: 다른 이미지 로더 사용하기하기
+    title: 다른 이미지 로더 사용하기
 - title: 앱 발행하기
   items:
   - id: proguard

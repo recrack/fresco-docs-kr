@@ -3,16 +3,18 @@ permalink: /blog/:categories/:year/:month/:day/:title.html
 url: http://facebook.github.io/fresco
 name: Fresco
 relative_permalinks: false
-markdown: redcarpet
+markdown: RedCarpet
 redcarpet:
   extensions: ["tables"]
-description: An image management library.
+description: 이미지 관리 라이브러
 timezone: America/Los_Angeles
 
 safe: true
 lsi: false
 highlighter: pygments
-current_version: 0.4.0
+current_version: 0.5.0
+
+exclude:        ['publish-gh-pages-for-pull-request.sh', 'base.sh', 'publish-gh-pages.sh']
 
 defaults:
   -

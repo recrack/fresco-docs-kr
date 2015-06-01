@@ -8,6 +8,7 @@ next: scaling.html
 ---
 
 프로그레스바를 설정하는 가장 쉬운 방법은 앱에서 [상속받은 속성 설정](using-drawees-code.html)할 때 [ProgressBarDrawable](../javadoc/reference/com/facebook/drawee/drawable/ProgressBarDrawable.html) 클래스를 사용하면 됩니다.
+
 ```java
 .setProgressBarImage(new ProgressBarDrawable())
 ```

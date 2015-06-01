@@ -62,4 +62,4 @@ mSimpleDraweeView.setController(controller);
 
 `onFinalImageSet` 이나 `onFailure`에서 모든 이미지불러오기가 호출됩니다.
 
-만약 [진보된 디코딩하기](progressive-jpegs.html)이 사용가능 하고 그 이미지가 지원된다면 각각의 디코딩되는 스캔에 대해 `onIntermediateImageSet`이 호출됩니다. 디코딩 된 것은 [설정](progressive-jpegs.html)에서 결정됩니다.
+만약 [진보된 이미지](progressive-jpegs.html)가 사용가능 하고 그 이미지가 지원된다면 각각의 디코딩되는 스캔에 대해 `onIntermediateImageSet`이 호출됩니다. 디코딩 된 것은 [설정](progressive-jpegs.html)에서 결정됩니다.

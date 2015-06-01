@@ -23,7 +23,7 @@ next: using-controllerbuilder.html
 이미지를 둥글게 처리하는 방벙은 2가지가 있습니다.
 Images can be rounded with two different methods:
 
-1. `BITMAP_ONLY` - 쉐이더를 사용해 비트맵을 그리고 가장자리를 둥글게 처리합니다. 이것은 기본 메소드입니다. actual 이미지와 [대기이미지](drawee-components.html)에만 동작합니다. 다른 것들 - 이미지 그리기 실패, 재시도 이미지 -는 지원하지 않습니다. 또 애니메이션도 지원되지 않습니다.
+1. `BITMAP_ONLY` - 쉐이더를 사용해 비트맵을 그리고 가장자리를 둥글게 처리합니다. 이것은 기본 메소드입니다. actual 이미지와 [대기이미지(placeholder)](drawee-components.html)에만 동작합니다. 다른 것들 - 이미지 그리기 실패, 재시도 이미지 -는 지원하지 않습니다. 또 애니메이션도 지원되지 않습니다.
 2. `OVERLAY_COLOR` - 가장자리를 호출자가 지정한 특정 색깔로 덮습니다. Drawee의 배경은 정적인 같은 색깔로 채워집니다. XML의 `roundWithOverlayColor` 나, 코드에서 `setOverlayColor`를 사용하세요.
 
 
@@ -76,7 +76,7 @@ mSimpleDraweeView.getHierarchy().setRoundingParams(roundingParams);
 
 `OVERLAY_COLOR`모드는 앞서 언급한 제한이 없습니다. 하지만 단순한 색깔로 가장자리를 덮기 때문에 정적거나 같은 색깔의 뷰 배경에서만 보기에 좋습니다.
 
-Drawee는 내부적으로 `CLIPPING` 모드를 구현합니다. 하지만 이 모드는 어떤 `Canvas`에선 사용가능하지 않거나 노출되지 않기 때문에 경로클리핑(path clipping)은 지원하지 않습니다. 또, canvas 클리핑은 픽셀단pixelated)로 가장자리를 둥글게 처리하는 안티앨리어싱을 지원하지 않습니다.
+Drawee는 내부적으로 `CLIPPING` 모드를 구현합니다. 하지만 이 모드는 어떤 `Canvas`에선 사용가능하지 않거나 노출되지 않기 때문에 경로클리핑(path clipping)은 지원하지 않습니다. 또, canvas 클리핑은 픽셀단위로 가장자리를 둥글게 처리하는 안티앨리어싱을 지원하지 않습니다.
 
 마지막으로, 모든 이슈들은 임시 비트맵으로 회피할 수는 있습니다. 하지만 이는 심각한 메모리 오버헤드때문에 지원되지 않습니다.
 

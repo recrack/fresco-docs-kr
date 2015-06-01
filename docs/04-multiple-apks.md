@@ -7,15 +7,18 @@ prev: proguard.html
 next: building-from-source.html
 ---
 
-프레스코는 대부분 자바로 만들어 졌습니다. 하지만 C++코드도 조금 들어있습니다. C++코드는 CPU종류("ABIs")에 따라 컴파일 되어야만 하며, 안드로이드에서 할 수 있습니다. 현재 프레스코는 3가지 ABIs를 지원합니다.
+프레스코는 대부분 자바로 만들어 졌습니다. 하지만 C++코드도 조금 들어있습니다. C++코드는 CPU종류("ABIs")에 따라 컴파일 되어야만 하며, 안드로이드에서 할 수 있습니다. 현재 프레스코는 5가지 ABIs를 지원합니다.
 
-1. `armeabiv-v7a`: ARM프로세서 7 혹은 상위버전. 대부분의 안드로이드 폰은 2011년 이후 이것을 사용해 출시되었습니다.
-2. `armeabi`: v5나 v6의 ARM프로세서를 사용한 옛날 폰.
-3. `x86`: 데스크탑이나 랩탑에서 에뮬레이터로 돌아가는 것.
+1. `armeabiv-v7a`: ARM프로세서 7 혹은 상위버전. 2011-15년 사이 출시된  대부분의 안드로이드 폰은 이것을 사용해 출시되었습니다.
+2. `arm64-v8a`: 64비트 ARM 프로세서. 삼성 갤럭시s6같은 새로운 장치.
+3. `armeabi`: v5나 v6의 ARM프로세서를 사용한 옛날 폰.
+4. `x86`: 타블렛에서 에뮬레이터로 돌아가는 것.
+5. `x86_64`: 64비트 타블렛에서 사용되는 것.
 
-내려받을 수 있는 프레스코의 바이너리는 이 3가지 플랫폼의 네이티브`.so`파일 복사본을 가집니다. 프로세서 종류에 따라 APK를 분리하여 만들도록 고려하면 앱의 크기를 줄일 수 있습니다.
 
-앱이 안드로이드 2.3(Gingerbread)에서 돌아가지 않는다면 `armeabi`는 필요 없습니다. 테스트용으로 에뮬레이터가 필요하지 않다면 `x86`도 필요없습니다.
+내려받을 수 있는 프레스코의 바이너리는 이 5가지 플랫폼의 네이티브`.so`파일 복사본을 가집니다. 프로세서 종류에 따라 APK를 분리하여 만들도록 고려하면 앱의 크기를 줄일 수 있습니다.
+
+앱이 안드로이드 2.3(Gingerbread)에서 돌아가지 않는다면 `armeabi`는 필요 없습니다.
 
 ### Android Studio / Gradle
 
@@ -24,27 +27,18 @@ next: building-from-source.html
 ```groovy
 android {
   // 앱 로직의 남은 부분
-  productFlavors {
-    armv7 {
-      ndk {
-        abiFilter "armeabi-v7a"
-      }
-    }
-    arm {
-      ndk {
-        abiFilter "armeabi"
-      }
-    }
-    x86 {
-      ndk {
-        abiFilter "x86"
-      }
+    splits {
+    abi {
+        enable true
+        reset()
+        include 'x86', 'x86_64', 'arm64-v8a', 'armeabi-v7a', 'armeabi'
+        universalApk false
     }
   }
 }
 ```
 
-CPU종류에 따른 더 자세한 것을 보려면 [Android Gradle 문서](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Product-flavors)을 확인하세요.
+CPU종류에 따라 더 자세한 것을 보려면 [Android Gradle 문서](http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits)을 확인하세요.
 
 ### 이클립스
 

@@ -6,7 +6,7 @@ permalink: /docs/image-requests.html
 prev: modifying-image.html
 next: writing-custom-views.html
 ---
-URI만 있는 `ImageRequest`가 필요하다면, `ImageRequest.fromURI`의 헬퍼메소드를 이용할 수 있습니다. 일반적인 경우 [여러개의 이미지를 요청하기](requesting-multiple-images.html)할 수 있습니다.
+URI만 있는 `ImageRequest`가 필요하다면, `ImageRequest.fromURI`의 헬퍼메소드를 이용할 수 있습니다. 일반적인 경우 [여러개의 이미지를 요청](requesting-multiple-images.html)할 수 있습니다.
 
 단순히 URI 요청하는 것 외에 더 많은게 필요하다면 `ImageRequestBuilder`로 이미지 파이프라인을 이용하세요.
 

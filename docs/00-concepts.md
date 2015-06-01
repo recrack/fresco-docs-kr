@@ -13,13 +13,13 @@ Drawees는 이미지가 구현되는 공간입니다. Model-View-Controller 프�
 ### DraweeView
 
 Android의 [View](http://developer.android.com/reference/android/view/View.html)클래스를 상속받은 클래스입니다.
-대부분의 앱은 SimpleDraweeView 클래스를 사용하면 됩니다. XML이나 Java코드에 추가하세요. [GettingStarted](index.html)페이지에 설명한 것 처럼, setImageURI메소드로 URI를 지정하고 로드하면 됩니다.
-XML에서 [customizing 할 수도 있어요](using-drawees-xml.html).
+대부분의 앱은 SimpleDraweeView 클래스를 사용하면 됩니다. XML이나 Java코드에 추가하세요. [시작](index.html)페이지에 설명한 것 처럼, setImageURI메소드로 URI를 지정하고 로드하면 됩니다.
+XML에서 [커스터마이징 할 수도 있어요](using-drawees-xml.html).
 
 ### DraweeHierarchy
 
 컨텐츠를 실제로 그려주는 Android 의 [Drawable](http://developer.android.com/reference/android/graphics/drawable/Drawable.html) 객체의 상속 판입니다. MVC패턴의 Model입니다.
-이미지를 [Java에서 custom 하여 표현하고 싶을 때,](using-drawees-code.html) 살펴보세요.
+이미지를 [Java에서 커스텀하여 표현하고 싶을 때,](using-drawees-code.html) 살펴보세요.
 
 ### DraweeController
 
