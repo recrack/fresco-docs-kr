@@ -17,7 +17,7 @@ Android프로젝트에 Fresco를 추가하는 방법입니다.
 ```groovy
 dependencies { }
 	//your app's other dependencies
-    compile 'com.facebook.fresco:fresco:{{site.current_version}}+
+    compile 'com.facebook.fresco:fresco:{{site.current_version}}+'
 ```
 
 ### Eclipse ADT
