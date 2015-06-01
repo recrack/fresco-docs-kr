@@ -16,7 +16,7 @@ Fresco는 **상대경로 URI는 지원하지 않습니다**. 모든 URI는 절�
 | --------------- | ------- | ------------- |
 | 네트워크의 파일 | `http://,` `https://` | `HttpURLConnection` 혹은 [네트워크 레이어](using-other-network-layers.html) |
 | 단말의 파일 | `file://` | `FileInputStream` |
-| 컨텐트 프롤비더 | `content://` | `ContentResolver` |
+| 컨텐트 프로비더 | `content://` | `ContentResolver` |
 | 앱의 Asset | `asset://` | `AssetManager` |
 | 앱의 리소스 | `res://` | `Resources.openRawResource` |
 
