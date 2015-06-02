@@ -64,3 +64,4 @@ Fresco 이미지 파이프라인은 다양한 방법으로 이미지를 불러�
 * Fresco [다운로드](docs/index.html)
 * [문서 가이드](docs/getting-started.html)
 * 소스코드 보기 :[GitHub](https://github.com/facebook/fresco)
+* 한글 번역 문서 [GitHub](https://github.com/recrack/fresco-docs-kr)
