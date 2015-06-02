@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Fresco | An image management library.
+title: Fresco | 페이스북에서 만든 안드로이드 이미지 라이브러리
 id: home
 hero: true
 ---
