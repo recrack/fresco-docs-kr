@@ -157,7 +157,7 @@
         
           <li>
             <a href="/docs/requesting-multiple-images.html#_">
-              이미지 여러개 요청하
+              이미지 여러개 요청하기
             </a>
             
           </li>
@@ -178,7 +178,7 @@
         
           <li>
             <a href="/docs/modifying-image.html#_">
-              이미지 수정하
+              이미지 수정하기
             </a>
             
           </li>
@@ -192,7 +192,7 @@
         
           <li>
             <a href="/docs/writing-custom-views.html#_">
-              커스텀 뷰 사용하
+              커스텀 뷰 사용하기
             </a>
             
           </li>
@@ -213,7 +213,7 @@
         
           <li>
             <a href="/docs/intro-image-pipeline.html#_">
-              이미지 파이프라인 소
+              이미지 파이프라인 소개
             </a>
             
           </li>
@@ -269,7 +269,7 @@
         
           <li>
             <a href="/docs/using-other-image-loaders.html#_">
-              다른 이미지 로더 사용하기하기
+              다른 이미지 로더 사용하기
             </a>
             
           </li>
@@ -353,16 +353,16 @@
 
 <p>이것은 상속받은 것이 아닌 controller 의 속성입니다. 그러므로 다른 Drawee 컴퍼넌트에서 사용되는 메소드로 설정할 수 없습니다.</p>
 
-<p>대신에 <code>setImageURI</code> 메소드를 이용하거나 <a href="using-controllerbuilder.html">컨트롤러 설정 set a controller</a> 코드로 이용할 수 있습니다.</p>
+<p>대신에 <code>setImageURI</code> 메소드를 이용하거나 <a href="using-controllerbuilder.html">컨트롤러 설정</a> 코드를 이용할 수 있습니다.</p>
 
-<p>또 scale 타잎도 있습니다. 이 상속받은 속성은 다른 actual 이미지를 위한 메소드를 보여줍니다.</p>
+<p>또 스케일 타잎도 있습니다. 이 상속받은 속성은 다른 actual 이미지를 위한 메소드를 보여줍니다.</p>
 
 <ul>
 <li>포커스 포인트(scale 타잎의 <a href="scaling.html#FocusCrop">focusCrop</a>)</li>
 <li>컬러 필터</li>
 </ul>
 
-<p>기본 scale 타잎은 <code>centerCrop</code> 입니다.</p>
+<p>기본 스케일 타잎은 <code>centerCrop</code> 입니다.</p>
 
 <h2>Placeholder - 대기이미지</h2>
 
@@ -370,21 +370,21 @@
 
 <p>JPEG 를 가져오는 경우, 대기이미지는 이미지 품질이 당신의 앱에서 설정된 값 혹은 기본 기준에 도달할때까지 대기합니다.</p>
 
-<p>XML attribute: <code>placeholderImage</code>
-Hierarchy 빌더 메소드: <code>setPlaceholderImage</code>
-Hierarchy 메소드: <code>setPlaceholderImage</code>
-기본 값 : 투명한 <a href="http://developer.android.com/reference/android/graphics/drawable/ColorDrawable.html">ColorDrawable</a>
-기본 scale 타잎 : <code>centerInside</code></p>
+<p>XML attribute: <code>placeholderImage</code><br>
+Hierarchy 빌더 메소드: <code>setPlaceholderImage</code><br>
+Hierarchy 메소드: <code>setPlaceholderImage</code><br>
+기본 값 : 투명한 <a href="http://developer.android.com/reference/android/graphics/drawable/ColorDrawable.html">ColorDrawable</a><br>
+기본 스케일 타잎 : <code>centerInside</code></p>
 
 <h2>Failure - 실패</h2>
 
 <p>The <em>failure</em> image appears if there is an error loading your image. The most common cause of this is an invalid URI, or lack of connection to the network.
 <em>실패</em> 이미지는 이미지 가져오기 실패했을 경우 나타납니다.</p>
 
-<p>XML 속성 : <code>failureImage</code>
-Hierarchy 빌더 메소드: <code>setFailureImage</code>
-기본 값 : The placeholder image
-기본 scale 타입: <code>centerInside</code></p>
+<p>XML 속성 : <code>failureImage</code><br>
+Hierarchy 빌더 메소드: <code>setFailureImage</code><br>
+기본 값 : placeholder 이미지<br>
+기본 스케일 타입: <code>centerInside</code>  </p>
 
 <h2>Retry - 재시도</h2>
 
@@ -397,10 +397,10 @@ Hierarchy 빌더 메소드: <code>setFailureImage</code>
 
 <p>이 이미지 파이프라인은 유저가 탭하면 이미지 다시 가져오기를 시도합니다. 실패이미지가 보이는 대신 최대 4번까지 시도할 수 있습니다.</p>
 
-<p>XML 속성 : <code>retryImage</code>
-Hierarchy 빌더 메소드 : <code>setRetryImage</code>
-기본 값 :  placeholder 이미지
-기본 scale 타입 : <code>centerInside</code></p>
+<p>XML 속성 : <code>retryImage</code><br>
+Hierarchy 빌더 메소드 : <code>setRetryImage</code><br>
+기본 값 :  placeholder 이미지<br>
+기본 스케일 타입 : <code>centerInside</code>  </p>
 
 <h2><a name="ProgressBar"></a>Progress Bar 프로그레스바</h2>
 
@@ -408,10 +408,10 @@ Hierarchy 빌더 메소드 : <code>setRetryImage</code>
 
 <p>자세한 것은 <a href="progress-bars.html">프로그레스바</a>를 보세요</p>
 
-<p>XML 속성: <code>progressBarImage</code>
-Hierarchy 빌더 메소드 : <code>setProgressBarImage</code>
-기본 값: None
-기본 scale 타입 : <code>centerInside</code></p>
+<p>XML 속성: <code>progressBarImage</code><br>
+Hierarchy 빌더 메소드 : <code>setProgressBarImage</code><br>
+기본 값: None<br>
+기본 스케일 타입 : <code>centerInside</code></p>
 
 <h2>Backgrounds - 배경</h2>
 
@@ -419,12 +419,12 @@ Hierarchy 빌더 메소드 : <code>setProgressBarImage</code>
 
 <p>XML 에선 오직 하나의 속성에서만 지정할 수 있지만, 코드에선 더 지정할 수 있습니다. 이 경우 가장 처음에 지정한 이미지가 먼저 그려집니다.</p>
 
-<p>배경 이미지는 scale 타입을 지원하지 않으며, Drawee의 크기만큼 커집니다.</p>
+<p>배경 이미지는 스케일 타입을 지원하지 않으며, Drawee의 크기만큼 커집니다.</p>
 
-<p>XML 속성: <code>backgroundImage</code>
-Hierarchy 빌더 메소드: <code>setBackground,</code> <code>setBackgrounds</code>
-기본 값: None
-기본 scale 타입 : N/A</p>
+<p>XML 속성: <code>backgroundImage</code><br>
+Hierarchy 빌더 메소드: <code>setBackground,</code> <code>setBackgrounds</code><br>
+기본 값: None<br>
+기본 스케일 타입 : N/A</p>
 
 <h2>Overlays - 오버레이</h2>
 
@@ -432,23 +432,23 @@ Hierarchy 빌더 메소드: <code>setBackground,</code> <code>setBackgrounds</co
 
 <p>XML 에선 오직 하나의 속성에서만 지정할 수 있지만, 코드에선 더 지정할 수 있습니다. 이 경우 가장 처음에 지정한 이미지가 먼저 그려집니다.</p>
 
-<p>오버레이 이미지는 scale 타입을 지원하지 않고 Drawee 크기만큼 커집니다.</p>
+<p>오버레이 이미지는 스케일 타입을 지원하지 않고 Drawee 크기만큼 커집니다.</p>
 
-<p>XML 속성: <code>overlayImage</code>
-Hierarchy 빌더 메소드 : <code>setOverlay,</code> <code>setOverlays</code>
-기본 값: None
-기본 scale 타입 : N/A</p>
+<p>XML 속성: <code>overlayImage</code><br>
+Hierarchy 빌더 메소드 : <code>setOverlay,</code> <code>setOverlays</code><br>
+기본 값: None<br>
+기본 스케일 타입 : N/A</p>
 
-<h2><a name="PressedStateOverlay"></a>Pressed State Overlay - 눌린 상태의 Overlay</h2>
+<h2><a name="PressedStateOverlay"></a>Pressed State Overlay - 눌려진 Overlay</h2>
 
-<p><em>눌린 상태의 오버레이</em>는 사용자가 Drawee를 눌렀을 때 나타나는 특별한 오버레이입니다. 예를 들어, 만약 이 Drawee가 버튼이라면 이 오버레이는 눌렸을 때 색깔이 바뀌는 버튼을 포함할 수 있습니다.</p>
+<p><em>눌려진 오버레이</em>는 사용자가 Drawee를 눌렀을 때 나타나는 특별한 오버레이입니다. 예를 들어, 만약 이 Drawee가 버튼이라면 이 오버레이는 눌렸을 때 색깔이 바뀌는 버튼을 포함할 수 있습니다.</p>
 
-<p>눌려진 상태의 오버레이는 scale 타입을 지원하지 않습니다.</p>
+<p>눌려진 상태의 오버레이는 스케일 타입을 지원하지 않습니다.</p>
 
-<p>XML 속성 : <code>pressedStateOverlayImage</code>
-Hierarchy 빌더 메소드: <code>setPressedStateOverlay</code>
-기본 값: None
-기본 scale 타입 : N/A</p>
+<p>XML 속성 : <code>pressedStateOverlayImage</code><br>
+Hierarchy 빌더 메소드: <code>setPressedStateOverlay</code><br>
+기본 값: None<br>
+기본 스케일 타입 : N/A</p>
 
 
     <div class="docs-prevnext">

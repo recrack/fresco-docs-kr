@@ -157,7 +157,7 @@
         
           <li>
             <a href="/docs/requesting-multiple-images.html#_">
-              이미지 여러개 요청하
+              이미지 여러개 요청하기
             </a>
             
           </li>
@@ -178,7 +178,7 @@
         
           <li>
             <a href="/docs/modifying-image.html#_">
-              이미지 수정하
+              이미지 수정하기
             </a>
             
           </li>
@@ -192,7 +192,7 @@
         
           <li>
             <a href="/docs/writing-custom-views.html#_">
-              커스텀 뷰 사용하
+              커스텀 뷰 사용하기
             </a>
             
           </li>
@@ -213,7 +213,7 @@
         
           <li>
             <a href="/docs/intro-image-pipeline.html#_">
-              이미지 파이프라인 소
+              이미지 파이프라인 소개
             </a>
             
           </li>
@@ -269,7 +269,7 @@
         
           <li>
             <a href="/docs/using-other-image-loaders.html#_">
-              다른 이미지 로더 사용하기하기
+              다른 이미지 로더 사용하기
             </a>
             
           </li>
@@ -341,7 +341,7 @@
 Images can be rounded with two different methods:</p>
 
 <ol>
-<li><code>BITMAP_ONLY</code> - 쉐이더를 사용해 비트맵을 그리고 가장자리를 둥글게 처리합니다. 이것은 기본 메소드입니다. actual 이미지와 <a href="drawee-components.html">대기이미지</a>에만 동작합니다. 다른 것들 - 이미지 그리기 실패, 재시도 이미지 -는 지원하지 않습니다. 또 애니메이션도 지원되지 않습니다.</li>
+<li><code>BITMAP_ONLY</code> - 쉐이더를 사용해 비트맵을 그리고 가장자리를 둥글게 처리합니다. 이것은 기본 메소드입니다. actual 이미지와 <a href="drawee-components.html">대기이미지(placeholder)</a>에만 동작합니다. 다른 것들 - 이미지 그리기 실패, 재시도 이미지 -는 지원하지 않습니다. 또 애니메이션도 지원되지 않습니다.</li>
 <li><code>OVERLAY_COLOR</code> - 가장자리를 호출자가 지정한 특정 색깔로 덮습니다. Drawee의 배경은 정적인 같은 색깔로 채워집니다. XML의 <code>roundWithOverlayColor</code> 나, 코드에서 <code>setOverlayColor</code>를 사용하세요.</li>
 </ol>
 
@@ -388,7 +388,7 @@ Images can be rounded with two different methods:</p>
 
 <p><code>OVERLAY_COLOR</code>모드는 앞서 언급한 제한이 없습니다. 하지만 단순한 색깔로 가장자리를 덮기 때문에 정적거나 같은 색깔의 뷰 배경에서만 보기에 좋습니다.</p>
 
-<p>Drawee는 내부적으로 <code>CLIPPING</code> 모드를 구현합니다. 하지만 이 모드는 어떤 <code>Canvas</code>에선 사용가능하지 않거나 노출되지 않기 때문에 경로클리핑(path clipping)은 지원하지 않습니다. 또, canvas 클리핑은 픽셀단pixelated)로 가장자리를 둥글게 처리하는 안티앨리어싱을 지원하지 않습니다.</p>
+<p>Drawee는 내부적으로 <code>CLIPPING</code> 모드를 구현합니다. 하지만 이 모드는 어떤 <code>Canvas</code>에선 사용가능하지 않거나 노출되지 않기 때문에 경로클리핑(path clipping)은 지원하지 않습니다. 또, canvas 클리핑은 픽셀단위로 가장자리를 둥글게 처리하는 안티앨리어싱을 지원하지 않습니다.</p>
 
 <p>마지막으로, 모든 이슈들은 임시 비트맵으로 회피할 수는 있습니다. 하지만 이는 심각한 메모리 오버헤드때문에 지원되지 않습니다.</p>
 
