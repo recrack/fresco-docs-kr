@@ -69,7 +69,7 @@ Fresco 이미지 파이프라인은 다양한 방법으로 불러오기를 개�
 
 * Fresco를 발표하고 기술 설계를 설명한 [블로그 게시물](https://code.facebook.com/posts/366199913563917)
 * F8 컨퍼런스의 [발표](https://developers.facebooklive.com/videos/542/move-fast-ensuring-mobile-performance-without-breaking-things) (앞에서 25:00 또는 뒤에서 14:35)
-* Fresco [다운로드](docs-kr/index.html)
-* [문서](docs-kr/getting-started.html)
+* Fresco [다운로드](docs/index.html)
+* [문서](docs/getting-started.html)
 * [깃허브](https://github.com/facebook/fresco)의 소스코드
 * 한글 번역 문서 [깃허브](https://github.com/recrack/fresco-docs-kr)
